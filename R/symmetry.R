@@ -1,13 +1,7 @@
-#library(iterators)
-#library(iterpc)
-#library(foreach)
-#library(Rcpp)
-#library(parallel)
-
 #' @useDynLib symmetry
 #' @importFrom Rcpp sourceCpp
-#' @importFrom foreach foreach %do%
 #' @import parallel
+#' @import RcppDE
 
 
 #' @export
