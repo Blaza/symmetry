@@ -5,3 +5,7 @@ chunk_sum <- function(comb, x, k) {
     .Call('symmetry_chunk_sum', PACKAGE = 'symmetry', comb, x, k)
 }
 
+I1_Cpp <- function(X, k) {
+    .Call('symmetry_I1_Cpp', PACKAGE = 'symmetry', X, k)
+}
+

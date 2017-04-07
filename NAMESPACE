@@ -2,6 +2,7 @@
 
 export(I1)
 export(I1C)
+export(I1C1)
 export(I2)
 export(K1)
 export(K2)

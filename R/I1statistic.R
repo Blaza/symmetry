@@ -38,3 +38,7 @@ I1C <- function(X, k, chunk_size=-1L) {
   sum(chunk_sums) / (n * choose(n, 2*k))
 }
 
+#' @export
+I1C1 <- function(X, k) {
+  I1_Cpp(X, k)
+}

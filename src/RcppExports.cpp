@@ -18,3 +18,15 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// I1_Cpp
+double I1_Cpp(const NumericVector& X, int k);
+RcppExport SEXP symmetry_I1_Cpp(SEXP XSEXP, SEXP kSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    rcpp_result_gen = Rcpp::wrap(I1_Cpp(X, k));
+    return rcpp_result_gen;
+END_RCPP
+}
