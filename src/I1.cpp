@@ -4,15 +4,16 @@
 #include <Rcpp.h>
 #include "combinations.h"
 using namespace Rcpp;
+using std::int64_t;
 
 
-class TSs {
-    std::int64_t Tsum;
+class I1 {
+    int64_t Tsum;
     const NumericVector aX;
     int k, i, n;
     double aXk, aXk1;
   public:
-    explicit TSs(const NumericVector& X, int _n, int _k)
+    explicit I1(const NumericVector& X, int _n, int _k)
                 : n(_n), aX(abs(X)), k(_k), Tsum(0) {}
 
     template <class It>
@@ -28,7 +29,7 @@ class TSs {
             return false;  // Don't break out of the loop
         }
 
-    operator std::int64_t() const {return Tsum;}
+    operator int64_t() const {return Tsum;}
 };
 
 
@@ -38,10 +39,10 @@ double I1_Cpp(const NumericVector& X, int k) {
     NumericVector Xs = clone(X);
     std::sort(Xs.begin(), Xs.end());
 
-    std::int64_t TS_sum = for_each_combination(Xs.begin(),
+    int64_t TS_sum = for_each_combination(Xs.begin(),
                                                Xs.begin() + 2*k,
                                                Xs.end(),
-                                               TSs(X, n, k));
+                                               I1(X, n, k));
 
     double TS_value = TS_sum / (n * Rf_choose(n, 2*k));
 
