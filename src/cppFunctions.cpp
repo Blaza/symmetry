@@ -1,5 +1,4 @@
 #include <Rcpp.h>
-#include "combinations.h"
 using namespace Rcpp;
 
 // [[Rcpp::export]]
