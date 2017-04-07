@@ -12,9 +12,11 @@ double I2_Cpp(const NumericVector& X) {
         for(j = 0; j < n; j++) {
             aXimXj = std::abs(X[i] - X[j]);
             aXipXj = std::abs(X[i] + X[j]);
-            for(k = 0; j < n; j++) {
+
+            for(k = 0; k < n; k++) {
                 for(l = 0; l < n; l++) {
                     aXkpXl = std::abs(X[k]+X[l]);
+
                     TS_sum += aXimXj < aXkpXl;
                     TS_sum -= aXipXj < aXkpXl;
                 }
