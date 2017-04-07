@@ -3,9 +3,12 @@
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-int chunk_sum(IntegerMatrix comb, NumericVector xs, NumericVector x, int k){
+int chunk_sum(const IntegerMatrix comb, const NumericVector x, int k){
   int chunksize = comb.nrow();
   int n = x.size();
+
+  NumericVector xs = clone(x);
+  std::sort(xs.begin(), xs.end());
 
   int sum = 0;
 

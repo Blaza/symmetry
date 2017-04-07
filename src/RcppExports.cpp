@@ -6,16 +6,15 @@
 using namespace Rcpp;
 
 // chunk_sum
-int chunk_sum(IntegerMatrix comb, NumericVector xs, NumericVector x, int k);
-RcppExport SEXP symmetry_chunk_sum(SEXP combSEXP, SEXP xsSEXP, SEXP xSEXP, SEXP kSEXP) {
+int chunk_sum(const IntegerMatrix comb, const NumericVector x, int k);
+RcppExport SEXP symmetry_chunk_sum(SEXP combSEXP, SEXP xSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< IntegerMatrix >::type comb(combSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type xs(xsSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const IntegerMatrix >::type comb(combSEXP);
+    Rcpp::traits::input_parameter< const NumericVector >::type x(xSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
-    rcpp_result_gen = Rcpp::wrap(chunk_sum(comb, xs, x, k));
+    rcpp_result_gen = Rcpp::wrap(chunk_sum(comb, x, k));
     return rcpp_result_gen;
 END_RCPP
 }
