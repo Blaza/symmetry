@@ -1,16 +1,14 @@
 #' @export
 K2 <- function(X) {
-  n <- length(X)
-  combs <- iterpc::getall(iterpc::iterpc(n, 2, ordered = TRUE, replace = TRUE))
-  Xminus <- abs(X[combs[ , 1]] - X[combs[ , 2]])
-  Xplus <- abs(X[combs[ , 1]] + X[combs[ , 2]])
+  sample_matrix <- K2_get_samples(X)
 
-  m_ecdf <- ecdf(Xminus)
-  p_ecdf <- ecdf(Xplus)
+  X_minus <- sample_matrix['minus', ]
+  X_plus <- sample_matrix['plus', ]
 
-  min_t <- min(c(Xminus, Xplus))
-  max_t <- max(c(Xminus, Xplus))
+  m_ecdf <- ecdf(X_minus)
+  p_ecdf <- ecdf(X_plus)
 
-  f <- function(t) -abs(m_ecdf(t) - p_ecdf(t))
-  -DEoptim(f, min_t, max_t,DEoptim.control(trace=FALSE))$optim$bestval
+  pot_max_points <- unique(sample_matrix)
+
+  max(abs(m_ecdf(pot_max_points) - p_ecdf(pot_max_points)))
 }

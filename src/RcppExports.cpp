@@ -53,3 +53,14 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// K2_get_samples
+NumericMatrix K2_get_samples(const NumericVector& X);
+RcppExport SEXP symmetry_K2_get_samples(SEXP XSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    rcpp_result_gen = Rcpp::wrap(K2_get_samples(X));
+    return rcpp_result_gen;
+END_RCPP
+}

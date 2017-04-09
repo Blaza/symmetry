@@ -17,3 +17,7 @@ K1_Cpp <- function(X, k) {
     .Call('symmetry_K1_Cpp', PACKAGE = 'symmetry', X, k)
 }
 
+K2_get_samples <- function(X) {
+    .Call('symmetry_K2_get_samples', PACKAGE = 'symmetry', X)
+}
+
