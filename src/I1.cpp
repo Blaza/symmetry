@@ -17,7 +17,7 @@ class I1 {
                 : n(_n), aX(abs(X)), k(_k), Tsum(0) {}
 
     template <class It>
-        bool operator()(It Xcomb, It end_ptr) { // called for each permutation
+        bool operator()(It Xcomb, It end_ptr) { // called for each combination
             aXk = std::abs(Xcomb[k-1]);
             aXk1 = std::abs(Xcomb[k]);
 
