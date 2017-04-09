@@ -5,6 +5,6 @@ test_that("I2 works for (1, 2)", {
 test_that("I2 works for rnorm(50)", {
   set.seed(1)
   X <- rnorm(50)
-  expect_equal(I2(X), 0.0245208, tolerance = 1e-8)
+  expect_equal(I2(X), 0.01486112, tolerance = 1e-8)
 })
 
