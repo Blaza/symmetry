@@ -1,7 +1,6 @@
 #' @useDynLib symmetry
 #' @importFrom Rcpp sourceCpp
 #' @import parallel
-#' @import RcppDE
 
 
 #' @export
