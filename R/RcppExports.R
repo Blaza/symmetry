@@ -13,7 +13,7 @@ I2_Cpp <- function(X) {
     .Call('symmetry_I2_Cpp', PACKAGE = 'symmetry', X)
 }
 
-K1_Cpp <- function(X, pts, k) {
-    .Call('symmetry_K1_Cpp', PACKAGE = 'symmetry', X, pts, k)
+K1_Cpp <- function(X, k) {
+    .Call('symmetry_K1_Cpp', PACKAGE = 'symmetry', X, k)
 }
 

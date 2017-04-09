@@ -35,16 +35,17 @@ class K1 {
 
 
 // [[Rcpp::export]]
-double K1_Cpp(const NumericVector& X, const NumericVector& pts, int k) {
-    int pn = pts.size();
+double K1_Cpp(const NumericVector& X, int k) {
     int n = X.size();
     NumericVector Xs = clone(X);
     std::sort(Xs.begin(), Xs.end());
 
+    NumericVector pts = abs(X); // potential points for maximum
+
     K1 TS = for_each_combination(Xs.begin(),
-                                  Xs.begin() + 2*k,
-                                  Xs.end(),
-                                  K1(pts, pn, k));
+                                 Xs.begin() + 2*k,
+                                 Xs.end(),
+                                 K1(pts, n, k));
     std::vector<std::int64_t> sums_stdvec = TS.get_sums();
     NumericVector sums(sums_stdvec.begin(), sums_stdvec.end());
 

@@ -42,15 +42,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // K1_Cpp
-double K1_Cpp(const NumericVector& X, const NumericVector& pts, int k);
-RcppExport SEXP symmetry_K1_Cpp(SEXP XSEXP, SEXP ptsSEXP, SEXP kSEXP) {
+double K1_Cpp(const NumericVector& X, int k);
+RcppExport SEXP symmetry_K1_Cpp(SEXP XSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< const NumericVector& >::type pts(ptsSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
-    rcpp_result_gen = Rcpp::wrap(K1_Cpp(X, pts, k));
+    rcpp_result_gen = Rcpp::wrap(K1_Cpp(X, k));
     return rcpp_result_gen;
 END_RCPP
 }
