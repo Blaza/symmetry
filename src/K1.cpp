@@ -2,6 +2,10 @@
 // algorithm provided by Howard Hinnant, as seen here:
 // https://howardhinnant.github.io/combinations/combinations.html
 #include <Rcpp.h>
+#include <cstdint>
+#include <cmath>
+#include <algorithm>
+#include <vector>
 #include "combinations.h"
 using namespace Rcpp;
 using std::int64_t;

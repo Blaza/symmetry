@@ -1,4 +1,6 @@
 #include <Rcpp.h>
+#include <cstdint>
+#include <cmath>
 using namespace Rcpp;
 using std::int64_t;
 
