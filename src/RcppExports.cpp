@@ -5,19 +5,6 @@
 
 using namespace Rcpp;
 
-// chunk_sum
-int chunk_sum(const IntegerMatrix comb, const NumericVector x, int k);
-RcppExport SEXP symmetry_chunk_sum(SEXP combSEXP, SEXP xSEXP, SEXP kSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const IntegerMatrix >::type comb(combSEXP);
-    Rcpp::traits::input_parameter< const NumericVector >::type x(xSEXP);
-    Rcpp::traits::input_parameter< int >::type k(kSEXP);
-    rcpp_result_gen = Rcpp::wrap(chunk_sum(comb, x, k));
-    return rcpp_result_gen;
-END_RCPP
-}
 // I1_Cpp
 double I1_Cpp(const NumericVector& X, int k);
 RcppExport SEXP symmetry_I1_Cpp(SEXP XSEXP, SEXP kSEXP) {
