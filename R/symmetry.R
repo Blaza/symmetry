@@ -40,8 +40,6 @@ parTvalues <- function(N, n, dist=list(), TS=list(), freecores=0) {
   cl <- makeCluster(no_cores)
 
   clusterExport(cl = cl, list("TSparams"), envir = environment())
-  clusterEvalQ(cl, library(iterpc))
-  clusterEvalQ(cl, library(foreach))
   clusterEvalQ(cl, library(symmetry))
 
   Tvals <- parRapply(cl, samples,
