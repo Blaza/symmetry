@@ -17,7 +17,7 @@ Tvalues <- function(N, n, dist=list(), TS=list()) {
     TS <- list(name = TS)
 
   TSparams <- TS[ which(names(TS) != 'name') ]
-  apply(samples, 1, function(x) do.call(TS$name, c(list(X = x), TSparams)))
+  apply(samples, 1, function(x) do.call(TS$name, c(list(x), TSparams)))
 }
 
 #' @export
@@ -43,7 +43,7 @@ parTvalues <- function(N, n, dist=list(), TS=list(), freecores=0) {
   clusterEvalQ(cl, library(symmetry))
 
   Tvals <- parRapply(cl, samples,
-                     function(x) do.call(TS$name, c(list(X = x), TSparams)))
+                     function(x) do.call(TS$name, c(list(x), TSparams)))
 
   stopCluster(cl)
 
