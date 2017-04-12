@@ -11,7 +11,7 @@ I2(X)
 }
 \value{
 The value of the test statistic given by the formula:
-        \eqn{ \frac{1}{n^4} \sum\limits_{i,j,a,b=1}^n I\{|X_i - X_j| <
+        \deqn{ \frac{1}{n^4} \sum\limits_{i,j,a,b=1}^n I\{|X_i - X_j| <
         X_a+X_b\}- I\{|X_i + X_j| < X_a+X_b\}}
 }
 \description{

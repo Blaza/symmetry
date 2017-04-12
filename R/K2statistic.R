@@ -2,7 +2,7 @@
 #'
 #' @param X the sample for which to calculate the statistic
 #' @return The value of the test statistic given by the formula:
-#'         \eqn{ \sup\limits_{t>0}\frac{1}{n^2} \left| \sum\limits_{i,j=1}^n
+#'         \deqn{ \sup\limits_{t>0}\frac{1}{n^2} \left| \sum\limits_{i,j=1}^n
 #'         I\{|X_i - X_j| < t\}- I\{|X_i + X_j| < t\}\right| }
 #' @examples
 #' set.seed(1)
