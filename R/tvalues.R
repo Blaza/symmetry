@@ -47,10 +47,8 @@ Tvalues <- function(N, n, dist=list(), TS=list()) {
 #' This is just a parallel version of the \code{\link{Tvalues}} function, all
 #' arguments apply for this function. See \code{\link{Tvalues}}.
 #'
-#' @param N the number of simulations to do
-#' @param n the sample size for each simulation
-#' @param dist a list which specifies the null distribution (see details)
-#' @param TS a list which specifies the test statistic to use (see details)
+#' @inheritParams Tvalues
+#' @param freecores how many cores to leave unused (0 for maximum use of cpu)
 #' @return A vector of size N, each element being the value of the statistic
 #'         TS on simulated samples of size n.
 #' @examples
