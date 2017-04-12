@@ -14,6 +14,8 @@ parTvalues(N, n, dist = list(), TS = list(), freecores = 0)
 \item{dist}{a list which specifies the null distribution (see details)}
 
 \item{TS}{a list which specifies the test statistic to use (see details)}
+
+\item{freecores}{how many cores to leave unused (0 for maximum use of cpu)}
 }
 \value{
 A vector of size N, each element being the value of the statistic

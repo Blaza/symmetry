@@ -13,7 +13,7 @@ K1(X, k)
 }
 \value{
 The value of the test statistic given by the formula:
-        \eqn{ \sup\limits_{t>0}\left|\frac{1}{\binom{n}{2k}}
+        \eqn{ \sup\limits_{t>0}\left|\frac{1}{{n\choose{2k}}}
         \sum\limits_{\mathcal{I}_{2k}} I\{|X_{(k),X_{i_1},\ldots,X_{i_{2k}}}|
         < t\}- I\{|X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}}| < t \right|\} }
 }
