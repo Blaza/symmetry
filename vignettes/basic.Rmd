@@ -1,6 +1,6 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "Basic usage"
+author: "Blagoje Ivanovic"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -9,44 +9,45 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+## Available test statistics
+So far, we have four test statistics, implemented in R as functions with the
+following names:
+    * `I1`, which is given by the formula:
+      $$ \frac{1}{n {n\choose{2k}}} \sum\limits_{\mathcal{I}_{2k}}
+        \sum\limits_{i_{2k+1}=1}^n I\{|X_{(k),X_{i_1},\ldots,X_{i_{2k}}}|
+         < |X_{2k+1}|\}- I\{|X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}}| <
+         |X_{2k+1}|\}$$
+    * `K1`, given by the formula:
+      $$\sup\limits_{t>0}\left|\frac{1}{{n\choose{2k}}}
+         \sum\limits_{\mathcal{I}_{2k}} I\{|X_{(k),X_{i_1},\ldots,X_{i_{2k}}}|
+         < t\}- I\{|X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}}| < t \}\right|$$
+    * `I2`, given by the formula:
+      $$\frac{1}{n^4} \sum\limits_{i,j,a,b=1}^n I\{|X_i - X_j| <
+         X_a+X_b\}- I\{|X_i + X_j| < X_a+X_b\}$$
+    * `K2`, given by the formula:
+      $$\sup\limits_{t>0}\frac{1}{n^2} \left| \sum\limits_{i,j=1}^n
+         I\{|X_i - X_j| < t\}- I\{|X_i + X_j| < t\}\right|$$
+which can be used with the function `Tvalues` to simulate a distribution under
+a specified null distribution. A simple demonstration follows.
 
-## Vignette Info
+## A simple use case
 
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
+Let's simulate the distribution of the test statistic `I1` under the standard
+normal null distribution. We do that by calling the `Tvalues` function. Call
+`?Tvalues` for more information about that function.
 
-## Styles
+```r
+# we'll get a 10k element vector with the T values of samples of size 20 from
+# a standard normal distribution.
+t0 <- Tvalues(10000, 20, list('norm'), list('I1', k=2))
 
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
+# let's do that again, but add it to a variable t1
+t1 <- Tvalues(10000, 20, list('norm'), list('I1', k=2))
 
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+# let's calculate the power of the test using t0 vs t1.
+test_power(t0, t1) # should be about 0.05
 ```
-
-You can enable figure captions by `fig_caption: yes` in YAML:
-
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
 
 ```{r, echo=FALSE, results='asis'}
 knitr::kable(head(mtcars, 10))
