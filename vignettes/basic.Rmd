@@ -4,7 +4,7 @@ author: "Blagoje Ivanovic"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Basic Usage}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -13,21 +13,23 @@ vignette: >
 ## Available test statistics
 So far, we have four test statistics, implemented in R as functions with the
 following names:
-    * `I1`, which is given by the formula:
-      $$ \frac{1}{n {n\choose{2k}}} \sum\limits_{\mathcal{I}_{2k}}
-        \sum\limits_{i_{2k+1}=1}^n I\{|X_{(k),X_{i_1},\ldots,X_{i_{2k}}}|
-         < |X_{2k+1}|\}- I\{|X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}}| <
-         |X_{2k+1}|\}$$
-    * `K1`, given by the formula:
-      $$\sup\limits_{t>0}\left|\frac{1}{{n\choose{2k}}}
-         \sum\limits_{\mathcal{I}_{2k}} I\{|X_{(k),X_{i_1},\ldots,X_{i_{2k}}}|
-         < t\}- I\{|X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}}| < t \}\right|$$
-    * `I2`, given by the formula:
-      $$\frac{1}{n^4} \sum\limits_{i,j,a,b=1}^n I\{|X_i - X_j| <
-         X_a+X_b\}- I\{|X_i + X_j| < X_a+X_b\}$$
-    * `K2`, given by the formula:
-      $$\sup\limits_{t>0}\frac{1}{n^2} \left| \sum\limits_{i,j=1}^n
-         I\{|X_i - X_j| < t\}- I\{|X_i + X_j| < t\}\right|$$
+
+1. `I1`, which is given by the formula:
+  $$ \frac{1}{n {n\choose{2k}}} \sum\limits_{\mathcal{I}_{2k}}
+    \sum\limits_{i_{2k+1}=1}^n I\{|X_{(k),X_{i_1},\ldots,X_{i_{2k}}}|
+     < |X_{2k+1}|\}- I\{|X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}}| <
+     |X_{2k+1}|\}$$
+1. `K1`, given by the formula:
+  $$\sup\limits_{t>0}\left|\frac{1}{{n\choose{2k}}}
+     \sum\limits_{\mathcal{I}_{2k}} I\{|X_{(k),X_{i_1},\ldots,X_{i_{2k}}}|
+     < t\}- I\{|X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}}| < t \}\right|$$
+1. `I2`, given by the formula:
+  $$\frac{1}{n^4} \sum\limits_{i,j,a,b=1}^n I\{|X_i - X_j| <
+     X_a+X_b\}- I\{|X_i + X_j| < X_a+X_b\}$$
+1. `K2`, given by the formula:
+  $$\sup\limits_{t>0}\frac{1}{n^2} \left| \sum\limits_{i,j=1}^n
+     I\{|X_i - X_j| < t\}- I\{|X_i + X_j| < t\}\right|$$
+
 which can be used with the function `Tvalues` to simulate a distribution under
 a specified null distribution. A simple demonstration follows.
 
@@ -37,23 +39,29 @@ Let's simulate the distribution of the test statistic `I1` under the standard
 normal null distribution. We do that by calling the `Tvalues` function. Call
 `?Tvalues` for more information about that function.
 
-```r
+```{r}
 # we'll get a 10k element vector with the T values of samples of size 20 from
-# a standard normal distribution.
-t0 <- Tvalues(10000, 20, list('norm'), list('I1', k=2))
+# a standard normal distribution. Note that I1 takes a parameter k.
+t0 <- Tvalues(10000, 20, list(name='norm'), list(name='I1', k=2))
 
 # let's do that again, but add it to a variable t1
-t1 <- Tvalues(10000, 20, list('norm'), list('I1', k=2))
+t1 <- Tvalues(10000, 20, list(name='norm'), list(name='I1', k=2))
 
 # let's calculate the power of the test using t0 vs t1.
-test_power(t0, t1) # should be about 0.05
+test_power(t0, t1) # should be close to 0.05
 ```
 
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
+We can, of course, add parameters for the distribution. Let's call `I2` this
+time, for demonstration purposes.
+
+```{r}
+# we'll get a 10k element vector with the T values of samples of size 20 from
+# logistic distribution with location parameter 0.5.
+t0 <- Tvalues(10000, 20, list(name='logis', loc=0.5, sca=1), list(name='I2'))
+
+# let's do that again, but add it to a variable t1
+t1 <- Tvalues(10000, 20, list(name='logis', loc=0.5, sca=1), list(name='I2'))
+
+# let's calculate the power of the test using t0 vs t1.
+test_power(t0, t1) # should be close to 0.05
 ```
-
-Also a quote using `>`:
-
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
