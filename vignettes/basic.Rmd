@@ -71,7 +71,7 @@ test_power(t0, t1) # should be close to 0.05
 We can, of course, add parameters for the distribution. Let's call `I2` this
 time, for demonstration purposes.
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 # we'll get a 10k element vector with the T values of samples of size 20 from
 # logistic distribution with location parameter 0.5.
 t0 <- Tvalues(10000, 20, list(name='logis', loc=0.5, sca=1), list(name='I2'))
@@ -86,7 +86,7 @@ test_power(t0, t1) # should be close to 0.05
 There is also a parallel version of the `Tvalues` function, called `parTvalues`
 which can improve the speed of execution in certain (but not all!) cases.
 Let's use `K2` statistic this time.
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 # we'll get a 10k element vector with the T values of samples of size 20 from
 # logistic distribution with location parameter 0.5.
 t0 <- parTvalues(10000, 20, list(name='logis', loc=0.5, sca=1), list(name='K2'))
