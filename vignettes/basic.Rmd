@@ -30,16 +30,33 @@ following names:
   $$\sup\limits_{t>0}\frac{1}{n^2} \left| \sum\limits_{i,j=1}^n
      I\{|X_i - X_j| < t\}- I\{|X_i + X_j| < t\}\right|$$
 
-which can be used with the function `Tvalues` to simulate a distribution under
-a specified null distribution. A simple demonstration follows.
+Let's show the basic usage of these functions.
+```{r}
+set.seed(1) # for reproducibility
+X <- rnorm(50)
+
+I1(X, k=1)
+I1(X, k=2)
+
+K1(X, k=1)
+K1(X, k=2)
+
+I2(X)
+
+K2(X)
+```
+
+These functions can be used with the function `Tvalues` to simulate the
+distribution under a specified null distribution. A simple example follows.
 
 ## A simple use case
 
 Let's simulate the distribution of the test statistic `I1` under the standard
 normal null distribution. We do that by calling the `Tvalues` function. Call
-`?Tvalues` for more information about that function.
+`?Tvalues` for more information about that function. This can sometimes take
+a couple of minutes, depending on the number of simulations and parameters used.
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 # we'll get a 10k element vector with the T values of samples of size 20 from
 # a standard normal distribution. Note that I1 takes a parameter k.
 t0 <- Tvalues(10000, 20, list(name='norm'), list(name='I1', k=2))
