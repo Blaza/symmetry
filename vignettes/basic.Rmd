@@ -39,7 +39,7 @@ Let's simulate the distribution of the test statistic `I1` under the standard
 normal null distribution. We do that by calling the `Tvalues` function. Call
 `?Tvalues` for more information about that function.
 
-```{r}
+```{r, eval=FALSE}
 # we'll get a 10k element vector with the T values of samples of size 20 from
 # a standard normal distribution. Note that I1 takes a parameter k.
 t0 <- Tvalues(10000, 20, list(name='norm'), list(name='I1', k=2))
@@ -54,13 +54,28 @@ test_power(t0, t1) # should be close to 0.05
 We can, of course, add parameters for the distribution. Let's call `I2` this
 time, for demonstration purposes.
 
-```{r}
+```{r, eval=FALSE}
 # we'll get a 10k element vector with the T values of samples of size 20 from
 # logistic distribution with location parameter 0.5.
 t0 <- Tvalues(10000, 20, list(name='logis', loc=0.5, sca=1), list(name='I2'))
 
 # let's do that again, but add it to a variable t1
 t1 <- Tvalues(10000, 20, list(name='logis', loc=0.5, sca=1), list(name='I2'))
+
+# let's calculate the power of the test using t0 vs t1.
+test_power(t0, t1) # should be close to 0.05
+```
+
+There is also a parallel version of the `Tvalues` function, called `parTvalues`
+which can improve the speed of execution in certain (but not all!) cases.
+Let's use `K2` statistic this time.
+```{r, eval=FALSE}
+# we'll get a 10k element vector with the T values of samples of size 20 from
+# logistic distribution with location parameter 0.5.
+t0 <- parTvalues(10000, 20, list(name='logis', loc=0.5, sca=1), list(name='K2'))
+
+# let's do that again, but add it to a variable t1
+t1 <- parTvalues(10000, 20, list(name='logis', loc=0.5, sca=1), list(name='K2'))
 
 # let's calculate the power of the test using t0 vs t1.
 test_power(t0, t1) # should be close to 0.05
