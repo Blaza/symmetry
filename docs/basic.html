@@ -93,10 +93,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
  I\{|X_i - X_j| &lt; t\}- I\{|X_i + X_j| &lt; t\}\right|\]</span></li>
 </ol>
 <p>Let’s show the basic usage of these functions.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>) <span class="co"># for reproducibility</span>
-X &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">50</span>)
-
-<span class="kw">I1</span>(X, <span class="dt">k=</span><span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(symmetry)
+<span class="kw">set.seed</span>(<span class="dv">1</span>) <span class="co"># for reproducibility</span>
+X &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">50</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">I1</span>(X, <span class="dt">k=</span><span class="dv">1</span>)</code></pre></div>
 <pre><code>## [1] 0.07266939</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">I1</span>(X, <span class="dt">k=</span><span class="dv">2</span>)</code></pre></div>
 <pre><code>## [1] 0.08693539</code></pre>
