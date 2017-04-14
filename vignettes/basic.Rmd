@@ -11,7 +11,7 @@ vignette: >
 
 
 ## Available test statistics
-So far, we have four test statistics, implemented in R as functions with the
+Currently, we have five test statistics, implemented in R as functions with the
 following names:
 
 1. `I1`, which is given by the formula:
@@ -29,6 +29,9 @@ following names:
 1. `K2`, given by the formula:
   $$\sup\limits_{t>0}\frac{1}{n^2} \left| \sum\limits_{i,j=1}^n
      I\{|X_i - X_j| < t\}- I\{|X_i + X_j| < t\}\right|$$
+1. `K2U`, given by the formula:
+  $$\sup\limits_{t>0}\frac{1}{n\choose2} \left| \sum\limits_{1\leq i < j \leq n}
+     I\{|X_i - X_j| < t\}- I\{|X_i + X_j| < t\}\right|$$
 
 Let's show the basic usage of these functions.
 ```{r}
@@ -44,6 +47,8 @@ K1(X, k=2)
 I2(X)
 
 K2(X)
+
+K2U(X)
 ```
 
 These functions can be used with the function `Tvalues` to simulate the
