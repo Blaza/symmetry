@@ -12,7 +12,7 @@
 
 <meta name="author" content="Blagoje Ivanovic" />
 
-<meta name="date" content="2017-04-13" />
+<meta name="date" content="2017-04-14" />
 
 <title>Basic usage</title>
 
@@ -70,13 +70,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Basic usage</h1>
 <h4 class="author"><em>Blagoje Ivanovic</em></h4>
-<h4 class="date"><em>2017-04-13</em></h4>
+<h4 class="date"><em>2017-04-14</em></h4>
 
 
 
 <div id="available-test-statistics" class="section level2">
 <h2>Available test statistics</h2>
-<p>So far, we have four test statistics, implemented in R as functions with the following names:</p>
+<p>Currently, we have five test statistics, implemented in R as functions with the following names:</p>
 <ol style="list-style-type: decimal">
 <li><code>I1</code>, which is given by the formula: <span class="math display">\[ \frac{1}{n {n\choose{2k}}} \sum\limits_{\mathcal{I}_{2k}}
 \sum\limits_{i_{2k+1}=1}^n I\{|X_{(k),X_{i_1},\ldots,X_{i_{2k}}}|
@@ -88,6 +88,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><code>I2</code>, given by the formula: <span class="math display">\[\frac{1}{n^4} \sum\limits_{i,j,a,b=1}^n I\{|X_i - X_j| &lt;
  X_a+X_b\}- I\{|X_i + X_j| &lt; X_a+X_b\}\]</span></li>
 <li><code>K2</code>, given by the formula: <span class="math display">\[\sup\limits_{t&gt;0}\frac{1}{n^2} \left| \sum\limits_{i,j=1}^n
+ I\{|X_i - X_j| &lt; t\}- I\{|X_i + X_j| &lt; t\}\right|\]</span></li>
+<li><code>K2U</code>, given by the formula: <span class="math display">\[\sup\limits_{t&gt;0}\frac{1}{n\choose2} \left| \sum\limits_{1\leq i &lt; j \leq n}
  I\{|X_i - X_j| &lt; t\}- I\{|X_i + X_j| &lt; t\}\right|\]</span></li>
 </ol>
 <p>Let’s show the basic usage of these functions.</p>
@@ -106,6 +108,8 @@ X &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">5
 <pre><code>## [1] 0.01486112</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">K2</span>(X)</code></pre></div>
 <pre><code>## [1] 0.044</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">K2U</span>(X)</code></pre></div>
+<pre><code>## [1] 0.03265306</code></pre>
 <p>These functions can be used with the function <code>Tvalues</code> to simulate the distribution under a specified null distribution. A simple example follows.</p>
 </div>
 <div id="a-simple-use-case" class="section level2">
