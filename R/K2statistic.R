@@ -18,7 +18,7 @@ K2 <- function(X) {
   m_ecdf <- ecdf(X_minus)
   p_ecdf <- ecdf(X_plus)
 
-  pot_max_points <- unique(sample_matrix)
+  pot_max_points <- unique(as.vector(sample_matrix))
 
   max(abs(m_ecdf(pot_max_points) - p_ecdf(pot_max_points)))
 }
