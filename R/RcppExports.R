@@ -17,3 +17,15 @@ K2_get_samples <- function(X) {
     .Call('symmetry_K2_get_samples', PACKAGE = 'symmetry', X)
 }
 
+K2_Cpp <- function(X) {
+    .Call('symmetry_K2_Cpp', PACKAGE = 'symmetry', X)
+}
+
+K2U_get_samples <- function(X) {
+    .Call('symmetry_K2U_get_samples', PACKAGE = 'symmetry', X)
+}
+
+K2U_Cpp <- function(X) {
+    .Call('symmetry_K2U_Cpp', PACKAGE = 'symmetry', X)
+}
+

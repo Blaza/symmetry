@@ -7,15 +7,15 @@ using std::int64_t;
 
 
 // [[Rcpp::export]]
-NumericMatrix K2_get_samples(const NumericVector& X) {
+NumericMatrix K2U_get_samples(const NumericVector& X) {
     int n = X.size();
     int i, j, count = 0;
 
-    NumericMatrix sample_matrix(2, n*n);
+    NumericMatrix sample_matrix(2, Rf_choose(n, 2));
     rownames(sample_matrix) = CharacterVector::create("minus", "plus");
 
     for(i = 0; i < n; i++) {
-        for(j = 0; j < n; j++) {
+        for(j = 0; j < i; j++) {
             sample_matrix(0, count) = std::abs(X[i] - X[j]);
             sample_matrix(1, count) = std::abs(X[i] + X[j]);
             count++;
@@ -26,7 +26,7 @@ NumericMatrix K2_get_samples(const NumericVector& X) {
 }
 
 // [[Rcpp::export]]
-double K2_Cpp(const NumericVector& X) {
+double K2U_Cpp(const NumericVector& X) {
     int n = X.size();
     int i, j;
     int64_t sum;
@@ -39,7 +39,7 @@ double K2_Cpp(const NumericVector& X) {
     std::unordered_set<double> pot_pts = {0};
 
     for(i = 0; i < n; i++) {
-        for(j = 0; j <= i; j++) {
+        for(j = 0; j < i; j++) {
             abs_minus = std::abs(X[i] - X[j]);
             abs_plus = std::abs(X[i] + X[j]);
 
@@ -54,15 +54,14 @@ double K2_Cpp(const NumericVector& X) {
     for(auto it = pot_pts.begin(); it != pot_pts.end(); ++it) {
         sum = 0;
         for(i = 0; i < n; i++) {
-            for(j = 0; j <= i; j++) {
-                mult = ( i == j ? 1 : 2 );
-                sum += mult * (mat_minus(i, j) < *it);
-                sum -= mult * (mat_plus(i, j) < *it);
+            for(j = 0; j < i; j++) {
+                sum += (mat_minus(i, j) < *it);
+                sum -= (mat_plus(i, j) < *it);
             }
         }
         max = std::abs(sum) > max ? std::abs(sum) : max;
     }
 
-    return (double)max / (n*n);
+    return (double)max / Rf_choose(n, 2);
 }
 
