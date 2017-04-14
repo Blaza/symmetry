@@ -11,7 +11,7 @@ K2(X)
 }
 \value{
 The value of the test statistic given by the formula:
-        \deqn{ \sup\limits_{t>0}\frac{1}{n^2} \left| \sum\limits_{i,j=1}^n
+        \deqn{ \sup_{t>0}\frac{1}{n^2} \left| \sum_{i,j=1}^n
         I\{|X_i - X_j| < t\}- I\{|X_i + X_j| < t\}\right| }
 }
 \description{

@@ -2,8 +2,8 @@
 #'
 #' @param X the sample for which to calculate the statistic
 #' @return The value of the test statistic given by the formula:
-#'         \deqn{ \sup\limits_{t>0}\frac{1}{ {n\choose 2}} \left|
-#'         \sum\limits_{1\leq i < j \leq n }
+#'         \deqn{ \sup_{t>0}\frac{1}{ {n\choose 2}} \left|
+#'         \sum_{1\leq i < j \leq n }
 #'         I\{|X_i - X_j| < t\}- I\{|X_i + X_j| < t\}\right| }
 #' @examples
 #' set.seed(1)
