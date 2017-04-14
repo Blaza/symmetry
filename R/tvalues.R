@@ -21,10 +21,10 @@
 #' @return A vector of size N, each element being the value of the statistic
 #'         TS on simulated samples of size n.
 #' @examples
-#' Tvalues(10000, 50, list(name='norm'), list(name='I1', k=2))
-#' Tvalues(10000, 50, list(name='unif', min=-1, max=1), list(name='I2'))
-#' Tvalues(10000, 50, list(name='logis', loc=0.5, sca=1), list(name='K1', k=2))
-#' Tvalues(10000, 50, list(name='exp'), list(name='K2'))
+#' Tvalues(1000, 50, list(name='norm'), list(name='I1', k=2))
+#' Tvalues(1000, 50, list(name='unif', min=-1, max=1), list(name='I2'))
+#' Tvalues(1000, 50, list(name='logis', loc=0.5, sca=1), list(name='K1', k=2))
+#' Tvalues(1000, 50, list(name='exp'), list(name='K2'))
 #' @export
 Tvalues <- function(N, n, dist=list(), TS=list()) {
   if(!is.list(dist) && is.character(dist))
@@ -52,10 +52,10 @@ Tvalues <- function(N, n, dist=list(), TS=list()) {
 #' @return A vector of size N, each element being the value of the statistic
 #'         TS on simulated samples of size n.
 #' @examples
-#' parTvalues(10000, 50, list(name='norm'), list(name='I1', k=2))
-#' parTvalues(10000, 50, list(name='unif', min=-1, max=1), list(name='I2'))
-#' parTvalues(10000, 50, list(name='logis', loc=0.5), list(name='K1', k=2))
-#' parTvalues(10000, 50, list(name='exp'), list(name='K2'))
+#' parTvalues(1000, 50, list(name='norm'), list(name='I1', k=2))
+#' parTvalues(1000, 50, list(name='unif', min=-1, max=1), list(name='I2'))
+#' parTvalues(1000, 50, list(name='logis', loc=0.5), list(name='K1', k=2))
+#' parTvalues(1000, 50, list(name='exp'), list(name='K2'))
 #' @export
 parTvalues <- function(N, n, dist=list(), TS=list(), freecores=0) {
   if(!is.list(dist) && is.character(dist))

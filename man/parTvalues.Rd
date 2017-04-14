@@ -26,8 +26,8 @@ This is just a parallel version of the \code{\link{Tvalues}} function, all
 arguments apply for this function. See \code{\link{Tvalues}}.
 }
 \examples{
-parTvalues(10000, 50, list(name='norm'), list(name='I1', k=2))
-parTvalues(10000, 50, list(name='unif', min=-1, max=1), list(name='I2'))
-parTvalues(10000, 50, list(name='logis', loc=0.5), list(name='K1', k=2))
-parTvalues(10000, 50, list(name='exp'), list(name='K2'))
+parTvalues(1000, 50, list(name='norm'), list(name='I1', k=2))
+parTvalues(1000, 50, list(name='unif', min=-1, max=1), list(name='I2'))
+parTvalues(1000, 50, list(name='logis', loc=0.5), list(name='K1', k=2))
+parTvalues(1000, 50, list(name='exp'), list(name='K2'))
 }

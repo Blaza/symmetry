@@ -36,8 +36,8 @@ be "I1", "K1", "I2", "K2" for statistics implemented by us, or any other
 statistic for which an R function exists (e.g. "mean", "var", etc.).
 }
 \examples{
-Tvalues(10000, 50, list(name='norm'), list(name='I1', k=2))
-Tvalues(10000, 50, list(name='unif', min=-1, max=1), list(name='I2'))
-Tvalues(10000, 50, list(name='logis', loc=0.5, sca=1), list(name='K1', k=2))
-Tvalues(10000, 50, list(name='exp'), list(name='K2'))
+Tvalues(1000, 50, list(name='norm'), list(name='I1', k=2))
+Tvalues(1000, 50, list(name='unif', min=-1, max=1), list(name='I2'))
+Tvalues(1000, 50, list(name='logis', loc=0.5, sca=1), list(name='K1', k=2))
+Tvalues(1000, 50, list(name='exp'), list(name='K2'))
 }
