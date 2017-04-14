@@ -35,7 +35,10 @@ following names:
 
 Let's show the basic usage of these functions.
 ```{r}
+library(symmetry)
 set.seed(1) # for reproducibility
+```
+```{r}
 X <- rnorm(50)
 
 I1(X, k=1)
