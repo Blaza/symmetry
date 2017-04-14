@@ -11,7 +11,7 @@ K2U(X)
 }
 \value{
 The value of the test statistic given by the formula:
-        \deqn{ \sup\limits_{t>0}\frac{1}{n\choose2} \left|
+        \deqn{ \sup\limits_{t>0}\frac{1}{ {n\choose 2}} \left|
         \sum\limits_{1\leq i < j \leq n }
         I\{|X_i - X_j| < t\}- I\{|X_i + X_j| < t\}\right| }
 }
