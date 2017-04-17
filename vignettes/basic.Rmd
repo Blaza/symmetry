@@ -26,6 +26,9 @@ following names:
 1. `I2`, given by the formula:
   $$\frac{1}{n^4} \sum\limits_{i,j,a,b=1}^n I\{|X_i - X_j| <
      X_a+X_b\}- I\{|X_i + X_j| < X_a+X_b\}$$
+1. `I2HU`, given by the formula:
+   $$\frac{1}{n^2{n\choose2}} \sum_{1\leq i < j \leq n}\sum_{a,b=1}^n
+         I\{|X_i - X_j| < X_a+X_b\}- I\{|X_i + X_j| < X_a+X_b\}$$
 1. `K2`, given by the formula:
   $$\sup\limits_{t>0}\frac{1}{n^2} \left| \sum\limits_{i,j=1}^n
      I\{|X_i - X_j| < t\}- I\{|X_i + X_j| < t\}\right|$$
@@ -47,6 +50,8 @@ K1(X, k=1)
 K1(X, k=2)
 
 I2(X)
+
+I2HU(X)
 
 K2(X)
 
@@ -80,11 +85,11 @@ time, for demonstration purposes.
 
 ```{r, eval=TRUE}
 # we'll get a 10k element vector with the T values of samples of size 20 from
-# logistic distribution with location parameter 0.5.
-t0 <- Tvalues(10000, 20, list(name='logis', loc=0.5, sca=1), list(name='I2'))
+# logistic distribution with location parameter 0.
+t0 <- Tvalues(10000, 20, list(name='logis', loc=0, sca=1), list(name='I2'))
 
 # let's do that again, but add it to a variable t1
-t1 <- Tvalues(10000, 20, list(name='logis', loc=0.5, sca=1), list(name='I2'))
+t1 <- Tvalues(10000, 20, list(name='logis', loc=0, sca=1), list(name='I2'))
 
 # let's calculate the power of the test using t0 vs t1.
 test_power(t0, t1) # should be close to 0.05

@@ -12,7 +12,7 @@
 
 <meta name="author" content="Blagoje Ivanovic" />
 
-<meta name="date" content="2017-04-14" />
+<meta name="date" content="2017-04-18" />
 
 <title>Basic usage</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Basic usage</h1>
 <h4 class="author"><em>Blagoje Ivanovic</em></h4>
-<h4 class="date"><em>2017-04-14</em></h4>
+<h4 class="date"><em>2017-04-18</em></h4>
 
 
 
@@ -87,6 +87,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
  &lt; t\}- I\{|X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}}| &lt; t \}\right|\]</span></li>
 <li><code>I2</code>, given by the formula: <span class="math display">\[\frac{1}{n^4} \sum\limits_{i,j,a,b=1}^n I\{|X_i - X_j| &lt;
  X_a+X_b\}- I\{|X_i + X_j| &lt; X_a+X_b\}\]</span></li>
+<li><code>I2HU</code>, given by the formula: <span class="math display">\[\frac{1}{n^2{n\choose2}} \sum_{1\leq i &lt; j \leq n}\sum_{a,b=1}^n
+     I\{|X_i - X_j| &lt; X_a+X_b\}- I\{|X_i + X_j| &lt; X_a+X_b\}\]</span></li>
 <li><code>K2</code>, given by the formula: <span class="math display">\[\sup\limits_{t&gt;0}\frac{1}{n^2} \left| \sum\limits_{i,j=1}^n
  I\{|X_i - X_j| &lt; t\}- I\{|X_i + X_j| &lt; t\}\right|\]</span></li>
 <li><code>K2U</code>, given by the formula: <span class="math display">\[\sup\limits_{t&gt;0}\frac{1}{n\choose2} \left| \sum\limits_{1\leq i &lt; j \leq n}
@@ -106,6 +108,8 @@ X &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">5
 <pre><code>## [1] 0.1928571</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">I2</span>(X)</code></pre></div>
 <pre><code>## [1] 0.01486112</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">I2HU</span>(X)</code></pre></div>
+<pre><code>## [1] 0.007902041</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">K2</span>(X)</code></pre></div>
 <pre><code>## [1] 0.044</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">K2U</span>(X)</code></pre></div>
@@ -127,15 +131,15 @@ t1 &lt;-<span class="st"> </span><span class="kw">Tvalues</span>(<span class="dv
 <pre><code>## [1] 0.0476</code></pre>
 <p>We can, of course, add parameters for the distribution. Let’s call <code>I2</code> this time, for demonstration purposes.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># we'll get a 10k element vector with the T values of samples of size 20 from</span>
-<span class="co"># logistic distribution with location parameter 0.5.</span>
-t0 &lt;-<span class="st"> </span><span class="kw">Tvalues</span>(<span class="dv">10000</span>, <span class="dv">20</span>, <span class="kw">list</span>(<span class="dt">name=</span><span class="st">'logis'</span>, <span class="dt">loc=</span><span class="fl">0.5</span>, <span class="dt">sca=</span><span class="dv">1</span>), <span class="kw">list</span>(<span class="dt">name=</span><span class="st">'I2'</span>))
+<span class="co"># logistic distribution with location parameter 0.</span>
+t0 &lt;-<span class="st"> </span><span class="kw">Tvalues</span>(<span class="dv">10000</span>, <span class="dv">20</span>, <span class="kw">list</span>(<span class="dt">name=</span><span class="st">'logis'</span>, <span class="dt">loc=</span><span class="dv">0</span>, <span class="dt">sca=</span><span class="dv">1</span>), <span class="kw">list</span>(<span class="dt">name=</span><span class="st">'I2'</span>))
 
 <span class="co"># let's do that again, but add it to a variable t1</span>
-t1 &lt;-<span class="st"> </span><span class="kw">Tvalues</span>(<span class="dv">10000</span>, <span class="dv">20</span>, <span class="kw">list</span>(<span class="dt">name=</span><span class="st">'logis'</span>, <span class="dt">loc=</span><span class="fl">0.5</span>, <span class="dt">sca=</span><span class="dv">1</span>), <span class="kw">list</span>(<span class="dt">name=</span><span class="st">'I2'</span>))
+t1 &lt;-<span class="st"> </span><span class="kw">Tvalues</span>(<span class="dv">10000</span>, <span class="dv">20</span>, <span class="kw">list</span>(<span class="dt">name=</span><span class="st">'logis'</span>, <span class="dt">loc=</span><span class="dv">0</span>, <span class="dt">sca=</span><span class="dv">1</span>), <span class="kw">list</span>(<span class="dt">name=</span><span class="st">'I2'</span>))
 
 <span class="co"># let's calculate the power of the test using t0 vs t1.</span>
 <span class="kw">test_power</span>(t0, t1) <span class="co"># should be close to 0.05</span></code></pre></div>
-<pre><code>## [1] 0.0492</code></pre>
+<pre><code>## [1] 0.0504</code></pre>
 <p>There is also a parallel version of the <code>Tvalues</code> function, called <code>parTvalues</code> which can improve the speed of execution in certain (but not all!) cases. Let’s use <code>K2</code> statistic this time.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># we'll get a 10k element vector with the T values of samples of size 20 from</span>
 <span class="co"># logistic distribution with location parameter 0.5.</span>
