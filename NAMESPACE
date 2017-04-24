@@ -3,6 +3,7 @@
 export(I1)
 export(I2)
 export(I2HU)
+export(I2U)
 export(K1)
 export(K2)
 export(K2U)

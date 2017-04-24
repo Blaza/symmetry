@@ -13,6 +13,10 @@ I2HU_Cpp <- function(X) {
     .Call('symmetry_I2HU_Cpp', PACKAGE = 'symmetry', X)
 }
 
+I2U_Cpp <- function(X) {
+    .Call('symmetry_I2U_Cpp', PACKAGE = 'symmetry', X)
+}
+
 K1_Cpp <- function(X, k) {
     .Call('symmetry_K1_Cpp', PACKAGE = 'symmetry', X, k)
 }
