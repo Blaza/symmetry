@@ -11,7 +11,7 @@ vignette: >
 
 
 ## Available test statistics
-Currently, we have five test statistics, implemented in R as functions with the
+Currently, we have seven test statistics, implemented in R as functions with the
 following names:
 
 1. `I1`, which is given by the formula:
@@ -26,6 +26,10 @@ following names:
 1. `I2`, given by the formula:
   $$\frac{1}{n^4} \sum\limits_{i,j,a,b=1}^n I\{|X_i - X_j| <
      X_a+X_b\}- I\{|X_i + X_j| < X_a+X_b\}$$
+1. `I2U`, given by the formula:
+   $$\frac{1}{n\choose4} \sum_{1\leq i<j<a<b\leqn} I\{|X_i - X_j| <
+         X_a+X_b\}- I\{|X_i + X_j| < X_a+X_b\}
+   $$
 1. `I2HU`, given by the formula:
    $$\frac{1}{n^2{n\choose2}} \sum_{1\leq i < j \leq n}\sum_{a,b=1}^n
          I\{|X_i - X_j| < X_a+X_b\}- I\{|X_i + X_j| < X_a+X_b\}$$
@@ -50,6 +54,8 @@ K1(X, k=1)
 K1(X, k=2)
 
 I2(X)
+
+I2U(X)
 
 I2HU(X)
 
