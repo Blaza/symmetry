@@ -49,6 +49,7 @@ Tvalues <- function(N, n, dist=list(), TS=list()) {
 #'
 #' @inheritParams Tvalues
 #' @param freecores how many cores to leave unused (0 for maximum use of cpu)
+#' @param clust a cluster to use for parallel
 #' @return A vector of size N, each element being the value of the statistic
 #'         TS on simulated samples of size n.
 #' @examples
@@ -57,7 +58,7 @@ Tvalues <- function(N, n, dist=list(), TS=list()) {
 #' parTvalues(1000, 50, list(name='logis', loc=0.5), list(name='K1', k=2))
 #' parTvalues(1000, 50, list(name='exp'), list(name='K2'))
 #' @export
-parTvalues <- function(N, n, dist=list(), TS=list(), freecores=0) {
+parTvalues <- function(N, n, dist=list(), TS=list(), freecores=0, clust=NULL) {
   if(!is.list(dist) && is.character(dist))
     dist <- list(name = dist)
 
@@ -73,7 +74,7 @@ parTvalues <- function(N, n, dist=list(), TS=list(), freecores=0) {
 
   no_cores <- detectCores() - freecores
   # Initiate cluster
-  cl <- makeCluster(no_cores)
+  cl <- if(is.null(clust)) makeCluster(no_cores) else clust
 
   clusterExport(cl = cl, list("TSparams"), envir = environment())
   clusterEvalQ(cl, library(symmetry))
@@ -81,7 +82,9 @@ parTvalues <- function(N, n, dist=list(), TS=list(), freecores=0) {
   Tvals <- parRapply(cl, samples,
                      function(x) do.call(TS$name, c(list(x), TSparams)))
 
-  stopCluster(cl)
+  if(is.null(clust)) {
+    stopCluster(cl)
+  }
 
   Tvals
 }

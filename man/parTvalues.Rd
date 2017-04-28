@@ -4,7 +4,8 @@
 \alias{parTvalues}
 \title{Simulate the distribution of a test statistic in parallel}
 \usage{
-parTvalues(N, n, dist = list(), TS = list(), freecores = 0)
+parTvalues(N, n, dist = list(), TS = list(), freecores = 0,
+  clust = NULL)
 }
 \arguments{
 \item{N}{the number of simulations to do}
@@ -16,6 +17,8 @@ parTvalues(N, n, dist = list(), TS = list(), freecores = 0)
 \item{TS}{a list which specifies the test statistic to use (see details)}
 
 \item{freecores}{how many cores to leave unused (0 for maximum use of cpu)}
+
+\item{clust}{a cluster to use for parallel}
 }
 \value{
 A vector of size N, each element being the value of the statistic
