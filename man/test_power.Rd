@@ -4,7 +4,7 @@
 \alias{test_power}
 \title{Calculate the power of a test}
 \usage{
-test_power(t0, t1, alpha = 0.05)
+test_power(t0, t1, alpha = 0.05, two_sided = FALSE)
 }
 \arguments{
 \item{t0}{the vector of null T values}
@@ -12,6 +12,8 @@ test_power(t0, t1, alpha = 0.05)
 \item{t1}{the vector of alternative T values}
 
 \item{alpha}{the significance level}
+
+\item{two_sided}{indicator wheether to use two sided critical region}
 }
 \description{
 This function calculates the power of a test given the null and alternative
