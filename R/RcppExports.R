@@ -29,3 +29,7 @@ K2U_get_samples <- function(X) {
     .Call('symmetry_K2U_get_samples', PACKAGE = 'symmetry', X)
 }
 
+WCX_Cpp <- function(X) {
+    .Call('symmetry_WCX_Cpp', PACKAGE = 'symmetry', X)
+}
+
