@@ -40,6 +40,23 @@ following names:
   $$\sup\limits_{t>0}\frac{1}{n\choose2} \left| \sum\limits_{1\leq i < j \leq n}
      I\{|X_i - X_j| < t\}- I\{|X_i + X_j| < t\}\right|$$
 
+Along them, we have Kolmogorov-Smirnov, Sign and Wilcoxon test statistics as R
+functions with the following names:
+1. `KS`, which is given by the formula:
+  $$
+    \sup_t\left|F_n(t)-(1-F_n(-t))\right|
+  $$
+1. `SGN`, given by the formula:
+  $$
+    \frac1n \sum_{i=1}^nI\{X_i > 0\} - \frac12
+  $$
+1. `WCX`, given by the formula:
+  $$
+    \frac{1}{{n\choose2}} \sum_{1\leq i<j\leq n} I\{X_i+X_j > 0\} - \frac12
+  $$
+
+
+
 Let's show the basic usage of these functions.
 ```{r}
 library(symmetry)
@@ -62,6 +79,10 @@ I2HU(X)
 K2(X)
 
 K2U(X)
+
+KS(X)
+SGN(X)
+WCX(X)
 ```
 
 These functions can be used with the function `Tvalues` to simulate the
