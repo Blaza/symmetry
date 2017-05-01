@@ -8,17 +8,17 @@ using std::int64_t;
 double I2U_Cpp(const NumericVector& X) {
     int n = X.size();
     int64_t TS_sum = 0;
-    int i,j,k,l;
+    int i,j,a,b;
     double aXimXj, aXipXj, aXkpXl;
     for(i = 0; i < n; i++) {
-        for(j = 0; j < i; j++) {
+        for(j = i+1; j < n; j++) {
             aXimXj = std::abs(X[i] - X[j]);
             aXipXj = std::abs(X[i] + X[j]);
 
-            for(k = 0; k < j; k++) {
-                for(l = 0; l < k; l++) {
-                    TS_sum += (aXimXj < X[k] + X[l]);
-                    TS_sum -= (aXipXj < X[k] + X[l]);
+            for(a = j+1; a < n; a++) {
+                for(b = a+1; b < n; b++) {
+                    TS_sum += (aXimXj < X[a] + X[b]);
+                    TS_sum -= (aXipXj < X[a] + X[b]);
                 }
             }
         }
