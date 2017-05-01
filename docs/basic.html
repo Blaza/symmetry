@@ -97,13 +97,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><code>K2U</code>, given by the formula: <span class="math display">\[\sup\limits_{t&gt;0}\frac{1}{n\choose2} \left| \sum\limits_{1\leq i &lt; j \leq n}
  I\{|X_i - X_j| &lt; t\}- I\{|X_i + X_j| &lt; t\}\right|\]</span></li>
 </ol>
-<p>Along them, we have Kolmogorov-Smirnov, Sign and Wilcoxon test statistics as R functions with the following names: 1. <code>KS</code>, which is given by the formula: <span class="math display">\[
-    \sup_t\left|F_n(t)-(1-F_n(-t))\right|
-  \]</span> 1. <code>SGN</code>, given by the formula: <span class="math display">\[
-    \frac1n \sum_{i=1}^nI\{X_i &gt; 0\} - \frac12
-  \]</span> 1. <code>WCX</code>, given by the formula: <span class="math display">\[
-    \frac{1}{{n\choose2}} \sum_{1\leq i&lt;j\leq n} I\{X_i+X_j &gt; 0\} - \frac12
-  \]</span></p>
+<p>Along them, we have Kolmogorov-Smirnov, Sign and Wilcoxon test statistics as R functions with the following names:</p>
+<ol style="list-style-type: decimal">
+<li><code>KS</code>, which is given by the formula: <span class="math display">\[
+\sup_t\left|F_n(t)-(1-F_n(-t))\right|
+  \]</span></li>
+<li><code>SGN</code>, given by the formula: <span class="math display">\[
+\frac1n \sum_{i=1}^nI\{X_i &gt; 0\} - \frac12
+  \]</span></li>
+<li><code>WCX</code>, given by the formula: <span class="math display">\[
+\frac{1}{{n\choose2}} \sum_{1\leq i&lt;j\leq n} I\{X_i+X_j &gt; 0\} - \frac12
+  \]</span></li>
+</ol>
 <p>Let’s show the basic usage of these functions.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(symmetry)
 <span class="kw">set.seed</span>(<span class="dv">1</span>) <span class="co"># for reproducibility</span>
