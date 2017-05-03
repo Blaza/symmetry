@@ -9,12 +9,24 @@ I2_Cpp <- function(X) {
     .Call('symmetry_I2_Cpp', PACKAGE = 'symmetry', X)
 }
 
+I2A_Cpp <- function(X) {
+    .Call('symmetry_I2A_Cpp', PACKAGE = 'symmetry', X)
+}
+
 I2HU_Cpp <- function(X) {
     .Call('symmetry_I2HU_Cpp', PACKAGE = 'symmetry', X)
 }
 
+I2HUA_Cpp <- function(X) {
+    .Call('symmetry_I2HUA_Cpp', PACKAGE = 'symmetry', X)
+}
+
 I2U_Cpp <- function(X) {
     .Call('symmetry_I2U_Cpp', PACKAGE = 'symmetry', X)
+}
+
+I2UA_Cpp <- function(X) {
+    .Call('symmetry_I2UA_Cpp', PACKAGE = 'symmetry', X)
 }
 
 K1_Cpp <- function(X, k) {
