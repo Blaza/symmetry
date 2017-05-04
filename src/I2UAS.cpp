@@ -20,21 +20,48 @@ double I2UAS_Cpp(const NumericVector& X) {
                     Xijab[1] = X[j];
                     Xijab[2] = X[a];
                     Xijab[3] = X[b];
-                    std::sort(Xijab, Xijab+4); // must sort to get all perms
-                    do {
-                        aXimXj = std::abs(Xijab[0] - Xijab[1]);
-                        aXipXj = std::abs(Xijab[0] + Xijab[1]);
-                        aXapXb = std::abs(Xijab[2] + Xijab[3]);
 
-                        TS_sum += (aXimXj < aXapXb);
-                        TS_sum -= (aXipXj < aXapXb);
-                    } while ( std::next_permutation(Xijab, Xijab+4) );
+                    aXimXj = std::abs(Xijab[0] - Xijab[1]);
+                    aXipXj = std::abs(Xijab[0] + Xijab[1]);
+                    aXapXb = std::abs(Xijab[2] + Xijab[3]);
+                    TS_sum += (aXimXj < aXapXb);
+                    TS_sum -= (aXipXj < aXapXb);
+
+                    aXimXj = std::abs(Xijab[0] - Xijab[2]);
+                    aXipXj = std::abs(Xijab[0] + Xijab[2]);
+                    aXapXb = std::abs(Xijab[1] + Xijab[3]);
+                    TS_sum += (aXimXj < aXapXb);
+                    TS_sum -= (aXipXj < aXapXb);
+
+                    aXimXj = std::abs(Xijab[0] - Xijab[3]);
+                    aXipXj = std::abs(Xijab[0] + Xijab[3]);
+                    aXapXb = std::abs(Xijab[2] + Xijab[1]);
+                    TS_sum += (aXimXj < aXapXb);
+                    TS_sum -= (aXipXj < aXapXb);
+
+                    aXimXj = std::abs(Xijab[1] - Xijab[2]);
+                    aXipXj = std::abs(Xijab[1] + Xijab[2]);
+                    aXapXb = std::abs(Xijab[0] + Xijab[3]);
+                    TS_sum += (aXimXj < aXapXb);
+                    TS_sum -= (aXipXj < aXapXb);
+
+                    aXimXj = std::abs(Xijab[3] - Xijab[1]);
+                    aXipXj = std::abs(Xijab[3] + Xijab[1]);
+                    aXapXb = std::abs(Xijab[2] + Xijab[0]);
+                    TS_sum += (aXimXj < aXapXb);
+                    TS_sum -= (aXipXj < aXapXb);
+
+                    aXimXj = std::abs(Xijab[2] - Xijab[3]);
+                    aXipXj = std::abs(Xijab[2] + Xijab[3]);
+                    aXapXb = std::abs(Xijab[0] + Xijab[1]);
+                    TS_sum += (aXimXj < aXapXb);
+                    TS_sum -= (aXipXj < aXapXb);
                 }
             }
         }
     }
 
-    double TS_value = (double)TS_sum / (Rf_choose(n, 4) * 24); //24 = 4!
+    double TS_value = (double)TS_sum / (Rf_choose(n, 4) * 6);
 
     return TS_value;
 }

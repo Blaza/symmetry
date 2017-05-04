@@ -11,7 +11,7 @@ double I2US_Cpp(const NumericVector& X) {
     int64_t TS_sum = 0;
     int i,j,a,b;
     double Xijab[4];
-    double aXimXj, aXipXj;
+    double aXimXj, aXipXj, XapXb;
     for(i = 0; i < n; i++) {
         for(j = i+1; j < n; j++) {
             for(a = j+1; a < n; a++) {
@@ -20,20 +20,48 @@ double I2US_Cpp(const NumericVector& X) {
                     Xijab[1] = X[j];
                     Xijab[2] = X[a];
                     Xijab[3] = X[b];
-                    std::sort(Xijab, Xijab+4); // must sort to get all perms
-                    do {
-                        aXimXj = std::abs(Xijab[0] - Xijab[1]);
-                        aXipXj = std::abs(Xijab[0] + Xijab[1]);
 
-                        TS_sum += (aXimXj < Xijab[2] + Xijab[3]);
-                        TS_sum -= (aXipXj < Xijab[2] + Xijab[3]);
-                    } while ( std::next_permutation(Xijab, Xijab+4) );
+                    aXimXj = std::abs(Xijab[0] - Xijab[1]);
+                    aXipXj = std::abs(Xijab[0] + Xijab[1]);
+                    XapXb = Xijab[2] + Xijab[3];
+                    TS_sum += (aXimXj < XapXb);
+                    TS_sum -= (aXipXj < XapXb);
+
+                    aXimXj = std::abs(Xijab[0] - Xijab[2]);
+                    aXipXj = std::abs(Xijab[0] + Xijab[2]);
+                    XapXb = Xijab[1] + Xijab[3];
+                    TS_sum += (aXimXj < XapXb);
+                    TS_sum -= (aXipXj < XapXb);
+
+                    aXimXj = std::abs(Xijab[0] - Xijab[3]);
+                    aXipXj = std::abs(Xijab[0] + Xijab[3]);
+                    XapXb = Xijab[2] + Xijab[1];
+                    TS_sum += (aXimXj < XapXb);
+                    TS_sum -= (aXipXj < XapXb);
+
+                    aXimXj = std::abs(Xijab[1] - Xijab[2]);
+                    aXipXj = std::abs(Xijab[1] + Xijab[2]);
+                    XapXb = Xijab[0] + Xijab[3];
+                    TS_sum += (aXimXj < XapXb);
+                    TS_sum -= (aXipXj < XapXb);
+
+                    aXimXj = std::abs(Xijab[3] - Xijab[1]);
+                    aXipXj = std::abs(Xijab[3] + Xijab[1]);
+                    XapXb = Xijab[2] + Xijab[0];
+                    TS_sum += (aXimXj < XapXb);
+                    TS_sum -= (aXipXj < XapXb);
+
+                    aXimXj = std::abs(Xijab[2] - Xijab[3]);
+                    aXipXj = std::abs(Xijab[2] + Xijab[3]);
+                    XapXb = Xijab[0] + Xijab[1];
+                    TS_sum += (aXimXj < XapXb);
+                    TS_sum -= (aXipXj < XapXb);
                 }
             }
         }
     }
 
-    double TS_value = (double)TS_sum / (Rf_choose(n, 4) * 24); //24 = 4!
+    double TS_value = (double)TS_sum / (Rf_choose(n, 4) * 6);
 
     return TS_value;
 }
