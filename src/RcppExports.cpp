@@ -83,6 +83,28 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// I2UAS_Cpp
+double I2UAS_Cpp(const NumericVector& X);
+RcppExport SEXP symmetry_I2UAS_Cpp(SEXP XSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    rcpp_result_gen = Rcpp::wrap(I2UAS_Cpp(X));
+    return rcpp_result_gen;
+END_RCPP
+}
+// I2US_Cpp
+double I2US_Cpp(const NumericVector& X);
+RcppExport SEXP symmetry_I2US_Cpp(SEXP XSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    rcpp_result_gen = Rcpp::wrap(I2US_Cpp(X));
+    return rcpp_result_gen;
+END_RCPP
+}
 // K1_Cpp
 double K1_Cpp(const NumericVector& X, int k);
 RcppExport SEXP symmetry_K1_Cpp(SEXP XSEXP, SEXP kSEXP) {

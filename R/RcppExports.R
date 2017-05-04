@@ -29,6 +29,14 @@ I2UA_Cpp <- function(X) {
     .Call('symmetry_I2UA_Cpp', PACKAGE = 'symmetry', X)
 }
 
+I2UAS_Cpp <- function(X) {
+    .Call('symmetry_I2UAS_Cpp', PACKAGE = 'symmetry', X)
+}
+
+I2US_Cpp <- function(X) {
+    .Call('symmetry_I2US_Cpp', PACKAGE = 'symmetry', X)
+}
+
 K1_Cpp <- function(X, k) {
     .Call('symmetry_K1_Cpp', PACKAGE = 'symmetry', X, k)
 }

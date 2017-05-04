@@ -9,7 +9,7 @@ double I2U_Cpp(const NumericVector& X) {
     int n = X.size();
     int64_t TS_sum = 0;
     int i,j,a,b;
-    double aXimXj, aXipXj, aXkpXl;
+    double aXimXj, aXipXj;
     for(i = 0; i < n; i++) {
         for(j = i+1; j < n; j++) {
             aXimXj = std::abs(X[i] - X[j]);
