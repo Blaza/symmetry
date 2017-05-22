@@ -11,8 +11,8 @@ I2HUA(X)
 }
 \value{
 The value of the test statistic given by the formula:
-        \deqn{ \frac{1}{n^2{n\choose2}} \sum_{1\leq i < j \leq n}\sum_{a,b=1}^n
-        I\{|X_i - X_j| < X_a+X_b\}- I\{|X_i + X_j| < |X_a+X_b|\} }
+        \deqn{ \frac{1}{n^2{n\choose2}} \sum_{1\leq i<j\leq n}\sum_{a,b=1}^n
+        I\{|X_i - X_j| < |X_a+X_b|\}- I\{|X_i + X_j| < |X_a+X_b|\} }
 }
 \description{
 Calculate _ test statistic (see 'Value' for formula)

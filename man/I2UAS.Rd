@@ -12,7 +12,7 @@ I2UAS(X)
 \value{
 The value of the test statistic given by the formula:
         \deqn{ \frac{1}{{n\choose4}}{\sum_{1\leq i<j<a<b\leq n}
-        I\{|X_i - X_j| < X_a+X_b\}- I\{|X_i + X_j| < |X_a+X_b|\}} }
+        I\{|X_i - X_j| < |X_a+X_b|\}- I\{|X_i + X_j| < |X_a+X_b|\}} }
 }
 \description{
 Calculate _ test statistic (see 'Value' for formula)
