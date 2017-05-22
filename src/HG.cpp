@@ -38,7 +38,7 @@ double HG_Cpp(const NumericVector& X, int k, double t, bool H) {
     std::sort(Xs.begin(), Xs.end());
 
     int64_t TS_sum = for_each_combination(Xs.begin(),
-                                          Xs.begin() + 2*k,
+                                          Xs.begin() + 2*k+1,
                                           Xs.end(),
                                           HG(X, n, k, t, H));
 

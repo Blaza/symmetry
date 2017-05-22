@@ -164,3 +164,26 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+
+static const R_CallMethodDef CallEntries[] = {
+    {"symmetry_HG_Cpp", (DL_FUNC) &symmetry_HG_Cpp, 4},
+    {"symmetry_I1_Cpp", (DL_FUNC) &symmetry_I1_Cpp, 2},
+    {"symmetry_I2_Cpp", (DL_FUNC) &symmetry_I2_Cpp, 1},
+    {"symmetry_I2A_Cpp", (DL_FUNC) &symmetry_I2A_Cpp, 1},
+    {"symmetry_I2HU_Cpp", (DL_FUNC) &symmetry_I2HU_Cpp, 1},
+    {"symmetry_I2HUA_Cpp", (DL_FUNC) &symmetry_I2HUA_Cpp, 1},
+    {"symmetry_I2U_Cpp", (DL_FUNC) &symmetry_I2U_Cpp, 1},
+    {"symmetry_I2UA_Cpp", (DL_FUNC) &symmetry_I2UA_Cpp, 1},
+    {"symmetry_I2UAS_Cpp", (DL_FUNC) &symmetry_I2UAS_Cpp, 1},
+    {"symmetry_I2US_Cpp", (DL_FUNC) &symmetry_I2US_Cpp, 1},
+    {"symmetry_K1_Cpp", (DL_FUNC) &symmetry_K1_Cpp, 2},
+    {"symmetry_K2_get_samples", (DL_FUNC) &symmetry_K2_get_samples, 1},
+    {"symmetry_K2U_get_samples", (DL_FUNC) &symmetry_K2U_get_samples, 1},
+    {"symmetry_WCX_Cpp", (DL_FUNC) &symmetry_WCX_Cpp, 1},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_symmetry(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
+}
