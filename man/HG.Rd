@@ -17,8 +17,10 @@ HG(X, k, t, H = TRUE)
 }
 \value{
 The value of the statistics given by the formula:
-        \deqn{ \frac{1}{{n\choose{2k+1}}} \sum_{\mathcal{I}_{2k+1}}
-        I\{X_{(k+1),X_{i_1},\ldots,X_{i_{2k+1}}} < t }
+        \deqn{ H = \frac{1}{{n\choose{2k+1}}} \sum_{\mathcal{I}_{2k+1}}
+        I\{-X_{(k+1),X_{i_1},\ldots,X_{i_{2k+1}}} < t\} }
+        \deqn{ G = \frac{1}{{n\choose{2k+1}}} \sum_{\mathcal{I}_{2k+1}}
+        I\{X_{(k+1),X_{i_1},\ldots,X_{i_{2k+1}}} < t\} }
 }
 \description{
 Calculate _ test statistic (see 'Value' for formula)
