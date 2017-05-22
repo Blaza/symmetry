@@ -5,6 +5,20 @@
 
 using namespace Rcpp;
 
+// HG_Cpp
+double HG_Cpp(const NumericVector& X, int k, double t, bool H);
+RcppExport SEXP symmetry_HG_Cpp(SEXP XSEXP, SEXP kSEXP, SEXP tSEXP, SEXP HSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    Rcpp::traits::input_parameter< double >::type t(tSEXP);
+    Rcpp::traits::input_parameter< bool >::type H(HSEXP);
+    rcpp_result_gen = Rcpp::wrap(HG_Cpp(X, k, t, H));
+    return rcpp_result_gen;
+END_RCPP
+}
 // I1_Cpp
 double I1_Cpp(const NumericVector& X, int k);
 RcppExport SEXP symmetry_I1_Cpp(SEXP XSEXP, SEXP kSEXP) {
