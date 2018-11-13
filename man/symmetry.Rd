@@ -4,7 +4,7 @@
 \name{symmetry}
 \alias{symmetry}
 \alias{symmetry-package}
-\title{symmetry: A package which implements tests for symmetry`}
+\title{symmetry: A package which implements tests for symmetry}
 \description{
-symmetry: A package which implements tests for symmetry`
+symmetry: A package which implements tests for symmetry
 }

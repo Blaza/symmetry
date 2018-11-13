@@ -2,58 +2,58 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 HG_Cpp <- function(X, k, t, H) {
-    .Call('symmetry_HG_Cpp', PACKAGE = 'symmetry', X, k, t, H)
+    .Call('_symmetry_HG_Cpp', PACKAGE = 'symmetry', X, k, t, H)
 }
 
 I1_Cpp <- function(X, k) {
-    .Call('symmetry_I1_Cpp', PACKAGE = 'symmetry', X, k)
+    .Call('_symmetry_I1_Cpp', PACKAGE = 'symmetry', X, k)
 }
 
 I2_Cpp <- function(X) {
-    .Call('symmetry_I2_Cpp', PACKAGE = 'symmetry', X)
+    .Call('_symmetry_I2_Cpp', PACKAGE = 'symmetry', X)
 }
 
 I2A_Cpp <- function(X) {
-    .Call('symmetry_I2A_Cpp', PACKAGE = 'symmetry', X)
+    .Call('_symmetry_I2A_Cpp', PACKAGE = 'symmetry', X)
 }
 
 I2HU_Cpp <- function(X) {
-    .Call('symmetry_I2HU_Cpp', PACKAGE = 'symmetry', X)
+    .Call('_symmetry_I2HU_Cpp', PACKAGE = 'symmetry', X)
 }
 
 I2HUA_Cpp <- function(X) {
-    .Call('symmetry_I2HUA_Cpp', PACKAGE = 'symmetry', X)
+    .Call('_symmetry_I2HUA_Cpp', PACKAGE = 'symmetry', X)
 }
 
 I2U_Cpp <- function(X) {
-    .Call('symmetry_I2U_Cpp', PACKAGE = 'symmetry', X)
+    .Call('_symmetry_I2U_Cpp', PACKAGE = 'symmetry', X)
 }
 
 I2UA_Cpp <- function(X) {
-    .Call('symmetry_I2UA_Cpp', PACKAGE = 'symmetry', X)
+    .Call('_symmetry_I2UA_Cpp', PACKAGE = 'symmetry', X)
 }
 
 I2UAS_Cpp <- function(X) {
-    .Call('symmetry_I2UAS_Cpp', PACKAGE = 'symmetry', X)
+    .Call('_symmetry_I2UAS_Cpp', PACKAGE = 'symmetry', X)
 }
 
 I2US_Cpp <- function(X) {
-    .Call('symmetry_I2US_Cpp', PACKAGE = 'symmetry', X)
+    .Call('_symmetry_I2US_Cpp', PACKAGE = 'symmetry', X)
 }
 
 K1_Cpp <- function(X, k) {
-    .Call('symmetry_K1_Cpp', PACKAGE = 'symmetry', X, k)
+    .Call('_symmetry_K1_Cpp', PACKAGE = 'symmetry', X, k)
 }
 
 K2_get_samples <- function(X) {
-    .Call('symmetry_K2_get_samples', PACKAGE = 'symmetry', X)
+    .Call('_symmetry_K2_get_samples', PACKAGE = 'symmetry', X)
 }
 
 K2U_get_samples <- function(X) {
-    .Call('symmetry_K2U_get_samples', PACKAGE = 'symmetry', X)
+    .Call('_symmetry_K2U_get_samples', PACKAGE = 'symmetry', X)
 }
 
 WCX_Cpp <- function(X) {
-    .Call('symmetry_WCX_Cpp', PACKAGE = 'symmetry', X)
+    .Call('_symmetry_WCX_Cpp', PACKAGE = 'symmetry', X)
 }
 
