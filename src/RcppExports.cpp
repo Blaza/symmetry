@@ -20,14 +20,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // I1_Cpp
-double I1_Cpp(const NumericVector& X, int k);
-RcppExport SEXP _symmetry_I1_Cpp(SEXP XSEXP, SEXP kSEXP) {
+double I1_Cpp(const NumericVector& X, int k, double mu);
+RcppExport SEXP _symmetry_I1_Cpp(SEXP XSEXP, SEXP kSEXP, SEXP muSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
-    rcpp_result_gen = Rcpp::wrap(I1_Cpp(X, k));
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    rcpp_result_gen = Rcpp::wrap(I1_Cpp(X, k, mu));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -120,14 +121,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // K1_Cpp
-double K1_Cpp(const NumericVector& X, int k);
-RcppExport SEXP _symmetry_K1_Cpp(SEXP XSEXP, SEXP kSEXP) {
+double K1_Cpp(const NumericVector& X, int k, double mu);
+RcppExport SEXP _symmetry_K1_Cpp(SEXP XSEXP, SEXP kSEXP, SEXP muSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
-    rcpp_result_gen = Rcpp::wrap(K1_Cpp(X, k));
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    rcpp_result_gen = Rcpp::wrap(K1_Cpp(X, k, mu));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -167,7 +169,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_symmetry_HG_Cpp", (DL_FUNC) &_symmetry_HG_Cpp, 4},
-    {"_symmetry_I1_Cpp", (DL_FUNC) &_symmetry_I1_Cpp, 2},
+    {"_symmetry_I1_Cpp", (DL_FUNC) &_symmetry_I1_Cpp, 3},
     {"_symmetry_I2_Cpp", (DL_FUNC) &_symmetry_I2_Cpp, 1},
     {"_symmetry_I2A_Cpp", (DL_FUNC) &_symmetry_I2A_Cpp, 1},
     {"_symmetry_I2HU_Cpp", (DL_FUNC) &_symmetry_I2HU_Cpp, 1},
@@ -176,7 +178,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_symmetry_I2UA_Cpp", (DL_FUNC) &_symmetry_I2UA_Cpp, 1},
     {"_symmetry_I2UAS_Cpp", (DL_FUNC) &_symmetry_I2UAS_Cpp, 1},
     {"_symmetry_I2US_Cpp", (DL_FUNC) &_symmetry_I2US_Cpp, 1},
-    {"_symmetry_K1_Cpp", (DL_FUNC) &_symmetry_K1_Cpp, 2},
+    {"_symmetry_K1_Cpp", (DL_FUNC) &_symmetry_K1_Cpp, 3},
     {"_symmetry_K2_get_samples", (DL_FUNC) &_symmetry_K2_get_samples, 1},
     {"_symmetry_K2U_get_samples", (DL_FUNC) &_symmetry_K2U_get_samples, 1},
     {"_symmetry_WCX_Cpp", (DL_FUNC) &_symmetry_WCX_Cpp, 1},

@@ -5,8 +5,8 @@ HG_Cpp <- function(X, k, t, H) {
     .Call('_symmetry_HG_Cpp', PACKAGE = 'symmetry', X, k, t, H)
 }
 
-I1_Cpp <- function(X, k) {
-    .Call('_symmetry_I1_Cpp', PACKAGE = 'symmetry', X, k)
+I1_Cpp <- function(X, k, mu) {
+    .Call('_symmetry_I1_Cpp', PACKAGE = 'symmetry', X, k, mu)
 }
 
 I2_Cpp <- function(X) {
@@ -41,8 +41,8 @@ I2US_Cpp <- function(X) {
     .Call('_symmetry_I2US_Cpp', PACKAGE = 'symmetry', X)
 }
 
-K1_Cpp <- function(X, k) {
-    .Call('_symmetry_K1_Cpp', PACKAGE = 'symmetry', X, k)
+K1_Cpp <- function(X, k, mu) {
+    .Call('_symmetry_K1_Cpp', PACKAGE = 'symmetry', X, k, mu)
 }
 
 K2_get_samples <- function(X) {
