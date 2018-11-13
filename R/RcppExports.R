@@ -53,7 +53,7 @@ K2U_get_samples <- function(X) {
     .Call('_symmetry_K2U_get_samples', PACKAGE = 'symmetry', X)
 }
 
-WCX_Cpp <- function(X) {
-    .Call('_symmetry_WCX_Cpp', PACKAGE = 'symmetry', X)
+WCX_Cpp <- function(X, mu) {
+    .Call('_symmetry_WCX_Cpp', PACKAGE = 'symmetry', X, mu)
 }
 

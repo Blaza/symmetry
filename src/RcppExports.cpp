@@ -156,13 +156,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // WCX_Cpp
-double WCX_Cpp(const NumericVector& X);
-RcppExport SEXP _symmetry_WCX_Cpp(SEXP XSEXP) {
+double WCX_Cpp(const NumericVector& X, double mu);
+RcppExport SEXP _symmetry_WCX_Cpp(SEXP XSEXP, SEXP muSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    rcpp_result_gen = Rcpp::wrap(WCX_Cpp(X));
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    rcpp_result_gen = Rcpp::wrap(WCX_Cpp(X, mu));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -181,7 +182,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_symmetry_K1_Cpp", (DL_FUNC) &_symmetry_K1_Cpp, 3},
     {"_symmetry_K2_get_samples", (DL_FUNC) &_symmetry_K2_get_samples, 1},
     {"_symmetry_K2U_get_samples", (DL_FUNC) &_symmetry_K2U_get_samples, 1},
-    {"_symmetry_WCX_Cpp", (DL_FUNC) &_symmetry_WCX_Cpp, 1},
+    {"_symmetry_WCX_Cpp", (DL_FUNC) &_symmetry_WCX_Cpp, 2},
     {NULL, NULL, 0}
 };
 

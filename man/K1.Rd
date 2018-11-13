@@ -4,7 +4,7 @@
 \alias{K1}
 \title{Calculate _ test statistic (see 'Value' for formula)}
 \usage{
-K1(X, k, mu)
+K1(X, k, mu = 0)
 }
 \arguments{
 \item{X}{the sample for which to calculate the statistic}

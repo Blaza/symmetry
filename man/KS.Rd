@@ -4,14 +4,16 @@
 \alias{KS}
 \title{Calculate Kolmogorov Smirnov test statistic (see 'Value' for formula)}
 \usage{
-KS(X)
+KS(X, mu = 0)
 }
 \arguments{
 \item{X}{the sample for which to calculate the statistic}
+
+\item{mu}{the estimate of the location parameter}
 }
 \value{
 The value of the test statistic given by the formula:
-        \deqn{ \sup_t\left|F_n(t)-(1-F_n(-t))\right| }
+        \deqn{ \sup_t\left|F_n(t+\mu)-(1-F_n(\mu-t))\right| }
 }
 \description{
 Calculate Kolmogorov Smirnov test statistic (see 'Value' for formula)
