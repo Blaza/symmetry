@@ -5,6 +5,10 @@ BHI_Cpp <- function(X) {
     .Call('_symmetry_BHI_Cpp', PACKAGE = 'symmetry', X)
 }
 
+BHK_Cpp <- function(X) {
+    .Call('_symmetry_BHK_Cpp', PACKAGE = 'symmetry', X)
+}
+
 HG_Cpp <- function(X, k, t, H) {
     .Call('_symmetry_HG_Cpp', PACKAGE = 'symmetry', X, k, t, H)
 }

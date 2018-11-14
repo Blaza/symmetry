@@ -16,6 +16,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// BHK_Cpp
+double BHK_Cpp(const NumericVector& X);
+RcppExport SEXP _symmetry_BHK_Cpp(SEXP XSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    rcpp_result_gen = Rcpp::wrap(BHK_Cpp(X));
+    return rcpp_result_gen;
+END_RCPP
+}
 // HG_Cpp
 double HG_Cpp(const NumericVector& X, int k, double t, bool H);
 RcppExport SEXP _symmetry_HG_Cpp(SEXP XSEXP, SEXP kSEXP, SEXP tSEXP, SEXP HSEXP) {
@@ -202,6 +213,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_symmetry_BHI_Cpp", (DL_FUNC) &_symmetry_BHI_Cpp, 1},
+    {"_symmetry_BHK_Cpp", (DL_FUNC) &_symmetry_BHK_Cpp, 1},
     {"_symmetry_HG_Cpp", (DL_FUNC) &_symmetry_HG_Cpp, 4},
     {"_symmetry_I1_Cpp", (DL_FUNC) &_symmetry_I1_Cpp, 2},
     {"_symmetry_I2_Cpp", (DL_FUNC) &_symmetry_I2_Cpp, 1},
