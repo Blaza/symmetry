@@ -5,6 +5,18 @@
 
 using namespace Rcpp;
 
+// BHI_Cpp
+double BHI_Cpp(const NumericVector& X, double mu);
+RcppExport SEXP _symmetry_BHI_Cpp(SEXP XSEXP, SEXP muSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    rcpp_result_gen = Rcpp::wrap(BHI_Cpp(X, mu));
+    return rcpp_result_gen;
+END_RCPP
+}
 // HG_Cpp
 double HG_Cpp(const NumericVector& X, int k, double t, bool H);
 RcppExport SEXP _symmetry_HG_Cpp(SEXP XSEXP, SEXP kSEXP, SEXP tSEXP, SEXP HSEXP) {
@@ -155,6 +167,32 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// NAI_Cpp
+double NAI_Cpp(const NumericVector& X, int k, double mu);
+RcppExport SEXP _symmetry_NAI_Cpp(SEXP XSEXP, SEXP kSEXP, SEXP muSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    rcpp_result_gen = Rcpp::wrap(NAI_Cpp(X, k, mu));
+    return rcpp_result_gen;
+END_RCPP
+}
+// NAK_Cpp
+double NAK_Cpp(const NumericVector& X, int k, double mu);
+RcppExport SEXP _symmetry_NAK_Cpp(SEXP XSEXP, SEXP kSEXP, SEXP muSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    rcpp_result_gen = Rcpp::wrap(NAK_Cpp(X, k, mu));
+    return rcpp_result_gen;
+END_RCPP
+}
 // WCX_Cpp
 double WCX_Cpp(const NumericVector& X, double mu);
 RcppExport SEXP _symmetry_WCX_Cpp(SEXP XSEXP, SEXP muSEXP) {
@@ -169,6 +207,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_symmetry_BHI_Cpp", (DL_FUNC) &_symmetry_BHI_Cpp, 2},
     {"_symmetry_HG_Cpp", (DL_FUNC) &_symmetry_HG_Cpp, 4},
     {"_symmetry_I1_Cpp", (DL_FUNC) &_symmetry_I1_Cpp, 3},
     {"_symmetry_I2_Cpp", (DL_FUNC) &_symmetry_I2_Cpp, 1},
@@ -182,6 +221,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_symmetry_K1_Cpp", (DL_FUNC) &_symmetry_K1_Cpp, 3},
     {"_symmetry_K2_get_samples", (DL_FUNC) &_symmetry_K2_get_samples, 1},
     {"_symmetry_K2U_get_samples", (DL_FUNC) &_symmetry_K2U_get_samples, 1},
+    {"_symmetry_NAI_Cpp", (DL_FUNC) &_symmetry_NAI_Cpp, 3},
+    {"_symmetry_NAK_Cpp", (DL_FUNC) &_symmetry_NAK_Cpp, 3},
     {"_symmetry_WCX_Cpp", (DL_FUNC) &_symmetry_WCX_Cpp, 2},
     {NULL, NULL, 0}
 };
