@@ -14,15 +14,15 @@ class BHI {
     double Tsum;
     const NumericVector aX;
     int i, n;
-    double aX1, aX2, mu;
+    double aX1, aX2;
   public:
-    explicit BHI(const NumericVector& X, int _n, double _mu)
-                : n(_n), mu(_mu), aX(abs(X - mu)), Tsum(0) {}
+    explicit BHI(const NumericVector& X, int _n)
+                : n(_n), aX(abs(X)), Tsum(0) {}
 
     template <class It>
         bool operator()(It Xcomb, It end_ptr) { // called for each combination
-            aX1 = std::abs(Xcomb[0] - mu);
-            aX2 = std::abs(Xcomb[1] - mu);
+            aX1 = std::abs(Xcomb[0]);
+            aX2 = std::abs(Xcomb[1]);
 
             for(i = 0; i < n; i++) {
                 Tsum += 0.5 * ((aX1 < aX[i]) - (aX2 < aX[i]));
@@ -36,15 +36,15 @@ class BHI {
 
 
 // [[Rcpp::export]]
-double BHI_Cpp(const NumericVector& X, double mu) {
+double BHI_Cpp(const NumericVector& X) {
     int n = X.size();
     NumericVector Xs = clone(X);
     std::sort(Xs.begin(), Xs.end());
 
     double TS_sum = for_each_combination(Xs.begin(),
-                                          Xs.begin() + 2,
-                                          Xs.end(),
-                                          BHI(X, n, mu));
+                                         Xs.begin() + 2,
+                                         Xs.end(),
+                                         BHI(X, n));
 
     double TS_value = TS_sum / (n * Rf_choose(n, 2));
 

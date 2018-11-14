@@ -16,5 +16,5 @@
 #' I1(X, 2, 1)
 #' @export
 I1 <- function(X, k, mu = 0) {
-  I1_Cpp(X, k, mu)
+  I1_Cpp(X - mu, k)
 }

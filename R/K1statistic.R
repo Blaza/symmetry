@@ -15,6 +15,6 @@
 #' K1(X, 2, 1)
 #' @export
 K1 <- function(X, k, mu = 0) {
-  K1_Cpp(X, k, mu)
+  K1_Cpp(X - mu, k)
 }
 

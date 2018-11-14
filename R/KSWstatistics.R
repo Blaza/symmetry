@@ -42,5 +42,5 @@ SGN <- function(X, mu = 0) {
 #' WCX(X)
 #' @export
 WCX <- function(X, mu = 0) {
-  WCX_Cpp(X, mu)
+  WCX_Cpp(X - mu)
 }

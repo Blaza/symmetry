@@ -16,5 +16,5 @@
 #' BHI(X, 1)
 #' @export
 BHI <- function(X, mu = 0) {
-  BHI_Cpp(X, mu)
+  BHI_Cpp(X - mu)
 }

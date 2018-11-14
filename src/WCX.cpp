@@ -5,13 +5,13 @@ using namespace Rcpp;
 using std::int64_t;
 
 // [[Rcpp::export]]
-double WCX_Cpp(const NumericVector& X, double mu) {
+double WCX_Cpp(const NumericVector& X) {
     int n = X.size();
     int64_t TS_sum = 0;
     int i,j;
     for(j = 0; j < n; j++) {
         for(i = 0; i < j; i++) {
-            TS_sum += (X[i] + X[j] - 2*mu > 0);
+            TS_sum += (X[i] + X[j] > 0);
         }
     }
 

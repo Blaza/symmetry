@@ -14,15 +14,15 @@ class I1 {
     int64_t Tsum;
     const NumericVector aX;
     int k, i, n;
-    double aXk, aXk1, mu;
+    double aXk, aXk1;
   public:
-    explicit I1(const NumericVector& X, int _n, int _k, double _mu)
-                : n(_n), mu(_mu), aX(abs(X - mu)), k(_k), Tsum(0) {}
+    explicit I1(const NumericVector& X, int _n, int _k)
+                : n(_n), aX(abs(X)), k(_k), Tsum(0) {}
 
     template <class It>
         bool operator()(It Xcomb, It end_ptr) { // called for each combination
-            aXk = std::abs(Xcomb[k-1] - mu);
-            aXk1 = std::abs(Xcomb[k] - mu);
+            aXk = std::abs(Xcomb[k-1]);
+            aXk1 = std::abs(Xcomb[k]);
 
             for(i = 0; i < n; i++) {
                 Tsum += aXk < aX[i];
@@ -37,7 +37,7 @@ class I1 {
 
 
 // [[Rcpp::export]]
-double I1_Cpp(const NumericVector& X, int k, double mu) {
+double I1_Cpp(const NumericVector& X, int k) {
     int n = X.size();
     NumericVector Xs = clone(X);
     std::sort(Xs.begin(), Xs.end());
@@ -45,7 +45,7 @@ double I1_Cpp(const NumericVector& X, int k, double mu) {
     int64_t TS_sum = for_each_combination(Xs.begin(),
                                           Xs.begin() + 2*k,
                                           Xs.end(),
-                                          I1(X, n, k, mu));
+                                          I1(X, n, k));
 
     double TS_value = TS_sum / (n * Rf_choose(n, 2*k));
 
