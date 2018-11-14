@@ -1,3 +1,5 @@
+context("I1")
+
 test_that("I1 works for (1, 2, 3) and k=1", {
   expect_equal(I1(1:3, 1), 4/9)
 })

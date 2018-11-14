@@ -1,3 +1,5 @@
+context("I2")
+
 test_that("I2 works for (1, 2)", {
   expect_equal(I2(1:2), 11/16)
 })

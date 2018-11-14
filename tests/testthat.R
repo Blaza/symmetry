@@ -1,4 +1,4 @@
 library(testthat)
-library(yourpackage)
+library(symmetry)
 
 test_check("symmetry")

@@ -1,3 +1,5 @@
+context("I2U")
+
 test_that("I2U works for (1, 2, 3, 4)", {
   expect_equal(I2U(1:4), 0)
 })

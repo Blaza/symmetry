@@ -1,3 +1,5 @@
+context("K2")
+
 test_that("K2 works for (1, 2)", {
   expect_equal(K2(1:2), 1)
 })
