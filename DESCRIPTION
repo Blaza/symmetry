@@ -7,8 +7,8 @@ Depends: R (>= 3.1.0)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
-Imports: Rcpp, parallel
-LinkingTo: Rcpp
+Imports: Rcpp, RcppArmadillo
+LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.0.1
 SystemRequirements: C++11
 Suggests: knitr,

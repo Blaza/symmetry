@@ -13,7 +13,7 @@ test_power(t0, t1, alpha = 0.05, two_sided = FALSE)
 
 \item{alpha}{the significance level}
 
-\item{two_sided}{indicator wheether to use two sided critical region}
+\item{two_sided}{indicator whether to use two sided critical region}
 }
 \description{
 This function calculates the power of a test given the null and alternative

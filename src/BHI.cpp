@@ -6,6 +6,7 @@
 #include <cmath>
 #include <algorithm>
 #include "combinations.h"
+#include <test_stats.h>
 using namespace Rcpp;
 using std::int64_t;
 

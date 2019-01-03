@@ -6,7 +6,7 @@
 #' @param t0 the vector of null T values
 #' @param t1 the vector of alternative T values
 #' @param alpha the significance level
-#' @param two_sided indicator wheether to use two sided critical region
+#' @param two_sided indicator whether to use two sided critical region
 #' @export
 test_power <- function(t0, t1, alpha=0.05, two_sided=FALSE) {
   if(!two_sided) {
