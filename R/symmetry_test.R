@@ -4,7 +4,7 @@ symmetry_test <- function(x, ...) {
 
 symmetry_test.default <- function(x, stat, mu = 0, bootstrap = FALSE,
                                   B = 100, boot_method = "sign",
-                                  trim_alpha = 0, k = 0) {
+                                  trim = 0, k = 0) {
   xname <- deparse(substitute(x))
   if (bootstrap) {
     stat_fun <- match.fun(stat, descend = FALSE)
@@ -12,9 +12,9 @@ symmetry_test.default <- function(x, stat, mu = 0, bootstrap = FALSE,
     if (pass_k && k == 0)
       stop("Argument 'k' not specified.")
 
-    boot <- boot_sample(x, trim_alpha, B, boot_method, stat, k)
+    boot <- boot_sample(x, trim, B, boot_method, stat, k)
 
-    MU <- c(mu = mean(x, trim = trim_alpha))
+    MU <- c(mu = mean(x, trim = trim))
     xc <- x - MU
     tval <- if(pass_k) stat_fun(xc, k = k) else stat_fun(xc)
     names(tval) <- stat
