@@ -23,5 +23,5 @@ Calculate _ test statistic (see 'Value' for formula)
 \examples{
 set.seed(1)
 X <- rnorm(50)
-L1(X)
+L1(X, 5)
 }

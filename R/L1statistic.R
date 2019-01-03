@@ -9,7 +9,7 @@
 #' @examples
 #' set.seed(1)
 #' X <- rnorm(50)
-#' L1(X)
+#' L1(X, 5)
 #' @export
 L1 <- function(X, a) {
   L1_Cpp(X, a);
