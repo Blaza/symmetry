@@ -37,10 +37,11 @@ class NAI {
 
 
 // [[Rcpp::export]]
-double NAI_Cpp(const NumericVector& X, int k) {
+double NAI_Cpp(const NumericVector& X, double k_in) {
     int n = X.size();
     NumericVector Xs = clone(X);
     std::sort(Xs.begin(), Xs.end());
+    int k = std::round(k_in);
 
     int64_t TS_sum = for_each_combination(Xs.begin(),
                                           Xs.begin() + k,

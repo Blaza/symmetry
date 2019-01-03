@@ -39,10 +39,11 @@ class K1 {
 
 
 // [[Rcpp::export]]
-double K1_Cpp(const NumericVector& X, int k) {
+double K1_Cpp(const NumericVector& X, double k_in) {
     int n = X.size();
     NumericVector Xs = clone(X);
     std::sort(Xs.begin(), Xs.end());
+    int k = std::round(k_in);
 
     NumericVector pts = abs(X); // potential points for maximum
 

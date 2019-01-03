@@ -39,10 +39,11 @@ class NAK {
 
 
 // [[Rcpp::export]]
-double NAK_Cpp(const NumericVector& X, int k) {
+double NAK_Cpp(const NumericVector& X, double k_in) {
     int n = X.size();
     NumericVector Xs = clone(X);
     std::sort(Xs.begin(), Xs.end());
+    int k = std::round(k_in);
 
     NumericVector pts = abs(X); // potential points for maximum
 

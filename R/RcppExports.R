@@ -13,8 +13,8 @@ HG_Cpp <- function(X, k, t, H) {
     .Call('_symmetry_HG_Cpp', PACKAGE = 'symmetry', X, k, t, H)
 }
 
-I1_Cpp <- function(X, k) {
-    .Call('_symmetry_I1_Cpp', PACKAGE = 'symmetry', X, k)
+I1_Cpp <- function(X, k_in) {
+    .Call('_symmetry_I1_Cpp', PACKAGE = 'symmetry', X, k_in)
 }
 
 I2_Cpp <- function(X) {
@@ -49,8 +49,8 @@ I2US_Cpp <- function(X) {
     .Call('_symmetry_I2US_Cpp', PACKAGE = 'symmetry', X)
 }
 
-K1_Cpp <- function(X, k) {
-    .Call('_symmetry_K1_Cpp', PACKAGE = 'symmetry', X, k)
+K1_Cpp <- function(X, k_in) {
+    .Call('_symmetry_K1_Cpp', PACKAGE = 'symmetry', X, k_in)
 }
 
 K2_get_samples <- function(X) {
@@ -65,12 +65,12 @@ L1_Cpp <- function(X, a) {
     .Call('_symmetry_L1_Cpp', PACKAGE = 'symmetry', X, a)
 }
 
-NAI_Cpp <- function(X, k) {
-    .Call('_symmetry_NAI_Cpp', PACKAGE = 'symmetry', X, k)
+NAI_Cpp <- function(X, k_in) {
+    .Call('_symmetry_NAI_Cpp', PACKAGE = 'symmetry', X, k_in)
 }
 
-NAK_Cpp <- function(X, k) {
-    .Call('_symmetry_NAK_Cpp', PACKAGE = 'symmetry', X, k)
+NAK_Cpp <- function(X, k_in) {
+    .Call('_symmetry_NAK_Cpp', PACKAGE = 'symmetry', X, k_in)
 }
 
 WCX_Cpp <- function(X) {

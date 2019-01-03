@@ -6,7 +6,7 @@
 using namespace Rcpp;
 
 std::function<double (const NumericVector&)>
-  get_ts_fun(std::string stat, int k = 0) {
+  get_ts_fun(std::string stat, double k = 0) {
 
   if (stat == "BHI") {
     return BHI_Cpp;
@@ -25,6 +25,9 @@ std::function<double (const NumericVector&)>
   }
   if (stat == "NAK") {
     return bind(NAK_Cpp, std::placeholders::_1, k);
+  }
+  if (stat == "L1") {
+    return bind(L1_Cpp, std::placeholders::_1, k);
   }
   return NULL;
 }
