@@ -28,6 +28,123 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// randomize_sign_old
+NumericVector randomize_sign_old(const NumericVector& X);
+RcppExport SEXP _symmetry_randomize_sign_old(SEXP XSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    rcpp_result_gen = Rcpp::wrap(randomize_sign_old(X));
+    return rcpp_result_gen;
+END_RCPP
+}
+// randomize_sign
+NumericVector randomize_sign(const NumericVector& X, double mu);
+RcppExport SEXP _symmetry_randomize_sign(SEXP XSEXP, SEXP muSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    rcpp_result_gen = Rcpp::wrap(randomize_sign(X, mu));
+    return rcpp_result_gen;
+END_RCPP
+}
+// sample_with_replacement
+NumericVector sample_with_replacement(NumericVector x, int n);
+RcppExport SEXP _symmetry_sample_with_replacement(SEXP xSEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(sample_with_replacement(x, n));
+    return rcpp_result_gen;
+END_RCPP
+}
+// reflect_sample
+NumericVector reflect_sample(const NumericVector& X, double mu, int n);
+RcppExport SEXP _symmetry_reflect_sample(SEXP XSEXP, SEXP muSEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(reflect_sample(X, mu, n));
+    return rcpp_result_gen;
+END_RCPP
+}
+// reflected_boot
+NumericVector reflected_boot(const NumericVector& X, double mu);
+RcppExport SEXP _symmetry_reflected_boot(SEXP XSEXP, SEXP muSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    rcpp_result_gen = Rcpp::wrap(reflected_boot(X, mu));
+    return rcpp_result_gen;
+END_RCPP
+}
+// trimmed_mean
+double trimmed_mean(const NumericVector& X, double alpha);
+RcppExport SEXP _symmetry_trimmed_mean(SEXP XSEXP, SEXP alphaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
+    rcpp_result_gen = Rcpp::wrap(trimmed_mean(X, alpha));
+    return rcpp_result_gen;
+END_RCPP
+}
+// boot_sample
+NumericVector boot_sample(const NumericVector& X, double trim_alpha, int B, std::string null_method, std::string stat, int k);
+RcppExport SEXP _symmetry_boot_sample(SEXP XSEXP, SEXP trim_alphaSEXP, SEXP BSEXP, SEXP null_methodSEXP, SEXP statSEXP, SEXP kSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< double >::type trim_alpha(trim_alphaSEXP);
+    Rcpp::traits::input_parameter< int >::type B(BSEXP);
+    Rcpp::traits::input_parameter< std::string >::type null_method(null_methodSEXP);
+    Rcpp::traits::input_parameter< std::string >::type stat(statSEXP);
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    rcpp_result_gen = Rcpp::wrap(boot_sample(X, trim_alpha, B, null_method, stat, k));
+    return rcpp_result_gen;
+END_RCPP
+}
+// lm_resid
+NumericVector lm_resid(const arma::mat& X, NumericVector& yr);
+RcppExport SEXP _symmetry_lm_resid(SEXP XSEXP, SEXP yrSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< NumericVector& >::type yr(yrSEXP);
+    rcpp_result_gen = Rcpp::wrap(lm_resid(X, yr));
+    return rcpp_result_gen;
+END_RCPP
+}
+// boot_sample_lm
+NumericVector boot_sample_lm(const arma::mat& model_matrix, const NumericVector& fitted, const NumericVector& residuals, int B, std::string null_method, std::string stat, int k);
+RcppExport SEXP _symmetry_boot_sample_lm(SEXP model_matrixSEXP, SEXP fittedSEXP, SEXP residualsSEXP, SEXP BSEXP, SEXP null_methodSEXP, SEXP statSEXP, SEXP kSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type model_matrix(model_matrixSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type fitted(fittedSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type residuals(residualsSEXP);
+    Rcpp::traits::input_parameter< int >::type B(BSEXP);
+    Rcpp::traits::input_parameter< std::string >::type null_method(null_methodSEXP);
+    Rcpp::traits::input_parameter< std::string >::type stat(statSEXP);
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    rcpp_result_gen = Rcpp::wrap(boot_sample_lm(model_matrix, fitted, residuals, B, null_method, stat, k));
+    return rcpp_result_gen;
+END_RCPP
+}
 // HG_Cpp
 double HG_Cpp(const NumericVector& X, int k, double t, bool H);
 RcppExport SEXP _symmetry_HG_Cpp(SEXP XSEXP, SEXP kSEXP, SEXP tSEXP, SEXP HSEXP) {
@@ -223,127 +340,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// randomize_sign_old
-NumericVector randomize_sign_old(const NumericVector& X);
-RcppExport SEXP _symmetry_randomize_sign_old(SEXP XSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    rcpp_result_gen = Rcpp::wrap(randomize_sign_old(X));
-    return rcpp_result_gen;
-END_RCPP
-}
-// randomize_sign
-NumericVector randomize_sign(const NumericVector& X, double mu);
-RcppExport SEXP _symmetry_randomize_sign(SEXP XSEXP, SEXP muSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
-    rcpp_result_gen = Rcpp::wrap(randomize_sign(X, mu));
-    return rcpp_result_gen;
-END_RCPP
-}
-// sample_with_replacement
-NumericVector sample_with_replacement(NumericVector x, int n);
-RcppExport SEXP _symmetry_sample_with_replacement(SEXP xSEXP, SEXP nSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
-    Rcpp::traits::input_parameter< int >::type n(nSEXP);
-    rcpp_result_gen = Rcpp::wrap(sample_with_replacement(x, n));
-    return rcpp_result_gen;
-END_RCPP
-}
-// reflect_sample
-NumericVector reflect_sample(const NumericVector& X, double mu, int n);
-RcppExport SEXP _symmetry_reflect_sample(SEXP XSEXP, SEXP muSEXP, SEXP nSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
-    Rcpp::traits::input_parameter< int >::type n(nSEXP);
-    rcpp_result_gen = Rcpp::wrap(reflect_sample(X, mu, n));
-    return rcpp_result_gen;
-END_RCPP
-}
-// reflected_boot
-NumericVector reflected_boot(const NumericVector& X, double mu);
-RcppExport SEXP _symmetry_reflected_boot(SEXP XSEXP, SEXP muSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
-    rcpp_result_gen = Rcpp::wrap(reflected_boot(X, mu));
-    return rcpp_result_gen;
-END_RCPP
-}
-// trimmed_mean
-double trimmed_mean(const NumericVector& X, double alpha);
-RcppExport SEXP _symmetry_trimmed_mean(SEXP XSEXP, SEXP alphaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
-    rcpp_result_gen = Rcpp::wrap(trimmed_mean(X, alpha));
-    return rcpp_result_gen;
-END_RCPP
-}
-// boot_sample
-NumericVector boot_sample(const NumericVector& X, double trim_alpha, int B, std::string null_method, std::string stat, int k);
-RcppExport SEXP _symmetry_boot_sample(SEXP XSEXP, SEXP trim_alphaSEXP, SEXP BSEXP, SEXP null_methodSEXP, SEXP statSEXP, SEXP kSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< double >::type trim_alpha(trim_alphaSEXP);
-    Rcpp::traits::input_parameter< int >::type B(BSEXP);
-    Rcpp::traits::input_parameter< std::string >::type null_method(null_methodSEXP);
-    Rcpp::traits::input_parameter< std::string >::type stat(statSEXP);
-    Rcpp::traits::input_parameter< int >::type k(kSEXP);
-    rcpp_result_gen = Rcpp::wrap(boot_sample(X, trim_alpha, B, null_method, stat, k));
-    return rcpp_result_gen;
-END_RCPP
-}
-// lm_resid
-NumericVector lm_resid(const arma::mat& X, NumericVector& yr);
-RcppExport SEXP _symmetry_lm_resid(SEXP XSEXP, SEXP yrSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< NumericVector& >::type yr(yrSEXP);
-    rcpp_result_gen = Rcpp::wrap(lm_resid(X, yr));
-    return rcpp_result_gen;
-END_RCPP
-}
-// boot_sample_lm
-NumericVector boot_sample_lm(const arma::mat& model_matrix, const NumericVector& fitted, const NumericVector& residuals, int B, std::string null_method, std::string stat, int k);
-RcppExport SEXP _symmetry_boot_sample_lm(SEXP model_matrixSEXP, SEXP fittedSEXP, SEXP residualsSEXP, SEXP BSEXP, SEXP null_methodSEXP, SEXP statSEXP, SEXP kSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type model_matrix(model_matrixSEXP);
-    Rcpp::traits::input_parameter< const NumericVector& >::type fitted(fittedSEXP);
-    Rcpp::traits::input_parameter< const NumericVector& >::type residuals(residualsSEXP);
-    Rcpp::traits::input_parameter< int >::type B(BSEXP);
-    Rcpp::traits::input_parameter< std::string >::type null_method(null_methodSEXP);
-    Rcpp::traits::input_parameter< std::string >::type stat(statSEXP);
-    Rcpp::traits::input_parameter< int >::type k(kSEXP);
-    rcpp_result_gen = Rcpp::wrap(boot_sample_lm(model_matrix, fitted, residuals, B, null_method, stat, k));
-    return rcpp_result_gen;
-END_RCPP
-}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_symmetry_BHI_Cpp", (DL_FUNC) &_symmetry_BHI_Cpp, 1},
     {"_symmetry_BHK_Cpp", (DL_FUNC) &_symmetry_BHK_Cpp, 1},
+    {"_symmetry_randomize_sign_old", (DL_FUNC) &_symmetry_randomize_sign_old, 1},
+    {"_symmetry_randomize_sign", (DL_FUNC) &_symmetry_randomize_sign, 2},
+    {"_symmetry_sample_with_replacement", (DL_FUNC) &_symmetry_sample_with_replacement, 2},
+    {"_symmetry_reflect_sample", (DL_FUNC) &_symmetry_reflect_sample, 3},
+    {"_symmetry_reflected_boot", (DL_FUNC) &_symmetry_reflected_boot, 2},
+    {"_symmetry_trimmed_mean", (DL_FUNC) &_symmetry_trimmed_mean, 2},
+    {"_symmetry_boot_sample", (DL_FUNC) &_symmetry_boot_sample, 6},
+    {"_symmetry_lm_resid", (DL_FUNC) &_symmetry_lm_resid, 2},
+    {"_symmetry_boot_sample_lm", (DL_FUNC) &_symmetry_boot_sample_lm, 7},
     {"_symmetry_HG_Cpp", (DL_FUNC) &_symmetry_HG_Cpp, 4},
     {"_symmetry_I1_Cpp", (DL_FUNC) &_symmetry_I1_Cpp, 2},
     {"_symmetry_I2_Cpp", (DL_FUNC) &_symmetry_I2_Cpp, 1},
@@ -361,15 +370,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_symmetry_NAI_Cpp", (DL_FUNC) &_symmetry_NAI_Cpp, 2},
     {"_symmetry_NAK_Cpp", (DL_FUNC) &_symmetry_NAK_Cpp, 2},
     {"_symmetry_WCX_Cpp", (DL_FUNC) &_symmetry_WCX_Cpp, 1},
-    {"_symmetry_randomize_sign_old", (DL_FUNC) &_symmetry_randomize_sign_old, 1},
-    {"_symmetry_randomize_sign", (DL_FUNC) &_symmetry_randomize_sign, 2},
-    {"_symmetry_sample_with_replacement", (DL_FUNC) &_symmetry_sample_with_replacement, 2},
-    {"_symmetry_reflect_sample", (DL_FUNC) &_symmetry_reflect_sample, 3},
-    {"_symmetry_reflected_boot", (DL_FUNC) &_symmetry_reflected_boot, 2},
-    {"_symmetry_trimmed_mean", (DL_FUNC) &_symmetry_trimmed_mean, 2},
-    {"_symmetry_boot_sample", (DL_FUNC) &_symmetry_boot_sample, 6},
-    {"_symmetry_lm_resid", (DL_FUNC) &_symmetry_lm_resid, 2},
-    {"_symmetry_boot_sample_lm", (DL_FUNC) &_symmetry_boot_sample_lm, 7},
     {NULL, NULL, 0}
 };
 

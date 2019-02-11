@@ -2,33 +2,55 @@ symmetry_test <- function(x, ...) {
   UseMethod("symmetry_test", x)
 }
 
-symmetry_test.default <- function(x, stat, mu = 0, bootstrap = FALSE,
-                                  B = 100, boot_method = "sign",
-                                  trim = 0, k = 0) {
+symmetry_test.default <- function(x, stat, mu = 0,
+                                  simulate_p_value = FALSE, N=1000,
+                                  bootstrap = FALSE, B = 100,
+                                  boot_method = "sign", trim = 0, k = 0) {
   xname <- deparse(substitute(x))
-  if (bootstrap) {
-    stat_fun <- match.fun(stat, descend = FALSE)
-    pass_k <- "k" %in% names(formals(stat))
-    if (pass_k && k == 0)
-      stop("Argument 'k' not specified.")
 
+  stat_fun <- match.fun(stat, descend = FALSE)
+  pass_k <- "k" %in% names(formals(stat))
+  if (pass_k && k == 0)
+    stop("Argument 'k' not specified.")
+
+  MU <- NULL
+
+  if (bootstrap) {
     boot <- boot_sample(x, trim, B, boot_method, stat, k)
 
     MU <- c(mu = mean(x, trim = trim))
     xc <- x - MU
     tval <- if(pass_k) stat_fun(xc, k = k) else stat_fun(xc)
-    names(tval) <- stat
 
     pval <- mean(abs(boot) > abs(tval))
 
     METHOD <- c("Symmetry test",
                 "Null hypothesis: Data is symmetric")
     params <- c("B" = B)
-    if(pass_k) params <- c(k=k, params)
+
+  } else if(simulate_p_value){
+    n <- length(x)
+    normals <- matrix(rnorm(n*N, mu), ncol=n)
+    apply_fun <- if(pass_k) {
+      function(x) stat_fun(x, k, mu)
+    } else {
+      function(x) stat_fun(x, mu)
+    }
+    null_distrib <- apply(normals, 1, apply_fun)
+
+    tval <- if(pass_k) stat_fun(x, k = k, mu = mu) else stat_fun(x, mu = mu)
+
+    pval <- mean(abs(null_distrib) > abs(tval))
+
+    METHOD <- c("Symmetry test",
+                paste("Null hypothesis: Data is symmetric around", mu))
+    params <- c("N" = N)
 
   } else {
-
   }
+
+  names(tval) <- stat
+  if(pass_k) params <- c(k=k, params)
 
   obj <- list(method = METHOD,
               statistic = tval,
