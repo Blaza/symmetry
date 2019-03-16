@@ -21,38 +21,6 @@ I1_Cpp <- function(X, k_in) {
     .Call('_symmetry_I1_Cpp', PACKAGE = 'symmetry', X, k_in)
 }
 
-I2_Cpp <- function(X) {
-    .Call('_symmetry_I2_Cpp', PACKAGE = 'symmetry', X)
-}
-
-I2A_Cpp <- function(X) {
-    .Call('_symmetry_I2A_Cpp', PACKAGE = 'symmetry', X)
-}
-
-I2HU_Cpp <- function(X) {
-    .Call('_symmetry_I2HU_Cpp', PACKAGE = 'symmetry', X)
-}
-
-I2HUA_Cpp <- function(X) {
-    .Call('_symmetry_I2HUA_Cpp', PACKAGE = 'symmetry', X)
-}
-
-I2U_Cpp <- function(X) {
-    .Call('_symmetry_I2U_Cpp', PACKAGE = 'symmetry', X)
-}
-
-I2UA_Cpp <- function(X) {
-    .Call('_symmetry_I2UA_Cpp', PACKAGE = 'symmetry', X)
-}
-
-I2UAS_Cpp <- function(X) {
-    .Call('_symmetry_I2UAS_Cpp', PACKAGE = 'symmetry', X)
-}
-
-I2US_Cpp <- function(X) {
-    .Call('_symmetry_I2US_Cpp', PACKAGE = 'symmetry', X)
-}
-
 K1_Cpp <- function(X, k_in) {
     .Call('_symmetry_K1_Cpp', PACKAGE = 'symmetry', X, k_in)
 }
