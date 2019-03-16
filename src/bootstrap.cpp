@@ -8,6 +8,9 @@ using namespace Rcpp;
 std::function<double (const NumericVector&)>
   get_ts_fun(std::string stat, double k = 0) {
 
+  if (stat == "CM") {
+    return CM_Cpp;
+  }
   if (stat == "BHI") {
     return BHI_Cpp;
   }
@@ -30,19 +33,6 @@ std::function<double (const NumericVector&)>
     return bind(L1_Cpp, std::placeholders::_1, k);
   }
   return NULL;
-}
-
-// [[Rcpp::export]]
-NumericVector randomize_sign_old(const NumericVector& X) {
-  int n = X.size();
-  NumericVector res(X);
-  LogicalVector negative = runif(n, -1, 1) < 0;
-  for (int i = 0; i < n; i++) {
-    if(negative[i]) {
-      res[i] = -X[i];
-    }
-  }
-  return res;
 }
 
 // [[Rcpp::export]]
@@ -122,7 +112,6 @@ double trimmed_mean(const NumericVector& X, double alpha = 0) {
   return mean(Xs[Range(lwr, upr)]);
 }
 
-
 // [[Rcpp::export]]
 NumericVector boot_sample(const NumericVector& X, double trim_alpha,
                           int B, std::string null_method,
@@ -144,6 +133,55 @@ NumericVector boot_sample(const NumericVector& X, double trim_alpha,
   }
 
   return boot_sample;
+}
+
+// [[Rcpp::export]]
+NumericVector mn_boot_sample(const NumericVector& X, double trim_alpha,
+                             int B, std::string stat, int k = 0,
+                             double q = 8.0/9) {
+  auto ts_fun = get_ts_fun(stat, k);
+
+  IntegerVector m_pre(21);
+  int n = X.size();
+  for (int i = 0; i < 21; i++) {
+    m_pre[i] = round(n * pow(q, i));
+  }
+  IntegerVector m_filter = m_pre[m_pre > 4];
+  IntegerVector m = unique(m_filter).sort(true);
+  int m_size = m.size();
+
+  NumericVector best_boot_sample(B);
+  NumericVector last_boot_sample(B);
+  NumericVector curr_boot_sample(B);
+  NumericVector temp_diff(B);
+  double best_dist = -1;
+  double dist;
+
+  NumericVector X_boot;
+  double mu_boot;
+  for (int i = 0; i < m_size; i++) {
+    std::copy(curr_boot_sample.begin(), curr_boot_sample.end(),
+              last_boot_sample.begin());
+
+    for (int b = 0; b < B; b++) {
+      X_boot = sample_with_replacement(X, m[i]);
+      mu_boot = trimmed_mean(X_boot, trim_alpha);
+      curr_boot_sample[b] = ts_fun(X_boot - mu_boot);
+    }
+
+    if (i != 0) {
+      temp_diff = last_boot_sample - curr_boot_sample;
+      dist = sum(temp_diff * temp_diff);
+
+      if (best_dist < 0 || dist < best_dist) {
+        best_dist = dist;
+        std::copy(curr_boot_sample.begin(), curr_boot_sample.end(),
+                  best_boot_sample.begin());
+      }
+    }
+  }
+
+  return best_boot_sample;
 }
 
 // Get regression residuals given model matrix and response vector

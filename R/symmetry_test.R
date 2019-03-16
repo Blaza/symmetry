@@ -5,7 +5,8 @@ symmetry_test <- function(x, ...) {
 symmetry_test.default <- function(x, stat, mu = 0,
                                   simulate_p_value = FALSE, N=1000,
                                   bootstrap = FALSE, B = 100,
-                                  boot_method = "sign", trim = 0, k = 0) {
+                                  boot_method = "sign", trim = 0, k = 0,
+                                  q = 8/9) {
   xname <- deparse(substitute(x))
 
   stat_fun <- match.fun(stat, descend = FALSE)
@@ -16,7 +17,11 @@ symmetry_test.default <- function(x, stat, mu = 0,
   MU <- NULL
 
   if (bootstrap) {
-    boot <- boot_sample(x, trim, B, boot_method, stat, k)
+    boot <- if (boot_method != "mn") {
+      boot_sample(x, trim, B, boot_method, stat, k)
+    } else {
+      mn_boot_sample(x, trim, B, stat, k, q)
+    }
 
     MU <- c(mu = mean(x, trim = trim))
     xc <- x - MU

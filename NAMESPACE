@@ -2,6 +2,7 @@
 
 export(BHI)
 export(BHK)
+export(CM)
 export(HG)
 export(I1)
 export(I2)

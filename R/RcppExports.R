@@ -9,40 +9,8 @@ BHK_Cpp <- function(X) {
     .Call('_symmetry_BHK_Cpp', PACKAGE = 'symmetry', X)
 }
 
-randomize_sign_old <- function(X) {
-    .Call('_symmetry_randomize_sign_old', PACKAGE = 'symmetry', X)
-}
-
-randomize_sign <- function(X, mu) {
-    .Call('_symmetry_randomize_sign', PACKAGE = 'symmetry', X, mu)
-}
-
-sample_with_replacement <- function(x, n) {
-    .Call('_symmetry_sample_with_replacement', PACKAGE = 'symmetry', x, n)
-}
-
-reflect_sample <- function(X, mu, n) {
-    .Call('_symmetry_reflect_sample', PACKAGE = 'symmetry', X, mu, n)
-}
-
-reflected_boot <- function(X, mu) {
-    .Call('_symmetry_reflected_boot', PACKAGE = 'symmetry', X, mu)
-}
-
-trimmed_mean <- function(X, alpha = 0) {
-    .Call('_symmetry_trimmed_mean', PACKAGE = 'symmetry', X, alpha)
-}
-
-boot_sample <- function(X, trim_alpha, B, null_method, stat, k = 0L) {
-    .Call('_symmetry_boot_sample', PACKAGE = 'symmetry', X, trim_alpha, B, null_method, stat, k)
-}
-
-lm_resid <- function(X, yr) {
-    .Call('_symmetry_lm_resid', PACKAGE = 'symmetry', X, yr)
-}
-
-boot_sample_lm <- function(model_matrix, fitted, residuals, B, null_method, stat, k = 0L) {
-    .Call('_symmetry_boot_sample_lm', PACKAGE = 'symmetry', model_matrix, fitted, residuals, B, null_method, stat, k)
+CM_Cpp <- function(X) {
+    .Call('_symmetry_CM_Cpp', PACKAGE = 'symmetry', X)
 }
 
 HG_Cpp <- function(X, k, t, H) {
@@ -111,5 +79,41 @@ NAK_Cpp <- function(X, k_in) {
 
 WCX_Cpp <- function(X) {
     .Call('_symmetry_WCX_Cpp', PACKAGE = 'symmetry', X)
+}
+
+randomize_sign <- function(X, mu) {
+    .Call('_symmetry_randomize_sign', PACKAGE = 'symmetry', X, mu)
+}
+
+sample_with_replacement <- function(x, n) {
+    .Call('_symmetry_sample_with_replacement', PACKAGE = 'symmetry', x, n)
+}
+
+reflect_sample <- function(X, mu, n) {
+    .Call('_symmetry_reflect_sample', PACKAGE = 'symmetry', X, mu, n)
+}
+
+reflected_boot <- function(X, mu) {
+    .Call('_symmetry_reflected_boot', PACKAGE = 'symmetry', X, mu)
+}
+
+trimmed_mean <- function(X, alpha = 0) {
+    .Call('_symmetry_trimmed_mean', PACKAGE = 'symmetry', X, alpha)
+}
+
+boot_sample <- function(X, trim_alpha, B, null_method, stat, k = 0L) {
+    .Call('_symmetry_boot_sample', PACKAGE = 'symmetry', X, trim_alpha, B, null_method, stat, k)
+}
+
+mn_boot_sample <- function(X, trim_alpha, B, stat, k = 0L, q = 8.0/9) {
+    .Call('_symmetry_mn_boot_sample', PACKAGE = 'symmetry', X, trim_alpha, B, stat, k, q)
+}
+
+lm_resid <- function(X, yr) {
+    .Call('_symmetry_lm_resid', PACKAGE = 'symmetry', X, yr)
+}
+
+boot_sample_lm <- function(model_matrix, fitted, residuals, B, null_method, stat, k = 0L) {
+    .Call('_symmetry_boot_sample_lm', PACKAGE = 'symmetry', model_matrix, fitted, residuals, B, null_method, stat, k)
 }
 
