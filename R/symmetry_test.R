@@ -67,22 +67,68 @@ symmetry_test.default <- function(x, stat, mu = 0,
   obj
 }
 
-symmetry_test.lm <- function(m, stat, B = 100, boot_method = "sign", k = NULL) {
+symmetry_test.lm <- function(model, stat, B = 100,
+                             boot_method = "sign", k = NULL) {
   stat_fun <- match.fun(stat, descend = FALSE)
   pass_k <- "k" %in% names(formals(stat))
   if (pass_k && is.null(k))
     stop("Argument 'k' not specified.")
 
-  X <- model.matrix(m)
-  yfit <- fitted(m)
-  res <- residuals(m)
+  X <- model.matrix(model)
+  yfit <- fitted(model)
+  res <- residuals(model)
   boot <- boot_sample_lm(X, yfit, res, B, boot_method, stat, k)
   tval <- if(pass_k) stat_fun(res, k = k) else stat_fun(res)
   names(tval) <- stat
   pval <- mean(abs(boot) > abs(tval))
 
-  xname <- paste("Residuals from model", deparse(substitute(m)))
+  xname <- paste("Residuals from model", deparse(substitute(model)))
   METHOD <- c("Symmetry test of linear model residuals",
+              "Null hypothesis: The residuals are symmetric around 0")
+  params <- c("B" = B)
+  if(pass_k) params <- c(k=k, params)
+
+  obj <- list(method = METHOD,
+              statistic = tval,
+              parameters = params,
+              p.value = pval,
+              data.name = xname)
+  class(obj) <- "htest"
+  obj
+}
+
+symmetry_test.garch <- function(model, stat, ts = NULL, B = 100,
+                                boot_method = "sign", k = NULL) {
+  stat_fun <- match.fun(stat, descend = FALSE)
+  pass_k <- "k" %in% names(formals(stat))
+  if (pass_k && is.null(k))
+    stop("Argument 'k' not specified.")
+
+  cfit <- fitted(model)[, 1]
+
+  ind <- (max(model$order) + 1) : length(cfit)
+  cfit <- cfit[ind]
+  res <- residuals(model)[ind]
+
+  null_sample_fun <- switch(boot_method,
+                            "sign" = randomize_sign,
+                            "reflect" = reflected_boot)
+
+  ts_head <- if (!is.null(ts)) ts[-ind] else rep(0, max(model$order))
+
+  boot <- replicate(B, {
+    boot_res <- null_sample_fun(res, 0)
+    boot_y <- c(ts_head, boot_res * cfit)
+    new_res <- residuals(garch(boot_y, model$order, trace = FALSE))
+    if(pass_k) stat_fun(new_res, k = k) else stat_fun(new_res)
+  })
+
+  tval <- if(pass_k) stat_fun(res, k = k) else stat_fun(res)
+  names(tval) <- stat
+  pval <- mean(abs(boot) > abs(tval))
+
+  xname <- paste("Residuals from model", deparse(substitute(model)))
+  METHOD <- c("Symmetry test of GARCH model residuals",
               "Null hypothesis: The residuals are symmetric around 0")
   params <- c("B" = B)
   if(pass_k) params <- c(k=k, params)
