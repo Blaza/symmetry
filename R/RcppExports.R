@@ -85,3 +85,7 @@ boot_sample_lm <- function(model_matrix, fitted, residuals, B, null_method, stat
     .Call('_symmetry_boot_sample_lm', PACKAGE = 'symmetry', model_matrix, fitted, residuals, B, null_method, stat, k)
 }
 
+simulate_garch <- function(resid, y, omega, alpha, beta) {
+    .Call('_symmetry_simulate_garch', PACKAGE = 'symmetry', resid, y, omega, alpha, beta)
+}
+

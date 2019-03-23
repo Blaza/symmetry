@@ -225,11 +225,10 @@ NumericVector boot_sample_lm(const arma::mat& model_matrix,
 // [[Rcpp::export]]
 NumericVector simulate_garch(const NumericVector& resid,
                              const NumericVector& y,
-                             //const NumericVector& cfit,
-                             const NumericVector& omega,
+                             double omega,
                              const NumericVector& alpha,
                              const NumericVector& beta) {
-  int q = alpha.size(), p = beta.size(), m = max(p, q);
+  int q = alpha.size(), p = beta.size(), m = std::max(p, q);
   int n = resid.size();
 
   NumericVector booty(n+m);
@@ -247,5 +246,5 @@ NumericVector simulate_garch(const NumericVector& resid,
     booty[i + m] = bootc[i] * resid[i];
   }
 
-  return booty[Range(m, n+m)];
+  return booty[Range(m, n+m-1)];
 }

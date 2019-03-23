@@ -268,6 +268,21 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// simulate_garch
+NumericVector simulate_garch(const NumericVector& resid, const NumericVector& y, double omega, const NumericVector& alpha, const NumericVector& beta);
+RcppExport SEXP _symmetry_simulate_garch(SEXP residSEXP, SEXP ySEXP, SEXP omegaSEXP, SEXP alphaSEXP, SEXP betaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type resid(residSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type y(ySEXP);
+    Rcpp::traits::input_parameter< double >::type omega(omegaSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type alpha(alphaSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type beta(betaSEXP);
+    rcpp_result_gen = Rcpp::wrap(simulate_garch(resid, y, omega, alpha, beta));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_symmetry_BHI_Cpp", (DL_FUNC) &_symmetry_BHI_Cpp, 1},
@@ -291,6 +306,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_symmetry_mn_boot_sample", (DL_FUNC) &_symmetry_mn_boot_sample, 6},
     {"_symmetry_lm_resid", (DL_FUNC) &_symmetry_lm_resid, 2},
     {"_symmetry_boot_sample_lm", (DL_FUNC) &_symmetry_boot_sample_lm, 7},
+    {"_symmetry_simulate_garch", (DL_FUNC) &_symmetry_simulate_garch, 5},
     {NULL, NULL, 0}
 };
 
