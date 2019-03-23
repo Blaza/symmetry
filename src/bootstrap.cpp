@@ -221,3 +221,31 @@ NumericVector boot_sample_lm(const arma::mat& model_matrix,
 
   return boot_sample;
 }
+
+// [[Rcpp::export]]
+NumericVector simulate_garch(const NumericVector& resid,
+                             const NumericVector& y,
+                             //const NumericVector& cfit,
+                             const NumericVector& omega,
+                             const NumericVector& alpha,
+                             const NumericVector& beta) {
+  int q = alpha.size(), p = beta.size(), m = max(p, q);
+  int n = resid.size();
+
+  NumericVector booty(n+m);
+  NumericVector bootc(n);
+  NumericVector yrec(q);
+  //NumericVector crec(p);
+
+  for (int i = 0; i < m; i++) {
+    booty[i] = y[i];
+  }
+
+  for (int i = 0; i < n; i++) {
+    yrec = booty[Range(i + m - q, i + m - 1)];
+    bootc[i] = sqrt(omega + sum(yrec * yrec * alpha));
+    booty[i + m] = bootc[i] * resid[i];
+  }
+
+  return booty[Range(m, n+m)];
+}
