@@ -115,7 +115,7 @@ symmetry_test.fGARCH <- function(model, stat, B = 100,
                             "sign" = randomize_sign,
                             "reflect" = reflected_boot)
 
-  coefs <- g@fit$par
+  coefs <- model@fit$par
   omega <- coefs["omega"]
   alpha <- coefs[grepl("alpha", names(coefs))]
   beta <- coefs[grepl("beta", names(coefs))]
