@@ -200,6 +200,7 @@ NumericVector lm_resid(const arma::mat& X, NumericVector& yr) {
 // [[Rcpp::export]]
 NumericVector boot_sample_lm(const arma::mat& model_matrix,
                              const NumericVector& fitted,
+                             const NumericVector& cfit,
                              const NumericVector& residuals,
                              int B, std::string null_method,
                              std::string stat, int k = 0) {
@@ -225,6 +226,7 @@ NumericVector boot_sample_lm(const arma::mat& model_matrix,
 // [[Rcpp::export]]
 NumericVector simulate_garch(const NumericVector& resid,
                              const NumericVector& y,
+                             const NumericVector& cfit,
                              double omega,
                              const NumericVector& alpha,
                              const NumericVector& beta) {
@@ -232,19 +234,21 @@ NumericVector simulate_garch(const NumericVector& resid,
   int n = resid.size();
 
   NumericVector booty(n+m);
-  NumericVector bootc(n);
+  NumericVector bootc(n+m);
   NumericVector yrec(q);
-  //NumericVector crec(p);
+  NumericVector crec(p);
 
   for (int i = 0; i < m; i++) {
     booty[i] = y[i];
+    bootc[i] = cfit[i];
   }
 
   for (int i = 0; i < n; i++) {
     yrec = booty[Range(i + m - q, i + m - 1)];
-    bootc[i] = sqrt(omega + sum(yrec * yrec * alpha));
-    booty[i + m] = bootc[i] * resid[i];
+    crec = bootc[Range(i + m - p, i + m - 1)];
+    bootc[i + m] = sqrt(omega + sum(yrec * yrec * alpha) + sum(crec * crec * beta));
+    booty[i + m] = bootc[i + m] * resid[i];
   }
 
-  return booty[Range(m, n+m-1)];
+  return booty[Range(m, n + m - 1)];
 }

@@ -9,6 +9,10 @@ BHK_Cpp <- function(X) {
     .Call('_symmetry_BHK_Cpp', PACKAGE = 'symmetry', X)
 }
 
+CH_Cpp <- function(X) {
+    .Call('_symmetry_CH_Cpp', PACKAGE = 'symmetry', X)
+}
+
 CM_Cpp <- function(X) {
     .Call('_symmetry_CM_Cpp', PACKAGE = 'symmetry', X)
 }
@@ -81,11 +85,11 @@ lm_resid <- function(X, yr) {
     .Call('_symmetry_lm_resid', PACKAGE = 'symmetry', X, yr)
 }
 
-boot_sample_lm <- function(model_matrix, fitted, residuals, B, null_method, stat, k = 0L) {
-    .Call('_symmetry_boot_sample_lm', PACKAGE = 'symmetry', model_matrix, fitted, residuals, B, null_method, stat, k)
+boot_sample_lm <- function(model_matrix, fitted, cfit, residuals, B, null_method, stat, k = 0L) {
+    .Call('_symmetry_boot_sample_lm', PACKAGE = 'symmetry', model_matrix, fitted, cfit, residuals, B, null_method, stat, k)
 }
 
-simulate_garch <- function(resid, y, omega, alpha, beta) {
-    .Call('_symmetry_simulate_garch', PACKAGE = 'symmetry', resid, y, omega, alpha, beta)
+simulate_garch <- function(resid, y, cfit, omega, alpha, beta) {
+    .Call('_symmetry_simulate_garch', PACKAGE = 'symmetry', resid, y, cfit, omega, alpha, beta)
 }
 

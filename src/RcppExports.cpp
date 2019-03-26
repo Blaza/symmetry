@@ -28,6 +28,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// CH_Cpp
+double CH_Cpp(const NumericVector& X);
+RcppExport SEXP _symmetry_CH_Cpp(SEXP XSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    rcpp_result_gen = Rcpp::wrap(CH_Cpp(X));
+    return rcpp_result_gen;
+END_RCPP
+}
 // CM_Cpp
 double CM_Cpp(const NumericVector& X);
 RcppExport SEXP _symmetry_CM_Cpp(SEXP XSEXP) {
@@ -252,34 +263,36 @@ BEGIN_RCPP
 END_RCPP
 }
 // boot_sample_lm
-NumericVector boot_sample_lm(const arma::mat& model_matrix, const NumericVector& fitted, const NumericVector& residuals, int B, std::string null_method, std::string stat, int k);
-RcppExport SEXP _symmetry_boot_sample_lm(SEXP model_matrixSEXP, SEXP fittedSEXP, SEXP residualsSEXP, SEXP BSEXP, SEXP null_methodSEXP, SEXP statSEXP, SEXP kSEXP) {
+NumericVector boot_sample_lm(const arma::mat& model_matrix, const NumericVector& fitted, const NumericVector& cfit, const NumericVector& residuals, int B, std::string null_method, std::string stat, int k);
+RcppExport SEXP _symmetry_boot_sample_lm(SEXP model_matrixSEXP, SEXP fittedSEXP, SEXP cfitSEXP, SEXP residualsSEXP, SEXP BSEXP, SEXP null_methodSEXP, SEXP statSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type model_matrix(model_matrixSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type fitted(fittedSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type cfit(cfitSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type residuals(residualsSEXP);
     Rcpp::traits::input_parameter< int >::type B(BSEXP);
     Rcpp::traits::input_parameter< std::string >::type null_method(null_methodSEXP);
     Rcpp::traits::input_parameter< std::string >::type stat(statSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
-    rcpp_result_gen = Rcpp::wrap(boot_sample_lm(model_matrix, fitted, residuals, B, null_method, stat, k));
+    rcpp_result_gen = Rcpp::wrap(boot_sample_lm(model_matrix, fitted, cfit, residuals, B, null_method, stat, k));
     return rcpp_result_gen;
 END_RCPP
 }
 // simulate_garch
-NumericVector simulate_garch(const NumericVector& resid, const NumericVector& y, double omega, const NumericVector& alpha, const NumericVector& beta);
-RcppExport SEXP _symmetry_simulate_garch(SEXP residSEXP, SEXP ySEXP, SEXP omegaSEXP, SEXP alphaSEXP, SEXP betaSEXP) {
+NumericVector simulate_garch(const NumericVector& resid, const NumericVector& y, const NumericVector& cfit, double omega, const NumericVector& alpha, const NumericVector& beta);
+RcppExport SEXP _symmetry_simulate_garch(SEXP residSEXP, SEXP ySEXP, SEXP cfitSEXP, SEXP omegaSEXP, SEXP alphaSEXP, SEXP betaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const NumericVector& >::type resid(residSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type y(ySEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type cfit(cfitSEXP);
     Rcpp::traits::input_parameter< double >::type omega(omegaSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type alpha(alphaSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type beta(betaSEXP);
-    rcpp_result_gen = Rcpp::wrap(simulate_garch(resid, y, omega, alpha, beta));
+    rcpp_result_gen = Rcpp::wrap(simulate_garch(resid, y, cfit, omega, alpha, beta));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -287,6 +300,7 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_symmetry_BHI_Cpp", (DL_FUNC) &_symmetry_BHI_Cpp, 1},
     {"_symmetry_BHK_Cpp", (DL_FUNC) &_symmetry_BHK_Cpp, 1},
+    {"_symmetry_CH_Cpp", (DL_FUNC) &_symmetry_CH_Cpp, 1},
     {"_symmetry_CM_Cpp", (DL_FUNC) &_symmetry_CM_Cpp, 1},
     {"_symmetry_HG_Cpp", (DL_FUNC) &_symmetry_HG_Cpp, 4},
     {"_symmetry_I1_Cpp", (DL_FUNC) &_symmetry_I1_Cpp, 2},
@@ -305,8 +319,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_symmetry_boot_sample", (DL_FUNC) &_symmetry_boot_sample, 6},
     {"_symmetry_mn_boot_sample", (DL_FUNC) &_symmetry_mn_boot_sample, 6},
     {"_symmetry_lm_resid", (DL_FUNC) &_symmetry_lm_resid, 2},
-    {"_symmetry_boot_sample_lm", (DL_FUNC) &_symmetry_boot_sample_lm, 7},
-    {"_symmetry_simulate_garch", (DL_FUNC) &_symmetry_simulate_garch, 5},
+    {"_symmetry_boot_sample_lm", (DL_FUNC) &_symmetry_boot_sample_lm, 8},
+    {"_symmetry_simulate_garch", (DL_FUNC) &_symmetry_simulate_garch, 6},
     {NULL, NULL, 0}
 };
 

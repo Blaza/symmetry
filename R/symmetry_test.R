@@ -97,36 +97,34 @@ symmetry_test.lm <- function(model, stat, B = 100,
   obj
 }
 
-symmetry_test.garch <- function(model, stat, ts = NULL, B = 100,
+symmetry_test.fGARCH <- function(model, stat, B = 100,
                                 boot_method = "sign", k = NULL) {
   stat_fun <- match.fun(stat, descend = FALSE)
-  if (is.null(ts))
-    stop("The original time series must be provided")
+
   pass_k <- "k" %in% names(formals(stat))
   if (pass_k && is.null(k))
     stop("Argument 'k' not specified.")
 
-  cfit <- fitted(model)[, 1]
-
-  ind <- (max(model$order) + 1) : length(cfit)
-  cfit <- cfit[ind]
-  res <- residuals(model)[ind]
+  res <- residuals(model)
 
   null_sample_fun <- switch(boot_method,
                             "sign" = randomize_sign,
                             "reflect" = reflected_boot)
 
-  ts_head <- if (!is.null(ts)) ts[-ind] else rep(0, max(model$order))
+  coefs <- g@fit$par
+  omega <- coefs["omega"]
+  alpha <- coefs[grepl("alpha", names(coefs))]
+  beta <- coefs[grepl("beta", names(coefs))]
 
-  coefs <- coefficients(model)
-  omega <- coefs["a0"]
-  alpha <- coefs[grepl("a[1-9]", names(coefs))]
-  beta <- coefs[grepl("b", names(coefs))]
-
+  ts <- as.numeric(model@data)
+  cfit <- as.numeric(fitted(model))
   boot <- replicate(B, {
     boot_res <- null_sample_fun(res, 0)
-    boot_y <- simulate_garch(boot_res, ts, omega, alpha, beta)
-    new_res <- residuals(garch(boot_y, model$order, trace = FALSE))
+    boot_y <- simulate_garch(boot_res, ts, cfit, omega, alpha, beta)
+    boot_model <- garchFit(model@formula, boot_y,
+                           cond.dist = "QMLE", include.mean = FALSE,
+                           trace = FALSE)
+    new_res <- residuals(boot_model)
     if(pass_k) stat_fun(new_res, k = k) else stat_fun(new_res)
   })
 
@@ -144,7 +142,8 @@ symmetry_test.garch <- function(model, stat, ts = NULL, B = 100,
               statistic = tval,
               parameters = params,
               p.value = pval,
-              data.name = xname)
+              data.name = xname,
+              boot_stats = boot)
   class(obj) <- "htest"
   obj
 }
