@@ -1,7 +1,9 @@
+#' @export
 symmetry_test <- function(x, ...) {
   UseMethod("symmetry_test", x)
 }
 
+#' @export
 symmetry_test.default <- function(x, stat, mu = 0,
                                   simulate_p_value = FALSE, N=1000,
                                   bootstrap = FALSE, B = 100,
@@ -67,6 +69,7 @@ symmetry_test.default <- function(x, stat, mu = 0,
   obj
 }
 
+#' @export
 symmetry_test.lm <- function(model, stat, B = 100,
                              boot_method = "sign", k = NULL) {
   stat_fun <- match.fun(stat, descend = FALSE)
@@ -97,6 +100,7 @@ symmetry_test.lm <- function(model, stat, B = 100,
   obj
 }
 
+#' @export
 symmetry_test.fGARCH <- function(model, stat, B = 100,
                                 boot_method = "sign", k = NULL) {
   stat_fun <- match.fun(stat, descend = FALSE)
