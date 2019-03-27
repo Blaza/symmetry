@@ -120,6 +120,8 @@ symmetry_test.fGARCH <- function(model, stat, B = 100,
   alpha <- coefs[grepl("alpha", names(coefs))]
   beta <- coefs[grepl("beta", names(coefs))]
 
+  res <- res - mean(res)
+
   ts <- as.numeric(model@data)
   cfit <- as.numeric(fitted(model))
   boot <- replicate(B, {
