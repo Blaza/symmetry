@@ -26,7 +26,7 @@ KS <- function(X, mu = 0) {
 #' SGN(X)
 #' @export
 SGN <- function(X, mu = 0) {
-  mean((X - mu) > 0) - 0.5
+  sqrt(n) * (mean((X - mu) > 0) - 0.5)
 }
 
 #' Calculate Wilcoxon test statistic (see 'Value' for formula)
@@ -42,5 +42,5 @@ SGN <- function(X, mu = 0) {
 #' WCX(X)
 #' @export
 WCX <- function(X, mu = 0) {
-  WCX_Cpp(X - mu)
+  sqrt(n) * WCX_Cpp(X - mu)
 }

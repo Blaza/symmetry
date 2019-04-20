@@ -40,7 +40,7 @@ double L1_Cpp(const NumericVector& X, double a) {
         }
     }
 
-    double TS_value = (double)TS_sum / pow(n, 4);
+    double TS_value = (double)TS_sum / pow(n, 4) * n;
 
     return TS_value;
 }

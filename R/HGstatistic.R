@@ -15,5 +15,5 @@
 #' HG(X, 2)
 #' @export
 HG <- function(X, k, t, H = TRUE) {
-  HG_Cpp(X, k, t, H)
+  sqrt(n) * HG_Cpp(X, k, t, H)
 }

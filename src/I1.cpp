@@ -47,7 +47,7 @@ double I1_Cpp(const NumericVector& X, double k_in) {
                                           Xs.end(),
                                           I1(X, n, k));
 
-    double TS_value = TS_sum / (n * Rf_choose(n, 2*k));
+    double TS_value = TS_sum / (n * Rf_choose(n, 2*k)) * sqrt(n);
 
     return TS_value;
 }

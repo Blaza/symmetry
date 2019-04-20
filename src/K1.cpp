@@ -55,7 +55,7 @@ double K1_Cpp(const NumericVector& X, double k_in) {
     NumericVector sums(sums_stdvec.begin(), sums_stdvec.end());
 
     double max_sum = max(abs(sums));
-    double TS_value = max_sum / Rf_choose(n, 2*k);
+    double TS_value = max_sum / Rf_choose(n, 2*k) * sqrt(n);
 
     return TS_value;
 }
