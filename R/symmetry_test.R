@@ -115,12 +115,12 @@ symmetry_test.fGARCH <- function(model, stat, B = 100,
                             "sign" = randomize_sign,
                             "reflect" = reflected_boot)
 
-  coefs <- model@fit$par
+  coefs <- coef(model)
   omega <- coefs["omega"]
   alpha <- coefs[grepl("alpha", names(coefs))]
   beta <- coefs[grepl("beta", names(coefs))]
 
-  res <- res - mean(res)
+  res <- res / sd(res)
 
   ts <- as.numeric(model@data)
   cfit <- as.numeric(fitted(model))
@@ -131,6 +131,7 @@ symmetry_test.fGARCH <- function(model, stat, B = 100,
                            cond.dist = "QMLE", include.mean = FALSE,
                            trace = FALSE)
     new_res <- residuals(boot_model)
+    new_res <- new_res / sd(new_res)
     if(pass_k) stat_fun(new_res, k = k) else stat_fun(new_res)
   })
 
