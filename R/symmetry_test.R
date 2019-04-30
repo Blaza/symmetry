@@ -120,8 +120,6 @@ symmetry_test.fGARCH <- function(model, stat, B = 100,
   alpha <- coefs[grepl("alpha", names(coefs))]
   beta <- coefs[grepl("beta", names(coefs))]
 
-  res <- res / sd(res)
-
   ts <- as.numeric(model@data)
   cfit <- as.numeric(fitted(model))
   boot <- replicate(B, {
@@ -131,13 +129,14 @@ symmetry_test.fGARCH <- function(model, stat, B = 100,
                            cond.dist = "QMLE", include.mean = FALSE,
                            trace = FALSE)
     new_res <- residuals(boot_model)
-    new_res <- new_res / sd(new_res)
+    new_res <- (new_res) / sd(new_res)
     if(pass_k) stat_fun(new_res, k = k) else stat_fun(new_res)
   })
 
-  tval <- if(pass_k) stat_fun(res, k = k) else stat_fun(res)
+  scaled_res <- (res) / sd(res)
+  tval <- if(pass_k) stat_fun(scaled_res, k = k) else stat_fun(scaled_res)
   names(tval) <- stat
-  pval <- mean(abs(boot) > abs(tval))
+  pval <- mean(boot >= tval)
 
   xname <- paste("Residuals from model", deparse(substitute(model)))
   METHOD <- c("Symmetry test of GARCH model residuals",
