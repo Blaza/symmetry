@@ -11,5 +11,5 @@ Imports: Rcpp, RcppArmadillo
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.1.1
 SystemRequirements: C++11
-Suggests: knitr, rmarkdown, sn
+Suggests: knitr, rmarkdown, sn, fGARCH
 VignetteBuilder: knitr
