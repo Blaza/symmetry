@@ -11,4 +11,5 @@ double BHI_Cpp(const NumericVector& X);
 double BHK_Cpp(const NumericVector& X);
 double CM_Cpp(const NumericVector& X);
 double L1_Cpp(const NumericVector& X, double a);
+double CH_Cpp(const NumericVector& X);
 #endif

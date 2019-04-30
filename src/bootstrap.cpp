@@ -11,6 +11,9 @@ std::function<double (const NumericVector&)>
   if (stat == "CM") {
     return CM_Cpp;
   }
+  if (stat == "CH") {
+    return CH_Cpp;
+  }
   if (stat == "BHI") {
     return BHI_Cpp;
   }
