@@ -203,7 +203,6 @@ NumericVector lm_resid(const arma::mat& X, NumericVector& yr) {
 // [[Rcpp::export]]
 NumericVector boot_sample_lm(const arma::mat& model_matrix,
                              const NumericVector& fitted,
-                             const NumericVector& cfit,
                              const NumericVector& residuals,
                              int B, std::string null_method,
                              std::string stat, int k = 0) {

@@ -263,20 +263,19 @@ BEGIN_RCPP
 END_RCPP
 }
 // boot_sample_lm
-NumericVector boot_sample_lm(const arma::mat& model_matrix, const NumericVector& fitted, const NumericVector& cfit, const NumericVector& residuals, int B, std::string null_method, std::string stat, int k);
-RcppExport SEXP _symmetry_boot_sample_lm(SEXP model_matrixSEXP, SEXP fittedSEXP, SEXP cfitSEXP, SEXP residualsSEXP, SEXP BSEXP, SEXP null_methodSEXP, SEXP statSEXP, SEXP kSEXP) {
+NumericVector boot_sample_lm(const arma::mat& model_matrix, const NumericVector& fitted, const NumericVector& residuals, int B, std::string null_method, std::string stat, int k);
+RcppExport SEXP _symmetry_boot_sample_lm(SEXP model_matrixSEXP, SEXP fittedSEXP, SEXP residualsSEXP, SEXP BSEXP, SEXP null_methodSEXP, SEXP statSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type model_matrix(model_matrixSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type fitted(fittedSEXP);
-    Rcpp::traits::input_parameter< const NumericVector& >::type cfit(cfitSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type residuals(residualsSEXP);
     Rcpp::traits::input_parameter< int >::type B(BSEXP);
     Rcpp::traits::input_parameter< std::string >::type null_method(null_methodSEXP);
     Rcpp::traits::input_parameter< std::string >::type stat(statSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
-    rcpp_result_gen = Rcpp::wrap(boot_sample_lm(model_matrix, fitted, cfit, residuals, B, null_method, stat, k));
+    rcpp_result_gen = Rcpp::wrap(boot_sample_lm(model_matrix, fitted, residuals, B, null_method, stat, k));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -319,7 +318,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_symmetry_boot_sample", (DL_FUNC) &_symmetry_boot_sample, 6},
     {"_symmetry_mn_boot_sample", (DL_FUNC) &_symmetry_mn_boot_sample, 6},
     {"_symmetry_lm_resid", (DL_FUNC) &_symmetry_lm_resid, 2},
-    {"_symmetry_boot_sample_lm", (DL_FUNC) &_symmetry_boot_sample_lm, 8},
+    {"_symmetry_boot_sample_lm", (DL_FUNC) &_symmetry_boot_sample_lm, 7},
     {"_symmetry_simulate_garch", (DL_FUNC) &_symmetry_simulate_garch, 6},
     {NULL, NULL, 0}
 };
