@@ -77,6 +77,9 @@ symmetry_test.lm <- function(model, stat, B = 100,
   if (pass_k && is.null(k))
     stop("Argument 'k' not specified.")
 
+  if (!pass_k)
+    k <- 0
+
   X <- model.matrix(model)
   yfit <- fitted(model)
   res <- residuals(model)
