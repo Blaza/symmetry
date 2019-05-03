@@ -17,6 +17,6 @@ double WCX_Cpp(const NumericVector& X) {
 
     double TS_value = (double)TS_sum / Rf_choose(n, 2) - 0.5;
 
-    return TS_value;
+    return sqrt(n) * TS_value;
 }
 

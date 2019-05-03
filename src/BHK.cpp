@@ -57,6 +57,6 @@ double BHK_Cpp(const NumericVector& X) {
     double max_sum = max(abs(sums));
     double TS_value = max_sum / Rf_choose(n, 2);
 
-    return TS_value;
+    return sqrt(n) * TS_value;
 }
 

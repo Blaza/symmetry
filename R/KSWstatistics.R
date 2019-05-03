@@ -43,6 +43,5 @@ SGN <- function(X, mu = 0) {
 #' WCX(X)
 #' @export
 WCX <- function(X, mu = 0) {
-  n <- length(X)
-  sqrt(n) * WCX_Cpp(X - mu)
+  WCX_Cpp(X - mu)
 }

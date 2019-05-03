@@ -44,6 +44,6 @@ double HG_Cpp(const NumericVector& X, int k, double t, bool H) {
 
     double TS_value = TS_sum / Rf_choose(n, 2*k+1);
 
-    return TS_value;
+    return sqrt(n) * TS_value;
 }
 

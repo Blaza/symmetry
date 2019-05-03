@@ -49,6 +49,6 @@ double BHI_Cpp(const NumericVector& X) {
 
     double TS_value = TS_sum / (n * Rf_choose(n, 2));
 
-    return TS_value;
+    return sqrt(n) * TS_value;
 }
 

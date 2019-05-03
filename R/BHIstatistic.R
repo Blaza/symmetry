@@ -15,7 +15,5 @@
 #' X <- rnorm(50, 1)
 #' BHI(X, 1)
 #' @export
-BHI <- function(X, mu = 0) {
-  n <- length(X)
-  sqrt(n) * BHI_Cpp(X - mu)
+BHI <- function(X, mu = 0) { BHI_Cpp(X - mu)
 }
