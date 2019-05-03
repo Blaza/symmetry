@@ -20,5 +20,6 @@ K2 <- function(X) {
 
   pot_max_points <- unique(as.vector(sample_matrix))
 
+  n <- length(X)
   n * max(abs(m_ecdf(pot_max_points) - p_ecdf(pot_max_points)))
 }

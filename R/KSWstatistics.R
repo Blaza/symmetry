@@ -26,6 +26,7 @@ KS <- function(X, mu = 0) {
 #' SGN(X)
 #' @export
 SGN <- function(X, mu = 0) {
+  n <- length(X)
   sqrt(n) * (mean((X - mu) > 0) - 0.5)
 }
 
@@ -42,5 +43,6 @@ SGN <- function(X, mu = 0) {
 #' WCX(X)
 #' @export
 WCX <- function(X, mu = 0) {
+  n <- length(X)
   sqrt(n) * WCX_Cpp(X - mu)
 }

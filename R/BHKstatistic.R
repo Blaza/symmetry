@@ -17,6 +17,7 @@
 #' BHK(X, 2, 1)
 #' @export
 BHK <- function(X, mu = 0) {
+  n <- length(X)
   sqrt(n) * BHK_Cpp(X - mu)
 }
 
