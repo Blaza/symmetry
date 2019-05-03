@@ -53,6 +53,10 @@ NAK_Cpp <- function(X, k_in) {
     .Call('_symmetry_NAK_Cpp', PACKAGE = 'symmetry', X, k_in)
 }
 
+SGN_Cpp <- function(X) {
+    .Call('_symmetry_SGN_Cpp', PACKAGE = 'symmetry', X)
+}
+
 WCX_Cpp <- function(X) {
     .Call('_symmetry_WCX_Cpp', PACKAGE = 'symmetry', X)
 }

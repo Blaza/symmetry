@@ -11,6 +11,12 @@ std::function<double (const NumericVector&)>
   if (stat == "KS") {
     return KS_Cpp;
   }
+  if (stat == "SGN") {
+    return SGN_Cpp;
+  }
+  if (stat == "WCX") {
+    return WCX_Cpp;
+  }
   if (stat == "CM") {
     return CM_Cpp;
   }

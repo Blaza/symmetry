@@ -13,4 +13,6 @@ double CM_Cpp(const NumericVector& X);
 double L1_Cpp(const NumericVector& X, double a);
 double CH_Cpp(const NumericVector& X);
 double KS_Cpp(const NumericVector& X);
+double SGN_Cpp(const NumericVector& X);
+double WCX_Cpp(const NumericVector& X);
 #endif

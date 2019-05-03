@@ -157,6 +157,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// SGN_Cpp
+double SGN_Cpp(const NumericVector& X);
+RcppExport SEXP _symmetry_SGN_Cpp(SEXP XSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    rcpp_result_gen = Rcpp::wrap(SGN_Cpp(X));
+    return rcpp_result_gen;
+END_RCPP
+}
 // WCX_Cpp
 double WCX_Cpp(const NumericVector& X);
 RcppExport SEXP _symmetry_WCX_Cpp(SEXP XSEXP) {
@@ -321,6 +332,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_symmetry_L1_Cpp", (DL_FUNC) &_symmetry_L1_Cpp, 2},
     {"_symmetry_NAI_Cpp", (DL_FUNC) &_symmetry_NAI_Cpp, 2},
     {"_symmetry_NAK_Cpp", (DL_FUNC) &_symmetry_NAK_Cpp, 2},
+    {"_symmetry_SGN_Cpp", (DL_FUNC) &_symmetry_SGN_Cpp, 1},
     {"_symmetry_WCX_Cpp", (DL_FUNC) &_symmetry_WCX_Cpp, 1},
     {"_symmetry_randomize_sign", (DL_FUNC) &_symmetry_randomize_sign, 2},
     {"_symmetry_sample_with_replacement", (DL_FUNC) &_symmetry_sample_with_replacement, 2},
