@@ -8,6 +8,9 @@ using namespace Rcpp;
 std::function<double (const NumericVector&)>
   get_ts_fun(std::string stat, double k = 0) {
 
+  if (stat == "KS") {
+    return KS_Cpp;
+  }
   if (stat == "CM") {
     return CM_Cpp;
   }

@@ -11,7 +11,7 @@
 #' @export
 KS <- function(X, mu = 0) {
   # using [['D']] to get a number instead of a named vector
-  ks.test(X - mu, mu - X)$statistic[['D']]
+  KS_Cpp(X-mu)
 }
 
 #' Calculate Signed test statistic (see 'Value' for formula)

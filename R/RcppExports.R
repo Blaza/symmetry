@@ -37,6 +37,10 @@ K2U_get_samples <- function(X) {
     .Call('_symmetry_K2U_get_samples', PACKAGE = 'symmetry', X)
 }
 
+KS_Cpp <- function(X) {
+    .Call('_symmetry_KS_Cpp', PACKAGE = 'symmetry', X)
+}
+
 L1_Cpp <- function(X, a) {
     .Call('_symmetry_L1_Cpp', PACKAGE = 'symmetry', X, a)
 }
