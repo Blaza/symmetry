@@ -105,7 +105,9 @@ symmetry_test.lm <- function(model, stat, B = 100,
 
 #' @export
 symmetry_test.fGARCH <- function(model, stat, B = 100, burn = 0,
-                                boot_method = "sign", k = NULL) {
+                                boot_method = "sign", k = NULL,
+                                center_residuals = FALSE,
+                                scale_residuals = FALSE) {
   stat_fun <- match.fun(stat, descend = FALSE)
 
   pass_k <- "k" %in% names(formals(stat))
@@ -138,12 +140,12 @@ symmetry_test.fGARCH <- function(model, stat, B = 100, burn = 0,
                            cond.dist = "QMLE", include.mean = FALSE,
                            trace = FALSE)
     new_res <- tail(residuals(boot_model), not_burned)
-    new_res <- (new_res - mean(new_res)) / sd(new_res)
+    new_res <- as.vector(scale(new_res, center_residuals, scale_residuals))
     if(pass_k) stat_fun(new_res, k = k) else stat_fun(new_res)
   })
 
   res <- tail(res, not_burned)
-  scaled_res <- (res - mean(res)) / sd(res)
+  scaled_res <- as.vector(scale(res, center_residuals, scale_residuals))
   tval <- if(pass_k) stat_fun(scaled_res, k = k) else stat_fun(scaled_res)
   names(tval) <- stat
   pval <- mean(boot >= tval)
