@@ -104,7 +104,7 @@ symmetry_test.lm <- function(model, stat, B = 100,
 }
 
 #' @export
-symmetry_test.fGARCH <- function(model, stat, B = 100,
+symmetry_test.fGARCH <- function(model, stat, B = 100, burn = 0,
                                 boot_method = "sign", k = NULL) {
   stat_fun <- match.fun(stat, descend = FALSE)
 
@@ -125,17 +125,24 @@ symmetry_test.fGARCH <- function(model, stat, B = 100,
 
   ts <- as.numeric(model@data)
   cfit <- as.numeric(fitted(model))
+
+  not_burned <- length(ts) - burn
+  if (not_burned <= 0)
+    stop("Number of points to burn is larger than the series length")
+
   boot <- replicate(B, {
     boot_res <- null_sample_fun(res, 0)
     boot_y <- simulate_garch(boot_res, ts, cfit, omega, alpha, beta)
+
     boot_model <- garchFit(model@formula, boot_y,
                            cond.dist = "QMLE", include.mean = FALSE,
                            trace = FALSE)
-    new_res <- residuals(boot_model)
+    new_res <- tail(residuals(boot_model), not_burned)
     new_res <- (new_res - mean(new_res)) / sd(new_res)
     if(pass_k) stat_fun(new_res, k = k) else stat_fun(new_res)
   })
 
+  res <- tail(res, not_burned)
   scaled_res <- (res - mean(res)) / sd(res)
   tval <- if(pass_k) stat_fun(scaled_res, k = k) else stat_fun(scaled_res)
   names(tval) <- stat
