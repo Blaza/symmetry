@@ -157,7 +157,7 @@ symmetry_test.fGARCH <- function(model, stat, B = 100, burn = 0,
   scaled_res <- as.vector(scale(res, center_residuals, scale_residuals))
   tval <- if(pass_k) stat_fun(scaled_res, k = k) else stat_fun(scaled_res)
   names(tval) <- stat
-  pval <- mean(boot >= tval)
+  pval <- mean(abs(boot) >= abs(tval))
 
   xname <- paste("Residuals from model", deparse(substitute(model)))
   METHOD <- c("Symmetry test of GARCH model residuals",
