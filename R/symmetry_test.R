@@ -144,7 +144,12 @@ symmetry_test.fGARCH <- function(model, stat, B = 100, burn = 0,
     #                        cond.dist = "QMLE", include.mean = FALSE,
     #                        trace = FALSE)
     # new_res <- tail(residuals(boot_model), not_burned)
-    new_res <- as.vector(scale(boot_res, center_residuals, scale_residuals))
+    new_res <- boot_res
+    if (center_residuals) {
+      new_res <- as.vector(scale(new_res, center_residuals, scale_residuals))
+    } else if (scale_residuals)
+      new_res <- new_res / sd(new_res)
+    }
     if(pass_k) stat_fun(new_res, k = k) else stat_fun(new_res)
   })
 
