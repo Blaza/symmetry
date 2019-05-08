@@ -124,6 +124,17 @@ symmetry_test.fGARCH <- function(model, stat, B = 100, burn = 0,
                             "sign" = randomize_sign,
                             "reflect" = reflected_boot)
 
+  standardize <- function(res) {
+    new_res <- res
+    if (center_residuals) {
+      new_res <- as.vector(scale(new_res, center_residuals, scale_residuals))
+    } else if (scale_residuals) {
+      new_res <- new_res / sd(new_res)
+    }
+
+    new_res
+  }
+
   coefs <- coef(model)
   omega <- coefs["omega"]
   alpha <- coefs[grepl("alpha", names(coefs))]
@@ -144,17 +155,12 @@ symmetry_test.fGARCH <- function(model, stat, B = 100, burn = 0,
     #                        cond.dist = "QMLE", include.mean = FALSE,
     #                        trace = FALSE)
     # new_res <- tail(residuals(boot_model), not_burned)
-    new_res <- boot_res
-    if (center_residuals) {
-      new_res <- as.vector(scale(new_res, center_residuals, scale_residuals))
-    } else if (scale_residuals) {
-      new_res <- new_res / sd(new_res)
-    }
+    new_res <- standardize(boot_res)
     if(pass_k) stat_fun(new_res, k = k) else stat_fun(new_res)
   })
 
   res <- tail(res, not_burned)
-  scaled_res <- as.vector(scale(res, center_residuals, scale_residuals))
+  scaled_res <- standardize(res)
   tval <- if(pass_k) stat_fun(scaled_res, k = k) else stat_fun(scaled_res)
   names(tval) <- stat
   pval <- mean(abs(boot) >= abs(tval))
