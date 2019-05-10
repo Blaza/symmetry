@@ -29,7 +29,7 @@ symmetry_test.default <- function(x, stat, mu = 0,
     xc <- x - MU
     tval <- if(pass_k) stat_fun(xc, k = k) else stat_fun(xc)
 
-    pval <- mean(abs(boot) > abs(tval))
+    pval <- mean(abs(boot) >= abs(tval))
 
     METHOD <- c("Symmetry test",
                 "Null hypothesis: Data is symmetric")
@@ -47,7 +47,7 @@ symmetry_test.default <- function(x, stat, mu = 0,
 
     tval <- if(pass_k) stat_fun(x, k = k, mu = mu) else stat_fun(x, mu = mu)
 
-    pval <- mean(abs(null_distrib) > abs(tval))
+    pval <- mean(abs(null_distrib) >= abs(tval))
 
     METHOD <- c("Symmetry test",
                 paste("Null hypothesis: Data is symmetric around", mu))
@@ -90,7 +90,7 @@ symmetry_test.lm <- function(model, stat, B = 100,
   res <- as.vector(scale(res, center_residuals, scale_residuals))
   tval <- if(pass_k) stat_fun(res, k = k) else stat_fun(res)
   names(tval) <- stat
-  pval <- mean(abs(boot) > abs(tval))
+  pval <- mean(abs(boot) >= abs(tval))
 
   xname <- paste("Residuals from model", deparse(substitute(model)))
   METHOD <- c("Symmetry test of linear model residuals",
