@@ -71,16 +71,13 @@ symmetry_test.default <- function(x, stat, mu = 0,
 
 #' @export
 symmetry_test.lm <- function(model, stat, B = 100,
-                             boot_method = "sign", k = NULL,
+                             boot_method = "sign", k = 0,
                              center_residuals = FALSE,
                              scale_residuals = FALSE) {
   stat_fun <- match.fun(stat, descend = FALSE)
   pass_k <- "k" %in% names(formals(stat))
-  if (pass_k && is.null(k))
+  if (pass_k && k == 0)
     stop("Argument 'k' not specified.")
-
-  if (!pass_k)
-    k <- 0
 
   X <- model.matrix(model)
   yfit <- fitted(model)
@@ -109,13 +106,13 @@ symmetry_test.lm <- function(model, stat, B = 100,
 
 #' @export
 symmetry_test.fGARCH <- function(model, stat, B = 100, burn = 0,
-                                boot_method = "sign", k = NULL,
+                                boot_method = "sign", k = 0,
                                 center_residuals = FALSE,
                                 scale_residuals = FALSE) {
   stat_fun <- match.fun(stat, descend = FALSE)
 
   pass_k <- "k" %in% names(formals(stat))
-  if (pass_k && is.null(k))
+  if (pass_k && k == 0)
     stop("Argument 'k' not specified.")
 
   res <- residuals(model)
