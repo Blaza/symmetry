@@ -5,23 +5,105 @@
 using namespace Rcpp;
 using std::int64_t;
 
+// Assuming we're given a sorte array, get the number of elements which
+// are strictly less than the given value
+int count_smaller(const NumericVector& array, double value) {
+    int n = array.size();
+    int first = 0;
+    int last = n-1;
+    int middle = (first+last)/2;
+    while (first <= last)
+    {
+        if(array[middle] < value)
+        {
+            first = middle + 1;
+
+        }
+        else if(array[middle] == value)
+        {
+            return middle;
+        }
+        else
+        {
+            last = middle - 1;
+        }
+        middle = (first + last)/2;
+    }
+    return first;
+}
+
 
 // [[Rcpp::export]]
-NumericMatrix K2_get_samples(const NumericVector& X) {
+double K2_Cpp(const NumericVector& X) {
     int n = X.size();
     int i, j, count = 0;
 
-    NumericMatrix sample_matrix(2, n*n);
-    rownames(sample_matrix) = CharacterVector::create("minus", "plus");
+    int nC2 = Rf_choose(n, 2);
+    NumericVector aX = abs(X);
+
+    NumericVector minus_points(nC2);
+    NumericVector plus_points(nC2);
 
     for(i = 0; i < n; i++) {
-        for(j = 0; j < n; j++) {
-            sample_matrix(0, count) = std::abs(X[i] - X[j]);
-            sample_matrix(1, count) = std::abs(X[i] + X[j]);
+        for(j = 0; j < i; j++) {
+            minus_points[count] = std::abs(X[i] - X[j]);
+            plus_points[count] = std::abs(X[i] + X[j]);
             count++;
         }
     }
 
-    return sample_matrix;
+    // We will sort the potential points to speed up comparison
+    aX.sort();
+    minus_points.sort();
+    plus_points.sort();
+
+    // Iterate over all potential points for maximum and see the
+    // sum value and comapre to the max
+
+    double TS_max = 0;
+
+    double TS_sum;
+
+    NumericVector aX2 = 2 * aX;
+    for (int x = 0; x < n; x++) {
+        TS_sum = std::abs(
+          n - count_smaller(aX2, aX2[x]) +
+              2 * (count_smaller(minus_points, aX2[x]) -
+                   count_smaller(plus_points, aX2[x]))
+        );
+
+        if (TS_sum > TS_max) {
+            TS_max = TS_sum;
+        }
+    }
+
+
+    for (int m = 0; m < nC2; m++) {
+        TS_sum = std::abs(
+            n - count_smaller(aX2, minus_points[m]) +
+                2 * (count_smaller(minus_points, minus_points[m]) -
+                count_smaller(plus_points, minus_points[m]))
+        );
+
+        if (TS_sum > TS_max) {
+            TS_max = TS_sum;
+        }
+    }
+
+
+    for (int p = 0; p < nC2; p++) {
+        TS_sum = std::abs(
+            n - count_smaller(aX2, plus_points[p]) +
+                2 * (count_smaller(minus_points, plus_points[p]) -
+                count_smaller(plus_points, plus_points[p]))
+        );
+
+        if (TS_sum > TS_max) {
+            TS_max = TS_sum;
+        }
+
+    }
+
+    return TS_max / n; // / n * n;
 }
 
