@@ -17,10 +17,6 @@ CM_Cpp <- function(X) {
     .Call('_symmetry_CM_Cpp', PACKAGE = 'symmetry', X)
 }
 
-HG_Cpp <- function(X, k, t, H) {
-    .Call('_symmetry_HG_Cpp', PACKAGE = 'symmetry', X, k, t, H)
-}
-
 I1_Cpp <- function(X, k_in) {
     .Call('_symmetry_I1_Cpp', PACKAGE = 'symmetry', X, k_in)
 }
@@ -43,6 +39,10 @@ KS_Cpp <- function(X) {
 
 L1_Cpp <- function(X, a) {
     .Call('_symmetry_L1_Cpp', PACKAGE = 'symmetry', X, a)
+}
+
+MI_Cpp <- function(X, k_in) {
+    .Call('_symmetry_MI_Cpp', PACKAGE = 'symmetry', X, k_in)
 }
 
 NAI_Cpp <- function(X, k_in) {
