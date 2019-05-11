@@ -41,6 +41,12 @@ std::function<double (const NumericVector&)>
   if (stat == "K1") {
     return bind(K1_Cpp, std::placeholders::_1, k);
   }
+  if (stat == "MK") {
+    return bind(MK_Cpp, std::placeholders::_1, k);
+  }
+  if (stat == "MI") {
+    return bind(MI_Cpp, std::placeholders::_1, k);
+  }
   if (stat == "NAI") {
     return bind(NAI_Cpp, std::placeholders::_1, k);
   }
