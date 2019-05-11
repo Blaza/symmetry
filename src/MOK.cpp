@@ -1,4 +1,4 @@
-// Implementation of K1 test statistic using the super fast combinations
+// Implementation of MOK test statistic using the super fast combinations
 // algorithm provided by Howard Hinnant, as seen here:
 // https://howardhinnant.github.io/combinations/combinations.html
 #include <Rcpp.h>
@@ -11,14 +11,14 @@ using namespace Rcpp;
 using std::int64_t;
 
 
-class K1 {
+class MOK {
     std::vector<int64_t> sums;
     const NumericVector pts;
     int k, i, pn;
     double aXk, aXk1;
 
   public:
-    explicit K1(const NumericVector& _pts, int _pn, int _k)
+    explicit MOK(const NumericVector& _pts, int _pn, int _k)
                 : pn(_pn), k(_k), pts(_pts), sums(_pn, 0) {}
 
     template <class It>
@@ -39,7 +39,7 @@ class K1 {
 
 
 // [[Rcpp::export]]
-double K1_Cpp(const NumericVector& X, double k_in) {
+double MOK_Cpp(const NumericVector& X, double k_in) {
     int n = X.size();
     NumericVector Xs = clone(X);
     std::sort(Xs.begin(), Xs.end());
@@ -47,10 +47,10 @@ double K1_Cpp(const NumericVector& X, double k_in) {
 
     NumericVector pts = abs(X); // potential points for maximum
 
-    K1 TS = for_each_combination(Xs.begin(),
+    MOK TS = for_each_combination(Xs.begin(),
                                  Xs.begin() + 2*k,
                                  Xs.end(),
-                                 K1(pts, n, k));
+                                 MOK(pts, n, k));
     std::vector<std::int64_t> sums_stdvec = TS.get_sums();
     NumericVector sums(sums_stdvec.begin(), sums_stdvec.end());
 

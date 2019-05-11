@@ -17,14 +17,6 @@ CM_Cpp <- function(X) {
     .Call('_symmetry_CM_Cpp', PACKAGE = 'symmetry', X)
 }
 
-I1_Cpp <- function(X, k_in) {
-    .Call('_symmetry_I1_Cpp', PACKAGE = 'symmetry', X, k_in)
-}
-
-K1_Cpp <- function(X, k_in) {
-    .Call('_symmetry_K1_Cpp', PACKAGE = 'symmetry', X, k_in)
-}
-
 K2_Cpp <- function(X) {
     .Call('_symmetry_K2_Cpp', PACKAGE = 'symmetry', X)
 }
@@ -37,8 +29,8 @@ KS_Cpp <- function(X) {
     .Call('_symmetry_KS_Cpp', PACKAGE = 'symmetry', X)
 }
 
-L1_Cpp <- function(X, a) {
-    .Call('_symmetry_L1_Cpp', PACKAGE = 'symmetry', X, a)
+L2_Cpp <- function(X, a) {
+    .Call('_symmetry_L2_Cpp', PACKAGE = 'symmetry', X, a)
 }
 
 MI_Cpp <- function(X, k_in) {
@@ -47,6 +39,14 @@ MI_Cpp <- function(X, k_in) {
 
 MK_Cpp <- function(X, k_in) {
     .Call('_symmetry_MK_Cpp', PACKAGE = 'symmetry', X, k_in)
+}
+
+MOI_Cpp <- function(X, k_in) {
+    .Call('_symmetry_MOI_Cpp', PACKAGE = 'symmetry', X, k_in)
+}
+
+MOK_Cpp <- function(X, k_in) {
+    .Call('_symmetry_MOK_Cpp', PACKAGE = 'symmetry', X, k_in)
 }
 
 NAI_Cpp <- function(X, k_in) {

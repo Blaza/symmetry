@@ -4,7 +4,7 @@
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-double L1_Cpp(const NumericVector& X, double a) {
+double L2_Cpp(const NumericVector& X, double a) {
     int n = X.size();
     double TS_sum = 0, sum_elem;
     int i,j,k,l;

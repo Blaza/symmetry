@@ -35,11 +35,11 @@ std::function<double (const NumericVector&)>
   if (stat == "BHK") {
     return BHK_Cpp;
   }
-  if (stat == "I1") {
-    return bind(I1_Cpp, std::placeholders::_1, k);
+  if (stat == "MOI") {
+    return bind(MOI_Cpp, std::placeholders::_1, k);
   }
-  if (stat == "K1") {
-    return bind(K1_Cpp, std::placeholders::_1, k);
+  if (stat == "MOK") {
+    return bind(MOK_Cpp, std::placeholders::_1, k);
   }
   if (stat == "MK") {
     return bind(MK_Cpp, std::placeholders::_1, k);
@@ -53,8 +53,8 @@ std::function<double (const NumericVector&)>
   if (stat == "NAK") {
     return bind(NAK_Cpp, std::placeholders::_1, k);
   }
-  if (stat == "L1") {
-    return bind(L1_Cpp, std::placeholders::_1, k);
+  if (stat == "L2") {
+    return bind(L2_Cpp, std::placeholders::_1, k);
   }
   return NULL;
 }

@@ -10,11 +10,11 @@
 #' @examples
 #' set.seed(1)
 #' X <- rnorm(50)
-#' K1(X, 2)
+#' MOK(X, 2)
 #' X <- rnorm(50, 1)
-#' K1(X, 2, 1)
+#' MOK(X, 2, 1)
 #' @export
-K1 <- function(X, k, mu = 0) {
-  K1_Cpp(X - mu, k)
+MOK <- function(X, k, mu = 0) {
+  MOK_Cpp(X - mu, k)
 }
 

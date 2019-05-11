@@ -9,8 +9,8 @@
 #' @examples
 #' set.seed(1)
 #' X <- rnorm(50)
-#' L1(X, 5)
+#' L2(X, 5)
 #' @export
-L1 <- function(X, k) {
-  L1_Cpp(X, k);
+L2 <- function(X, k) {
+  L2_Cpp(X, k);
 }

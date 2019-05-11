@@ -11,10 +11,10 @@
 #' @examples
 #' set.seed(1)
 #' X <- rnorm(50)
-#' I1(X, 2)
+#' MOI(X, 2)
 #' X <- rnorm(50, 1)
-#' I1(X, 2, 1)
+#' MOI(X, 2, 1)
 #' @export
-I1 <- function(X, k, mu = 0) {
-  I1_Cpp(X - mu, k)
+MOI <- function(X, k, mu = 0) {
+  MOI_Cpp(X - mu, k)
 }
