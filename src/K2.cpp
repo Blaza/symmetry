@@ -2,35 +2,9 @@
 #include <cstdint>
 #include <cmath>
 #include <unordered_set>
+#include <helpers.h>
 using namespace Rcpp;
 using std::int64_t;
-
-// Assuming we're given a sorte array, get the number of elements which
-// are strictly less than the given value
-int count_smaller(const NumericVector& array, double value) {
-    int n = array.size();
-    int first = 0;
-    int last = n-1;
-    int middle = (first+last)/2;
-    while (first <= last)
-    {
-        if(array[middle] < value)
-        {
-            first = middle + 1;
-
-        }
-        else if(array[middle] == value)
-        {
-            return middle;
-        }
-        else
-        {
-            last = middle - 1;
-        }
-        middle = (first + last)/2;
-    }
-    return first;
-}
 
 
 // [[Rcpp::export]]

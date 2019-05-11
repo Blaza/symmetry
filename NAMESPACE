@@ -3,7 +3,6 @@
 S3method(symmetry_test,default)
 S3method(symmetry_test,fGARCH)
 S3method(symmetry_test,lm)
-export(B1)
 export(BHI)
 export(BHK)
 export(CH)
