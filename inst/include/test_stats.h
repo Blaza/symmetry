@@ -5,6 +5,8 @@ using namespace Rcpp;
 
 double I1_Cpp(const NumericVector& X, double k);
 double K1_Cpp(const NumericVector& X, double k);
+double K2_Cpp(const NumericVector& X);
+double K2U_Cpp(const NumericVector& X);
 double NAI_Cpp(const NumericVector& X, double k);
 double NAK_Cpp(const NumericVector& X, double k);
 double BHI_Cpp(const NumericVector& X);
