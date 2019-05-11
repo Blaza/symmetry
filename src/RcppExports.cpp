@@ -131,6 +131,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// MK_Cpp
+double MK_Cpp(const NumericVector& X, double k_in);
+RcppExport SEXP _symmetry_MK_Cpp(SEXP XSEXP, SEXP k_inSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< double >::type k_in(k_inSEXP);
+    rcpp_result_gen = Rcpp::wrap(MK_Cpp(X, k_in));
+    return rcpp_result_gen;
+END_RCPP
+}
 // NAI_Cpp
 double NAI_Cpp(const NumericVector& X, double k_in);
 RcppExport SEXP _symmetry_NAI_Cpp(SEXP XSEXP, SEXP k_inSEXP) {
@@ -330,6 +342,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_symmetry_KS_Cpp", (DL_FUNC) &_symmetry_KS_Cpp, 1},
     {"_symmetry_L1_Cpp", (DL_FUNC) &_symmetry_L1_Cpp, 2},
     {"_symmetry_MI_Cpp", (DL_FUNC) &_symmetry_MI_Cpp, 2},
+    {"_symmetry_MK_Cpp", (DL_FUNC) &_symmetry_MK_Cpp, 2},
     {"_symmetry_NAI_Cpp", (DL_FUNC) &_symmetry_NAI_Cpp, 2},
     {"_symmetry_NAK_Cpp", (DL_FUNC) &_symmetry_NAK_Cpp, 2},
     {"_symmetry_SGN_Cpp", (DL_FUNC) &_symmetry_SGN_Cpp, 1},

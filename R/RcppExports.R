@@ -45,6 +45,10 @@ MI_Cpp <- function(X, k_in) {
     .Call('_symmetry_MI_Cpp', PACKAGE = 'symmetry', X, k_in)
 }
 
+MK_Cpp <- function(X, k_in) {
+    .Call('_symmetry_MK_Cpp', PACKAGE = 'symmetry', X, k_in)
+}
+
 NAI_Cpp <- function(X, k_in) {
     .Call('_symmetry_NAI_Cpp', PACKAGE = 'symmetry', X, k_in)
 }
