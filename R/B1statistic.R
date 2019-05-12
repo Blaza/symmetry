@@ -1,4 +1,4 @@
-#' Calculate \sqrt{b_1} test statistic (see 'Value' for formula)
+#' Calculate \eqn{\sqrt{b_1}} test statistic (see 'Value' for formula)
 #'
 #' @param X the sample for which to calculate the statistic
 #' @param mu the estimate of the location parameter

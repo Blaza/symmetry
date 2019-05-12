@@ -2,7 +2,7 @@
 % Please edit documentation in R/B1statistic.R
 \name{B1}
 \alias{B1}
-\title{Calculate \sqrt{b_1} test statistic (see 'Value' for formula)}
+\title{Calculate \eqn{\sqrt{b_1}} test statistic (see 'Value' for formula)}
 \usage{
 B1(X, mu = 0)
 }
@@ -16,7 +16,7 @@ The value of the test statistic given by the formula:
 < to be added >
 }
 \description{
-Calculate \sqrt{b_1} test statistic (see 'Value' for formula)
+Calculate \eqn{\sqrt{b_1}} test statistic (see 'Value' for formula)
 }
 \examples{
 set.seed(1)
