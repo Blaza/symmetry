@@ -106,31 +106,18 @@ symmetry_test.lm <- function(model, stat, B = 100,
 
 #' @export
 symmetry_test.fGARCH <- function(model, stat, B = 100, burn = 0,
-                                boot_method = "sign", k = 0,
-                                center_residuals = FALSE,
-                                scale_residuals = FALSE) {
+                                boot_method = "sign", k = 0) {
   stat_fun <- match.fun(stat, descend = FALSE)
 
   pass_k <- "k" %in% names(formals(stat))
   if (pass_k && k == 0)
     stop("Argument 'k' not specified.")
 
-  res <- residuals(model)
+  res <- residuals(model, standardize = TRUE)
 
   null_sample_fun <- switch(boot_method,
                             "sign" = randomize_sign,
                             "reflect" = reflected_boot)
-
-  standardize <- function(res) {
-    new_res <- res
-    if (center_residuals) {
-      new_res <- as.vector(scale(new_res, center_residuals, scale_residuals))
-    } else if (scale_residuals) {
-      new_res <- new_res / sd(new_res)
-    }
-
-    new_res
-  }
 
   coefs <- coef(model)
   omega <- coefs["omega"]
@@ -146,19 +133,19 @@ symmetry_test.fGARCH <- function(model, stat, B = 100, burn = 0,
 
   boot <- replicate(B, {
     boot_res <- null_sample_fun(res, 0)
-    # boot_y <- simulate_garch(boot_res, ts, cfit, omega, alpha, beta)
-    #
-    # boot_model <- garchFit(model@formula, boot_y,
-    #                        cond.dist = "QMLE", include.mean = FALSE,
-    #                        trace = FALSE)
-    # new_res <- tail(residuals(boot_model), not_burned)
-    new_res <- standardize(boot_res)
+
+    boot_y <- simulate_garch(boot_res, ts, cfit, omega, alpha, beta)
+
+    boot_model <- garchFit(model@formula, boot_y,
+                           cond.dist = "QMLE", include.mean = FALSE,
+                           trace = FALSE)
+    new_res <- tail(residuals(boot_model, standardize = TRUE), not_burned)
     if(pass_k) stat_fun(new_res, k = k) else stat_fun(new_res)
   })
 
   res <- tail(res, not_burned)
-  scaled_res <- standardize(res)
-  tval <- if(pass_k) stat_fun(scaled_res, k = k) else stat_fun(scaled_res)
+
+  tval <- if(pass_k) stat_fun(res, k = k) else stat_fun(res)
   names(tval) <- stat
   pval <- mean(abs(boot) >= abs(tval))
 
