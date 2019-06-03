@@ -65,6 +65,18 @@ std::function<double (const NumericVector&)>
   if (stat == "L2") {
     return bind(L2_Cpp, std::placeholders::_1, k);
   }
+  if (stat == "T1") {
+    return bind(T1_Cpp, std::placeholders::_1, k);
+  }
+  if (stat == "T2") {
+    return bind(T2_Cpp, std::placeholders::_1, k);
+  }
+  if (stat == "S1") {
+    return bind(S1_Cpp, std::placeholders::_1, k);
+  }
+  if (stat == "S2") {
+    return bind(S2_Cpp, std::placeholders::_1, k);
+  }
   return NULL;
 }
 

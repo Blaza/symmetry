@@ -3,5 +3,6 @@
 
 using namespace Rcpp;
 int count_smaller(const NumericVector& array, double value);
+double ukn(int k, int n);
 
 #endif

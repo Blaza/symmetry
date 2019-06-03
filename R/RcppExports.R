@@ -69,8 +69,24 @@ NAK_Cpp <- function(X, k_in) {
     .Call('_symmetry_NAK_Cpp', PACKAGE = 'symmetry', X, k_in)
 }
 
+S1_Cpp <- function(X, a) {
+    .Call('_symmetry_S1_Cpp', PACKAGE = 'symmetry', X, a)
+}
+
+S2_Cpp <- function(X, a) {
+    .Call('_symmetry_S2_Cpp', PACKAGE = 'symmetry', X, a)
+}
+
 SGN_Cpp <- function(X) {
     .Call('_symmetry_SGN_Cpp', PACKAGE = 'symmetry', X)
+}
+
+T1_Cpp <- function(X, a) {
+    .Call('_symmetry_T1_Cpp', PACKAGE = 'symmetry', X, a)
+}
+
+T2_Cpp <- function(X, a) {
+    .Call('_symmetry_T2_Cpp', PACKAGE = 'symmetry', X, a)
 }
 
 WCX_Cpp <- function(X) {
