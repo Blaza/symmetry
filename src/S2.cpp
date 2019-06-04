@@ -12,14 +12,14 @@ double S2_Cpp(const NumericVector& X, double a) {
   int i,j;
   double sqdiff;
 
-  for (i = 0; i < n; i++) {
+  for (i = 1; i <= n; i++) {
     TS_sum += (n - 2*i + 1) * (n - 2*i + 1);
   }
 
-  for(i = 0; i < n; i++) {
-    for(j = 0; j < i; j++) {
+  for(i = 1; i <= n; i++) {
+    for(j = 1; j < i; j++) {
       // non diagonal are counted twice
-      sqdiff = (aXs[i] - aXs[j]) * (aXs[i] - aXs[j]);
+      sqdiff = (aXs[i-1] - aXs[j-1]) * (aXs[i-1] - aXs[j-1]);
       TS_sum += 2 * (n - 2*i + 1) * (n - 2*j + 1) * std::exp(-1.0/4.0/a*sqdiff);
     }
   }
