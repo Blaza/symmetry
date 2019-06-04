@@ -332,7 +332,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // boot_sample
-NumericVector boot_sample(const NumericVector& X, double trim_alpha, int B, std::string null_method, std::string stat, int k);
+NumericVector boot_sample(const NumericVector& X, double trim_alpha, int B, std::string null_method, std::string stat, double k);
 RcppExport SEXP _symmetry_boot_sample(SEXP XSEXP, SEXP trim_alphaSEXP, SEXP BSEXP, SEXP null_methodSEXP, SEXP statSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -342,13 +342,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type B(BSEXP);
     Rcpp::traits::input_parameter< std::string >::type null_method(null_methodSEXP);
     Rcpp::traits::input_parameter< std::string >::type stat(statSEXP);
-    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    Rcpp::traits::input_parameter< double >::type k(kSEXP);
     rcpp_result_gen = Rcpp::wrap(boot_sample(X, trim_alpha, B, null_method, stat, k));
     return rcpp_result_gen;
 END_RCPP
 }
 // mn_boot_sample
-NumericVector mn_boot_sample(const NumericVector& X, double trim_alpha, int B, std::string stat, int k, double q);
+NumericVector mn_boot_sample(const NumericVector& X, double trim_alpha, int B, std::string stat, double k, double q);
 RcppExport SEXP _symmetry_mn_boot_sample(SEXP XSEXP, SEXP trim_alphaSEXP, SEXP BSEXP, SEXP statSEXP, SEXP kSEXP, SEXP qSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -357,7 +357,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type trim_alpha(trim_alphaSEXP);
     Rcpp::traits::input_parameter< int >::type B(BSEXP);
     Rcpp::traits::input_parameter< std::string >::type stat(statSEXP);
-    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    Rcpp::traits::input_parameter< double >::type k(kSEXP);
     Rcpp::traits::input_parameter< double >::type q(qSEXP);
     rcpp_result_gen = Rcpp::wrap(mn_boot_sample(X, trim_alpha, B, stat, k, q));
     return rcpp_result_gen;
@@ -376,7 +376,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // boot_sample_lm
-NumericVector boot_sample_lm(const arma::mat& model_matrix, const NumericVector& fitted, const NumericVector& residuals, int B, std::string null_method, std::string stat, bool center, bool scale, int k);
+NumericVector boot_sample_lm(const arma::mat& model_matrix, const NumericVector& fitted, const NumericVector& residuals, int B, std::string null_method, std::string stat, bool center, bool scale, double k);
 RcppExport SEXP _symmetry_boot_sample_lm(SEXP model_matrixSEXP, SEXP fittedSEXP, SEXP residualsSEXP, SEXP BSEXP, SEXP null_methodSEXP, SEXP statSEXP, SEXP centerSEXP, SEXP scaleSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -389,7 +389,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< std::string >::type stat(statSEXP);
     Rcpp::traits::input_parameter< bool >::type center(centerSEXP);
     Rcpp::traits::input_parameter< bool >::type scale(scaleSEXP);
-    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    Rcpp::traits::input_parameter< double >::type k(kSEXP);
     rcpp_result_gen = Rcpp::wrap(boot_sample_lm(model_matrix, fitted, residuals, B, null_method, stat, center, scale, k));
     return rcpp_result_gen;
 END_RCPP

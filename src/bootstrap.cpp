@@ -160,7 +160,7 @@ double trimmed_mean(const NumericVector& X, double alpha = 0) {
 // [[Rcpp::export]]
 NumericVector boot_sample(const NumericVector& X, double trim_alpha,
                           int B, std::string null_method,
-                          std::string stat, int k = 0) {
+                          std::string stat, double k = 0) {
   auto ts_fun = get_ts_fun(stat, k);
   auto null_sample_fun = get_null_fun(null_method);
 
@@ -182,7 +182,7 @@ NumericVector boot_sample(const NumericVector& X, double trim_alpha,
 
 // [[Rcpp::export]]
 NumericVector mn_boot_sample(const NumericVector& X, double trim_alpha,
-                             int B, std::string stat, int k = 0,
+                             int B, std::string stat, double k = 0,
                              double q = 8.0/9) {
   auto ts_fun = get_ts_fun(stat, k);
 
@@ -248,7 +248,7 @@ NumericVector boot_sample_lm(const arma::mat& model_matrix,
                              const NumericVector& residuals,
                              int B, std::string null_method,
                              std::string stat,
-                             bool center, bool scale, int k = 0) {
+                             bool center, bool scale, double k = 0) {
   auto ts_fun = get_ts_fun(stat, k);
   auto null_sample_fun = get_null_fun(null_method);
 
