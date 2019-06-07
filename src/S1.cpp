@@ -5,7 +5,7 @@ using namespace Rcpp;
 
 // [[Rcpp::export]]
 double S1_Cpp(const NumericVector& X, double a) {
-  int n = X.size();
+  double n = X.size();
   NumericVector aXs = abs(clone(X).sort());
   double TS_sum = 0;
   int i,j;

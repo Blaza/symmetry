@@ -30,5 +30,5 @@ int count_smaller(const NumericVector& array, double value) {
 
 
 double ukn(int k, int n) {
-  return std::pow((k)/(n-1), n-1) - std::pow((n-k-1)/(n-1), n-1);
+  return std::pow(((double) k/(n-1)), n-1) - std::pow(((double) n-k-1)/(n-1), n-1);
 }

@@ -12,16 +12,18 @@ double T2_Cpp(const NumericVector& X, double a) {
   double TS_sum = 0;
   int i,j;
   double sqdiff;
+  NumericVector ukns(n);
 
   for (i = 0; i < n; i++) {
-    TS_sum += ukn(i, n) * ukn(i, n);
+    ukns[i] = ukn(i, n);
+    TS_sum += ukns[i] * ukns[i];
   }
 
   for(i = 0; i < n; i++) {
     for(j = 0; j < i; j++) {
       // non diagonal are counted twice
       sqdiff = (aXs[i] - aXs[j]) * (aXs[i] - aXs[j]);
-      TS_sum += 2 * ukn(i,n) * ukn(j,n) * std::exp(-1.0/4.0/a*sqdiff);
+      TS_sum += 2 * ukns[i] * ukns[j] * std::exp(-1.0/4.0/a*sqdiff);
     }
   }
 

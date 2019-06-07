@@ -71,9 +71,7 @@ symmetry_test.default <- function(x, stat, mu = 0,
 
 #' @export
 symmetry_test.lm <- function(model, stat, B = 100,
-                             boot_method = "sign", k = 0,
-                             center_residuals = FALSE,
-                             scale_residuals = FALSE) {
+                             boot_method = "sign", k = 0) {
   stat_fun <- match.fun(stat, descend = FALSE)
   pass_k <- "k" %in% names(formals(stat))
   if (pass_k && k == 0)
@@ -82,9 +80,7 @@ symmetry_test.lm <- function(model, stat, B = 100,
   X <- model.matrix(model)
   yfit <- fitted(model)
   res <- residuals(model)
-  boot <- boot_sample_lm(X, yfit, res, B, boot_method, stat,
-                         center_residuals, scale_residuals, k)
-  res <- as.vector(scale(res, center_residuals, scale_residuals))
+  boot <- boot_sample_lm(X, yfit, res, B, boot_method, stat, k)
   tval <- if(pass_k) stat_fun(res, k = k) else stat_fun(res)
   names(tval) <- stat
   pval <- mean(abs(boot) >= abs(tval))

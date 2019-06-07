@@ -125,8 +125,8 @@ lm_resid <- function(X, yr) {
     .Call('_symmetry_lm_resid', PACKAGE = 'symmetry', X, yr)
 }
 
-boot_sample_lm <- function(model_matrix, fitted, residuals, B, null_method, stat, center, scale, k = 0) {
-    .Call('_symmetry_boot_sample_lm', PACKAGE = 'symmetry', model_matrix, fitted, residuals, B, null_method, stat, center, scale, k)
+boot_sample_lm <- function(model_matrix, fitted, residuals, B, null_method, stat, k = 0) {
+    .Call('_symmetry_boot_sample_lm', PACKAGE = 'symmetry', model_matrix, fitted, residuals, B, null_method, stat, k)
 }
 
 simulate_garch <- function(resid, y, cfit, omega, alpha, beta) {

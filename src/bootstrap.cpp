@@ -247,8 +247,7 @@ NumericVector boot_sample_lm(const arma::mat& model_matrix,
                              const NumericVector& fitted,
                              const NumericVector& residuals,
                              int B, std::string null_method,
-                             std::string stat,
-                             bool center, bool scale, double k = 0) {
+                             std::string stat, double k = 0) {
   auto ts_fun = get_ts_fun(stat, k);
   auto null_sample_fun = get_null_fun(null_method);
 
@@ -262,12 +261,6 @@ NumericVector boot_sample_lm(const arma::mat& model_matrix,
     boot_resid = null_sample_fun(residuals, 0);
     boot_y = fitted + boot_resid;
     new_resid = lm_resid(model_matrix, boot_y);
-    if (center) {
-      new_resid = new_resid - mean(new_resid);
-    }
-    if (scale) {
-      new_resid = new_resid / sd(new_resid);
-    }
     boot_sample[i] = ts_fun(new_resid);
   }
 
