@@ -53,8 +53,8 @@ MK_Cpp <- function(X, k_in) {
     .Call('_symmetry_MK_Cpp', PACKAGE = 'symmetry', X, k_in)
 }
 
-MOI_Cpp <- function(X, k_in) {
-    .Call('_symmetry_MOI_Cpp', PACKAGE = 'symmetry', X, k_in)
+MOI_Cpp <- function(X, k) {
+    .Call('_symmetry_MOI_Cpp', PACKAGE = 'symmetry', X, k)
 }
 
 MOK_Cpp <- function(X, k_in) {
