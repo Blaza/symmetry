@@ -12,15 +12,15 @@ double MOI_Cpp(const NumericVector & X, double k) {
 
   IntegerVector ranks = match(aXs, clone(aXs).sort());
 
-  double T2 = 0, T3 = 0;
+  int64_t T2 = 0, T3 = 0;
 
   // We're using 1-indexing
   for (int j = k; j <= n - k + 1; j++) {
-    T2 += (n - n * (double)ranks[j - 1]/n) *
+    T2 += (n - ranks[j - 1]) *
       Rf_choose(n - j, k) *
       Rf_choose(j - 1, k - 1);
 
-    T3 += (n - n * (double)ranks[j - 1]/n) *
+    T3 += (n - ranks[j - 1]) *
       Rf_choose(n - j, k - 1) *
       Rf_choose(j - 1, k);
   }
