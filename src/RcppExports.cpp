@@ -165,14 +165,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // MOK_Cpp
-double MOK_Cpp(const NumericVector& X, double k_in);
-RcppExport SEXP _symmetry_MOK_Cpp(SEXP XSEXP, SEXP k_inSEXP) {
+double MOK_Cpp(const NumericVector& X, double k);
+RcppExport SEXP _symmetry_MOK_Cpp(SEXP XSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< double >::type k_in(k_inSEXP);
-    rcpp_result_gen = Rcpp::wrap(MOK_Cpp(X, k_in));
+    Rcpp::traits::input_parameter< double >::type k(kSEXP);
+    rcpp_result_gen = Rcpp::wrap(MOK_Cpp(X, k));
     return rcpp_result_gen;
 END_RCPP
 }
