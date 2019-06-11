@@ -3,7 +3,6 @@
 #include <cmath>
 #include <algorithm>
 using namespace Rcpp;
-using std::int64_t;
 
 // [[Rcpp::export]]
 double MOI_Cpp(const NumericVector & X, double k) {
@@ -12,7 +11,7 @@ double MOI_Cpp(const NumericVector & X, double k) {
 
   IntegerVector ranks = match(aXs, clone(aXs).sort());
 
-  int64_t T2 = 0, T3 = 0;
+  double T2 = 0, T3 = 0;
 
   // We're using 1-indexing
   for (int j = k; j <= n - k + 1; j++) {

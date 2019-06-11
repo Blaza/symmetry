@@ -3,14 +3,13 @@
 #include <cmath>
 #include <algorithm>
 using namespace Rcpp;
-using std::int64_t;
 
 // [[Rcpp::export]]
 double MOK_Cpp(const NumericVector & X, double k) {
   int n = X.size();
   NumericVector aXs = abs(clone(X).sort());
 
-  int64_t T2, T3;
+  double T2, T3;
   NumericVector T2_vec(n), T3_vec(n);
   NumericVector smaller(n);
 

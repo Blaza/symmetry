@@ -177,26 +177,26 @@ BEGIN_RCPP
 END_RCPP
 }
 // NAI_Cpp
-double NAI_Cpp(const NumericVector& X, double k_in);
-RcppExport SEXP _symmetry_NAI_Cpp(SEXP XSEXP, SEXP k_inSEXP) {
+double NAI_Cpp(const NumericVector& X, double k);
+RcppExport SEXP _symmetry_NAI_Cpp(SEXP XSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< double >::type k_in(k_inSEXP);
-    rcpp_result_gen = Rcpp::wrap(NAI_Cpp(X, k_in));
+    Rcpp::traits::input_parameter< double >::type k(kSEXP);
+    rcpp_result_gen = Rcpp::wrap(NAI_Cpp(X, k));
     return rcpp_result_gen;
 END_RCPP
 }
 // NAK_Cpp
-double NAK_Cpp(const NumericVector& X, double k_in);
-RcppExport SEXP _symmetry_NAK_Cpp(SEXP XSEXP, SEXP k_inSEXP) {
+double NAK_Cpp(const NumericVector& X, double k);
+RcppExport SEXP _symmetry_NAK_Cpp(SEXP XSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< double >::type k_in(k_inSEXP);
-    rcpp_result_gen = Rcpp::wrap(NAK_Cpp(X, k_in));
+    Rcpp::traits::input_parameter< double >::type k(kSEXP);
+    rcpp_result_gen = Rcpp::wrap(NAK_Cpp(X, k));
     return rcpp_result_gen;
 END_RCPP
 }

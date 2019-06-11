@@ -1,55 +1,27 @@
-// Implementation of NAI test statistic using the super fast combinations
-// algorithm provided by Howard Hinnant, as seen here:
-// https://howardhinnant.github.io/combinations/combinations.html
 #include <Rcpp.h>
 #include <cstdint>
 #include <cmath>
 #include <algorithm>
-#include "combinations.h"
 using namespace Rcpp;
-using std::int64_t;
-
-
-class NAI {
-    int64_t Tsum;
-    const NumericVector aX;
-    int k, i, n;
-    double aX1, aXk;
-  public:
-    explicit NAI(const NumericVector& X, int _n, int _k)
-                : n(_n), aX(abs(X)), k(_k), Tsum(0) {}
-
-    template <class It>
-        bool operator()(It Xcomb, It end_ptr) { // called for each combination
-            aX1 = std::abs(Xcomb[0]);
-            aXk = std::abs(Xcomb[k-1]);
-
-            for(i = 0; i < n; i++) {
-                Tsum += aX1 < aX[i];
-                Tsum -= aXk < aX[i];
-            }
-
-            return false;  // Don't break out of the loop
-        }
-
-    operator int64_t() const {return Tsum;}
-};
-
 
 // [[Rcpp::export]]
-double NAI_Cpp(const NumericVector& X, double k_in) {
-    int n = X.size();
-    NumericVector Xs = clone(X);
-    std::sort(Xs.begin(), Xs.end());
-    int k = std::round(k_in);
+double NAI_Cpp(const NumericVector & X, double k) {
+  int n = X.size();
+  NumericVector aXs = abs(clone(X).sort());
 
-    int64_t TS_sum = for_each_combination(Xs.begin(),
-                                          Xs.begin() + k,
-                                          Xs.end(),
-                                          NAI(X, n, k));
+  IntegerVector ranks = match(aXs, clone(aXs).sort());
 
-    double TS_value = TS_sum / (n * Rf_choose(n, k));
+  double T2 = 0, T3 = 0;
 
-    return TS_value;
+  // We're using 1-indexing
+  for (int j = 1; j <= n; j++) {
+    T2 += (n - ranks[j - 1]) *
+      Rf_choose(n - j, k - 1);
+
+    T3 += (n - ranks[j - 1]) *
+      Rf_choose(j - 1, k - 1);
+  }
+
+  return (T2 - T3) / (n * Rf_choose(n, k));
 }
 
