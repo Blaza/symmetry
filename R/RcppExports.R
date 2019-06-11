@@ -61,12 +61,12 @@ MOK_Cpp <- function(X, k) {
     .Call('_symmetry_MOK_Cpp', PACKAGE = 'symmetry', X, k)
 }
 
-NAI_Cpp <- function(X, k_in) {
-    .Call('_symmetry_NAI_Cpp', PACKAGE = 'symmetry', X, k_in)
+NAI_Cpp <- function(X, k) {
+    .Call('_symmetry_NAI_Cpp', PACKAGE = 'symmetry', X, k)
 }
 
-NAK_Cpp <- function(X, k_in) {
-    .Call('_symmetry_NAK_Cpp', PACKAGE = 'symmetry', X, k_in)
+NAK_Cpp <- function(X, k) {
+    .Call('_symmetry_NAK_Cpp', PACKAGE = 'symmetry', X, k)
 }
 
 S1_Cpp <- function(X, a) {

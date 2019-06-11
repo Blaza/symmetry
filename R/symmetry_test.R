@@ -102,7 +102,7 @@ symmetry_test.lm <- function(model, stat, B = 100,
 
 #' @export
 symmetry_test.fGARCH <- function(model, stat, B = 100, burn = 0,
-                                boot_method = "sign", k = 0) {
+                                boot_method = "sign", k = 0, iid = FALSE) {
   stat_fun <- match.fun(stat, descend = FALSE)
 
   pass_k <- "k" %in% names(formals(stat))
@@ -130,12 +130,16 @@ symmetry_test.fGARCH <- function(model, stat, B = 100, burn = 0,
   boot <- replicate(B, {
     boot_res <- null_sample_fun(res, 0)
 
-    boot_y <- simulate_garch(boot_res, ts, cfit, omega, alpha, beta)
+    if (!iid) {
+      boot_y <- simulate_garch(boot_res, ts, cfit, omega, alpha, beta)
 
-    boot_model <- garchFit(model@formula, boot_y,
-                           cond.dist = "QMLE", include.mean = FALSE,
-                           trace = FALSE)
-    new_res <- tail(residuals(boot_model, standardize = TRUE), not_burned)
+      boot_model <- garchFit(model@formula, boot_y,
+                             cond.dist = "QMLE", include.mean = FALSE,
+                             trace = FALSE)
+      new_res <- tail(residuals(boot_model, standardize = TRUE), not_burned)
+    } else {
+      new_res <- tail(boot_res, not_burned)
+    }
     if(pass_k) stat_fun(new_res, k = k) else stat_fun(new_res)
   })
 
