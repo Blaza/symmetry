@@ -133,3 +133,15 @@ simulate_garch <- function(resid, y, cfit, omega, alpha, beta) {
     .Call('_symmetry_simulate_garch', PACKAGE = 'symmetry', resid, y, cfit, omega, alpha, beta)
 }
 
+simulate_garch_mat <- function(resid, y, cfit, omega, alpha, beta) {
+    .Call('_symmetry_simulate_garch_mat', PACKAGE = 'symmetry', resid, y, cfit, omega, alpha, beta)
+}
+
+garch_boot_residuals <- function(res, B, null_method) {
+    .Call('_symmetry_garch_boot_residuals', PACKAGE = 'symmetry', res, B, null_method)
+}
+
+apply_stat <- function(residual_matrix, stat, k = 0) {
+    .Call('_symmetry_apply_stat', PACKAGE = 'symmetry', residual_matrix, stat, k)
+}
+

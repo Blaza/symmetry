@@ -164,3 +164,77 @@ symmetry_test.fGARCH <- function(model, stat, B = 100, burn = 0,
   class(obj) <- "htest"
   obj
 }
+
+
+
+#' @export
+symmetry_test_fast <- function(model, stat, B = 100, burn = 0,
+                                 boot_method = "sign", k = 0, iid = FALSE) {
+  stat_fun <- match.fun(stat, descend = FALSE)
+
+  pass_k <- "k" %in% names(formals(stat))
+  if (pass_k && k == 0)
+    stop("Argument 'k' not specified.")
+
+  res <- residuals(model, standardize = TRUE)
+
+  null_sample_fun <- switch(boot_method,
+                            "sign" = randomize_sign,
+                            "reflect" = reflected_boot)
+
+  coefs <- coef(model)
+  omega <- coefs["omega"]
+  alpha <- coefs[grepl("alpha", names(coefs))]
+  beta <- coefs[grepl("beta", names(coefs))]
+
+  ts <- as.numeric(model@data)
+  cfit <- as.numeric(fitted(model))
+
+  not_burned <- length(ts) - burn
+  if (not_burned <= 0)
+    stop("Number of points to burn is larger than the series length")
+
+  boot_res_mat <- garch_boot_residuals(res, B, boot_method)
+
+  if (!iid) {
+    boot_y_vec <- simulate_garch_mat(boot_res_mat, ts, cfit, omega, alpha, beta)
+
+    garch_res_mat <- apply(boot_y_vec, 2, function(boot_y) {
+      boot_model <- garchFit(model@formula, boot_y,
+                             cond.dist = "QMLE", include.mean = FALSE,
+                             trace = FALSE)
+      residuals(boot_model, standardize = TRUE)
+    })
+
+    new_res_mat <- tail(garch_res_mat, not_burned)
+  } else {
+    new_res_mat <- tail(boot_res_mat, not_burned)
+  }
+
+  if (pass_k) {
+    boot <- apply_stat(new_res_mat, stat, k = k)
+  } else {
+    boot <- apply_stat(new_res_mat, stat)
+  }
+
+  res <- tail(res, not_burned)
+
+  tval <- if(pass_k) stat_fun(res, k = k) else stat_fun(res)
+  names(tval) <- stat
+  pval <- mean(abs(boot) >= abs(tval))
+
+  xname <- paste("Residuals from model", deparse(substitute(model)))
+  METHOD <- c("Symmetry test of GARCH model residuals",
+              "Null hypothesis: The residuals are symmetric around 0")
+  params <- c("B" = B)
+  if(pass_k) params <- c(k=k, params)
+
+  obj <- list(method = METHOD,
+              statistic = tval,
+              parameters = params,
+              p.value = pval,
+              data.name = xname,
+              boot_stats = boot)
+  class(obj) <- "htest"
+  obj
+}

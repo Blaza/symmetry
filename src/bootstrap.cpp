@@ -3,6 +3,8 @@
 #include <string>
 #include <functional>
 
+// [[Rcpp::depends(RcppArmadillo)]]
+
 using namespace Rcpp;
 
 std::function<double (const NumericVector&)>
@@ -295,4 +297,69 @@ NumericVector simulate_garch(const NumericVector& resid,
   }
 
   return booty[Range(m, n + m - 1)];
+}
+
+// [[Rcpp::export]]
+arma::mat simulate_garch_mat(const arma::mat& resid,
+                             const NumericVector& y,
+                             const NumericVector& cfit,
+                             double omega,
+                             const arma::vec& alpha,
+                             const arma::vec& beta) {
+  int q = alpha.n_elem, p = beta.n_elem, m = std::max(p, q);
+  int n = resid.n_rows, B = resid.n_cols;
+
+  arma::mat booty(n+m, B, arma::fill::zeros);
+  arma::mat bootc(n+m, B, arma::fill::zeros);
+  arma::vec yrec(q, arma::fill::zeros);
+  arma::vec crec(p, arma::fill::zeros);
+
+  for (int i = 0; i < m; i++) {
+    booty.row(i).fill(y[i]);
+    bootc.row(i).fill(cfit[i]);
+  }
+
+  for (int b = 0; b < B; b++)
+  for (int i = 0; i < n; i++) {
+    yrec = booty(arma::span(i + m - q, i + m - 1), b);
+    crec = bootc(arma::span(i + m - p, i + m - 1), b);
+
+    arma::vec yy = (yrec * yrec * alpha);
+    arma::vec cc = (crec * crec * beta);
+
+    bootc(i + m, b) = std::sqrt(omega + arma::sum(yy) + arma::sum(cc));
+    booty(i + m, b) = bootc(i + m, b) * resid(i, b);
+  }
+
+  return booty.tail_rows(n);
+}
+
+// [[Rcpp::export]]
+arma::mat garch_boot_residuals(const NumericVector& res, int B,
+                               std::string null_method) {
+
+  auto null_sample_fun = get_null_fun(null_method);
+
+  arma::mat residual_matrix(res.size(), B);
+
+  for (int i = 0; i < B; i++) {
+    residual_matrix.col(i) = (arma::vec)null_sample_fun(res, 0);
+  }
+
+  return residual_matrix;
+}
+
+// [[Rcpp::export]]
+NumericVector apply_stat(const NumericMatrix& residual_matrix,
+                         std::string stat, double k = 0) {
+
+  auto ts_fun = get_ts_fun(stat, k);
+  int B = residual_matrix.ncol();
+  NumericVector result(residual_matrix.nrow());
+
+  for (int i = 0; i < B; i++) {
+    result[i] = ts_fun(residual_matrix(_, i));
+  }
+
+  return result;
 }
