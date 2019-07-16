@@ -15,7 +15,6 @@
 #' NAK(X, 2, 1)
 #' @export
 NAK <- function(X, k, mu = 0) {
-  n <- length(X)
-  sqrt(n) * NAK_Cpp(X - mu, k)
+  NAK_Cpp(X - mu, k)
 }
 

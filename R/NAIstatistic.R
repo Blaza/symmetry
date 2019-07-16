@@ -16,6 +16,5 @@
 #' NAI(X, 2, 1)
 #' @export
 NAI <- function(X, k, mu = 0) {
-  n <- length(X)
-  sqrt(n) * NAI_Cpp(X - mu, k)
+  NAI_Cpp(X - mu, k)
 }

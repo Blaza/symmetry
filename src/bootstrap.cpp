@@ -158,13 +158,14 @@ double trimmed_mean(const NumericVector& X, double alpha = 0) {
 }
 
 // [[Rcpp::export]]
-NumericVector boot_sample(const NumericVector& X, double trim_alpha,
+NumericVector boot_sample(const NumericVector& X, double mu_param,
                           int B, std::string null_method,
-                          std::string stat, double k = 0) {
+                          std::string stat, double k = 0,
+                          bool known_mean = false) {
   auto ts_fun = get_ts_fun(stat, k);
   auto null_sample_fun = get_null_fun(null_method);
 
-  double mu = trimmed_mean(X, trim_alpha);
+  double mu = known_mean ? mu_param : trimmed_mean(X, mu_param);
 
   double mu_sym;
   NumericVector X_sym;
@@ -173,7 +174,7 @@ NumericVector boot_sample(const NumericVector& X, double trim_alpha,
 
   for (int i = 0; i < B; i++) {
     X_sym = null_sample_fun(X, mu);
-    mu_sym = trimmed_mean(X_sym, trim_alpha);
+    mu_sym = known_mean ? mu_param : trimmed_mean(X_sym, mu_param);
     boot_sample[i] = ts_fun(X_sym - mu_sym);
   }
 
@@ -181,9 +182,9 @@ NumericVector boot_sample(const NumericVector& X, double trim_alpha,
 }
 
 // [[Rcpp::export]]
-NumericVector mn_boot_sample(const NumericVector& X, double trim_alpha,
+NumericVector mn_boot_sample(const NumericVector& X, double mu_param,
                              int B, std::string stat, double k = 0,
-                             double q = 8.0/9) {
+                             double q = 8.0/9, bool known_mean = false) {
   auto ts_fun = get_ts_fun(stat, k);
 
   IntegerVector m_pre(21);
@@ -210,7 +211,7 @@ NumericVector mn_boot_sample(const NumericVector& X, double trim_alpha,
 
     for (int b = 0; b < B; b++) {
       X_boot = sample_with_replacement(X, m[i]);
-      mu_boot = trimmed_mean(X_boot, trim_alpha);
+      mu_boot = known_mean ? mu_param : trimmed_mean(X_boot, mu_param);
       curr_boot_sample[b] = ts_fun(X_boot - mu_boot);
     }
 

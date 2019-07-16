@@ -113,12 +113,12 @@ trimmed_mean <- function(X, alpha = 0) {
     .Call('_symmetry_trimmed_mean', PACKAGE = 'symmetry', X, alpha)
 }
 
-boot_sample <- function(X, trim_alpha, B, null_method, stat, k = 0) {
-    .Call('_symmetry_boot_sample', PACKAGE = 'symmetry', X, trim_alpha, B, null_method, stat, k)
+boot_sample <- function(X, mu_param, B, null_method, stat, k = 0, known_mean = FALSE) {
+    .Call('_symmetry_boot_sample', PACKAGE = 'symmetry', X, mu_param, B, null_method, stat, k, known_mean)
 }
 
-mn_boot_sample <- function(X, trim_alpha, B, stat, k = 0, q = 8.0/9) {
-    .Call('_symmetry_mn_boot_sample', PACKAGE = 'symmetry', X, trim_alpha, B, stat, k, q)
+mn_boot_sample <- function(X, mu_param, B, stat, k = 0, q = 8.0/9, known_mean = FALSE) {
+    .Call('_symmetry_mn_boot_sample', PACKAGE = 'symmetry', X, mu_param, B, stat, k, q, known_mean)
 }
 
 lm_resid <- function(X, yr) {

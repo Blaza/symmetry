@@ -332,34 +332,36 @@ BEGIN_RCPP
 END_RCPP
 }
 // boot_sample
-NumericVector boot_sample(const NumericVector& X, double trim_alpha, int B, std::string null_method, std::string stat, double k);
-RcppExport SEXP _symmetry_boot_sample(SEXP XSEXP, SEXP trim_alphaSEXP, SEXP BSEXP, SEXP null_methodSEXP, SEXP statSEXP, SEXP kSEXP) {
+NumericVector boot_sample(const NumericVector& X, double mu_param, int B, std::string null_method, std::string stat, double k, bool known_mean);
+RcppExport SEXP _symmetry_boot_sample(SEXP XSEXP, SEXP mu_paramSEXP, SEXP BSEXP, SEXP null_methodSEXP, SEXP statSEXP, SEXP kSEXP, SEXP known_meanSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< double >::type trim_alpha(trim_alphaSEXP);
+    Rcpp::traits::input_parameter< double >::type mu_param(mu_paramSEXP);
     Rcpp::traits::input_parameter< int >::type B(BSEXP);
     Rcpp::traits::input_parameter< std::string >::type null_method(null_methodSEXP);
     Rcpp::traits::input_parameter< std::string >::type stat(statSEXP);
     Rcpp::traits::input_parameter< double >::type k(kSEXP);
-    rcpp_result_gen = Rcpp::wrap(boot_sample(X, trim_alpha, B, null_method, stat, k));
+    Rcpp::traits::input_parameter< bool >::type known_mean(known_meanSEXP);
+    rcpp_result_gen = Rcpp::wrap(boot_sample(X, mu_param, B, null_method, stat, k, known_mean));
     return rcpp_result_gen;
 END_RCPP
 }
 // mn_boot_sample
-NumericVector mn_boot_sample(const NumericVector& X, double trim_alpha, int B, std::string stat, double k, double q);
-RcppExport SEXP _symmetry_mn_boot_sample(SEXP XSEXP, SEXP trim_alphaSEXP, SEXP BSEXP, SEXP statSEXP, SEXP kSEXP, SEXP qSEXP) {
+NumericVector mn_boot_sample(const NumericVector& X, double mu_param, int B, std::string stat, double k, double q, bool known_mean);
+RcppExport SEXP _symmetry_mn_boot_sample(SEXP XSEXP, SEXP mu_paramSEXP, SEXP BSEXP, SEXP statSEXP, SEXP kSEXP, SEXP qSEXP, SEXP known_meanSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< double >::type trim_alpha(trim_alphaSEXP);
+    Rcpp::traits::input_parameter< double >::type mu_param(mu_paramSEXP);
     Rcpp::traits::input_parameter< int >::type B(BSEXP);
     Rcpp::traits::input_parameter< std::string >::type stat(statSEXP);
     Rcpp::traits::input_parameter< double >::type k(kSEXP);
     Rcpp::traits::input_parameter< double >::type q(qSEXP);
-    rcpp_result_gen = Rcpp::wrap(mn_boot_sample(X, trim_alpha, B, stat, k, q));
+    Rcpp::traits::input_parameter< bool >::type known_mean(known_meanSEXP);
+    rcpp_result_gen = Rcpp::wrap(mn_boot_sample(X, mu_param, B, stat, k, q, known_mean));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -438,8 +440,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_symmetry_reflect_sample", (DL_FUNC) &_symmetry_reflect_sample, 3},
     {"_symmetry_reflected_boot", (DL_FUNC) &_symmetry_reflected_boot, 2},
     {"_symmetry_trimmed_mean", (DL_FUNC) &_symmetry_trimmed_mean, 2},
-    {"_symmetry_boot_sample", (DL_FUNC) &_symmetry_boot_sample, 6},
-    {"_symmetry_mn_boot_sample", (DL_FUNC) &_symmetry_mn_boot_sample, 6},
+    {"_symmetry_boot_sample", (DL_FUNC) &_symmetry_boot_sample, 7},
+    {"_symmetry_mn_boot_sample", (DL_FUNC) &_symmetry_mn_boot_sample, 7},
     {"_symmetry_lm_resid", (DL_FUNC) &_symmetry_lm_resid, 2},
     {"_symmetry_boot_sample_lm", (DL_FUNC) &_symmetry_boot_sample_lm, 7},
     {"_symmetry_simulate_garch", (DL_FUNC) &_symmetry_simulate_garch, 6},

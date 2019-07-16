@@ -4,7 +4,7 @@ symmetry_test <- function(x, ...) {
 }
 
 #' @export
-symmetry_test.default <- function(x, stat, mu = 0,
+symmetry_test.default <- function(x, stat, mu = NULL,
                                   simulate_p_value = FALSE, N=1000,
                                   bootstrap = FALSE, B = 100,
                                   boot_method = "sign", trim = 0, k = 0,
@@ -17,8 +17,9 @@ symmetry_test.default <- function(x, stat, mu = 0,
     stop("Argument 'k' not specified.")
 
   MU <- NULL
+  params <- NULL
 
-  if (bootstrap) {
+  if (bootstrap && is.null(mu)) { # UNKNOWN MEAN BOOTSTRAP
     boot <- if (boot_method != "mn") {
       boot_sample(x, trim, B, boot_method, stat, k)
     } else {
@@ -35,7 +36,25 @@ symmetry_test.default <- function(x, stat, mu = 0,
                 "Null hypothesis: Data is symmetric")
     params <- c("B" = B)
 
-  } else if(simulate_p_value){
+  } else if (bootstrap && !is.null(mu)){ # KNOWN MEAN BOOTSTRAP
+    boot <- if (boot_method != "mn") {
+      boot_sample(x, mu, B, boot_method, stat, k, TRUE)
+    } else {
+      mn_boot_sample(x, mu, B, stat, k, q, TRUE)
+    }
+
+    xc <- x - mu
+    tval <- if(pass_k) stat_fun(xc, k = k) else stat_fun(xc)
+
+    pval <- mean(abs(boot) >= abs(tval))
+
+    METHOD <- c("Symmetry test",
+                paste("Null hypothesis: Data is symmetric around", mu))
+    params <- c("B" = B)
+
+  } else if(simulate_p_value){ # KNOWN MEAN, SIMULATED P VALUE
+    if (is.null(mu))
+      mu <- 0
     n <- length(x)
     normals <- matrix(rnorm(n*N, mu), ncol=n)
     apply_fun <- if(pass_k) {
@@ -53,7 +72,16 @@ symmetry_test.default <- function(x, stat, mu = 0,
                 paste("Null hypothesis: Data is symmetric around", mu))
     params <- c("N" = N)
 
-  } else {
+  } else { # ASYMPTOTIC RESULTS
+    if (!stat %in% names(asymptotic_distributions))
+      stop("The asymptotic distribution of the chosen test statistic is not available.")
+    if (is.null(mu))
+      mu <- 0
+    tval <- if(pass_k) stat_fun(x, k = k, mu = mu) else stat_fun(x, mu = mu)
+    pdist <- asymptotic_distributions[[stat]](k)
+    pval <- 2 * (1 - pdist(abs(tval)))
+    METHOD <- c("Symmetry test",
+                paste("Null hypothesis: Data is symmetric around", mu))
   }
 
   names(tval) <- stat
@@ -101,8 +129,8 @@ symmetry_test.lm <- function(model, stat, B = 100,
 }
 
 #' @export
-symmetry_test.fGARCH <- function(model, stat, B = 100, burn = 0,
-                                boot_method = "sign", k = 0, iid = FALSE) {
+symmetry_test.fGARCH <- function(model, stat, B = 100, burn = 0, bootstrap = TRUE,
+                                boot_method = "sign", k = 0, iid = !bootstrap) {
   stat_fun <- match.fun(stat, descend = FALSE)
 
   pass_k <- "k" %in% names(formals(stat))
@@ -127,40 +155,49 @@ symmetry_test.fGARCH <- function(model, stat, B = 100, burn = 0,
   if (not_burned <= 0)
     stop("Number of points to burn is larger than the series length")
 
-  boot <- replicate(B, {
-    boot_res <- null_sample_fun(res, 0)
+  tail_res <- tail(res, not_burned)
 
-    if (!iid) {
-      boot_y <- simulate_garch(boot_res, ts, cfit, omega, alpha, beta)
-
-      boot_model <- garchFit(model@formula, boot_y,
-                             cond.dist = "QMLE", include.mean = FALSE,
-                             trace = FALSE)
-      new_res <- tail(residuals(boot_model, standardize = TRUE), not_burned)
-    } else {
-      new_res <- tail(boot_res, not_burned)
-    }
-    if(pass_k) stat_fun(new_res, k = k) else stat_fun(new_res)
-  })
-
-  res <- tail(res, not_burned)
-
-  tval <- if(pass_k) stat_fun(res, k = k) else stat_fun(res)
+  tval <- if(pass_k) stat_fun(tail_res, k = k) else stat_fun(tail_res)
   names(tval) <- stat
-  pval <- mean(abs(boot) >= abs(tval))
 
+  params <- c()
+
+  if (bootstrap) {
+    boot <- replicate(B, {
+      boot_res <- null_sample_fun(res, 0)
+
+      if (!iid) {
+        boot_y <- simulate_garch(boot_res, ts, cfit, omega, alpha, beta)
+
+        boot_model <- garchFit(model@formula, boot_y,
+                               cond.dist = "QMLE", include.mean = FALSE,
+                               trace = FALSE)
+        new_res <- tail(residuals(boot_model, standardize = TRUE), not_burned)
+      } else {
+        new_res <- tail(boot_res, not_burned)
+      }
+      if(pass_k) stat_fun(new_res, k = k) else stat_fun(new_res)
+    })
+
+    pval <- mean(abs(boot) >= abs(tval))
+    params <- c("B" = B, params)
+  } else { # ASYMPTOTIC DISTRUBUTION
+    if (!stat %in% names(asymptotic_distributions))
+      stop("The asymptotic distribution of the chosen test statistic is not available.")
+
+    pdist <- asymptotic_distributions[[stat]](k)
+    pval <- 2 * (1 - pdist(abs(unname(tval))))
+  }
   xname <- paste("Residuals from model", deparse(substitute(model)))
   METHOD <- c("Symmetry test of GARCH model residuals",
               "Null hypothesis: The residuals are symmetric around 0")
-  params <- c("B" = B)
   if(pass_k) params <- c(k=k, params)
 
   obj <- list(method = METHOD,
               statistic = tval,
               parameters = params,
               p.value = pval,
-              data.name = xname,
-              boot_stats = boot)
+              data.name = xname)
   class(obj) <- "htest"
   obj
 }
