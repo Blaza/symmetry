@@ -8,8 +8,6 @@ WCX(X)
 }
 \arguments{
 \item{X}{the sample for which to calculate the statistic}
-
-\item{mu}{the estimate of the location parameter}
 }
 \value{
 The value of the test statistic given by the formula:

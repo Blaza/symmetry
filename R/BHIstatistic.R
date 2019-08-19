@@ -1,7 +1,6 @@
 #' Calculate _ test statistic (see 'Value' for formula)
 #'
 #' @param X the sample for which to calculate the statistic
-#' @param mu the estimate of the location parameter
 #' @return The value of the test statistic given by the formula:
 #'         \deqn{ \frac{1}{n {n\choose{2}}} \sum_{\mathcal{I}_{2}}
 #'         \sum_{i_{3}=1}^n \left( \frac12 I\{|X_{i_1}| <
