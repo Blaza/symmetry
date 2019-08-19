@@ -93,13 +93,10 @@ NumericVector randomize_sign(const NumericVector& X, double mu) {
   return res;
 }
 
-
-// [[Rcpp::export]]
 NumericVector sample_with_replacement(NumericVector x, int n) {
   return x[floor(runif(n, 0, x.size()))];
 }
 
-// [[Rcpp::export]]
 NumericVector reflect_sample(const NumericVector& X, double mu, int n) {
   NumericVector reflected(2*n);
   for (int i = 0; i < n; i++) {
@@ -110,7 +107,6 @@ NumericVector reflect_sample(const NumericVector& X, double mu, int n) {
   }
   return reflected;
 }
-
 
 // [[Rcpp::export]]
 NumericVector reflected_boot(const NumericVector& X, double mu) {
@@ -131,7 +127,6 @@ std::function<NumericVector (const NumericVector&, double)>
   }
 
 
-// [[Rcpp::export]]
 double trimmed_mean(const NumericVector& X, double alpha = 0) {
   if (alpha == 0) {
     return mean(X);
@@ -233,7 +228,6 @@ NumericVector mn_boot_sample(const NumericVector& X, double mu_param,
 // Get regression residuals given model matrix and response vector
 // The code is a stripped version of Rcpp gallery example:
 // http://gallery.rcpp.org/articles/fast-linear-model-with-armadillo/
-// [[Rcpp::export]]
 NumericVector lm_resid(const arma::mat& X, NumericVector& yr) {
   arma::colvec y(yr.begin(), yr.size(), false);
 

@@ -282,31 +282,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// sample_with_replacement
-NumericVector sample_with_replacement(NumericVector x, int n);
-RcppExport SEXP _symmetry_sample_with_replacement(SEXP xSEXP, SEXP nSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
-    Rcpp::traits::input_parameter< int >::type n(nSEXP);
-    rcpp_result_gen = Rcpp::wrap(sample_with_replacement(x, n));
-    return rcpp_result_gen;
-END_RCPP
-}
-// reflect_sample
-NumericVector reflect_sample(const NumericVector& X, double mu, int n);
-RcppExport SEXP _symmetry_reflect_sample(SEXP XSEXP, SEXP muSEXP, SEXP nSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
-    Rcpp::traits::input_parameter< int >::type n(nSEXP);
-    rcpp_result_gen = Rcpp::wrap(reflect_sample(X, mu, n));
-    return rcpp_result_gen;
-END_RCPP
-}
 // reflected_boot
 NumericVector reflected_boot(const NumericVector& X, double mu);
 RcppExport SEXP _symmetry_reflected_boot(SEXP XSEXP, SEXP muSEXP) {
@@ -316,18 +291,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
     Rcpp::traits::input_parameter< double >::type mu(muSEXP);
     rcpp_result_gen = Rcpp::wrap(reflected_boot(X, mu));
-    return rcpp_result_gen;
-END_RCPP
-}
-// trimmed_mean
-double trimmed_mean(const NumericVector& X, double alpha);
-RcppExport SEXP _symmetry_trimmed_mean(SEXP XSEXP, SEXP alphaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
-    rcpp_result_gen = Rcpp::wrap(trimmed_mean(X, alpha));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -362,18 +325,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type q(qSEXP);
     Rcpp::traits::input_parameter< bool >::type known_mean(known_meanSEXP);
     rcpp_result_gen = Rcpp::wrap(mn_boot_sample(X, mu_param, B, stat, k, q, known_mean));
-    return rcpp_result_gen;
-END_RCPP
-}
-// lm_resid
-NumericVector lm_resid(const arma::mat& X, NumericVector& yr);
-RcppExport SEXP _symmetry_lm_resid(SEXP XSEXP, SEXP yrSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< NumericVector& >::type yr(yrSEXP);
-    rcpp_result_gen = Rcpp::wrap(lm_resid(X, yr));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -436,13 +387,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"_symmetry_T2_Cpp", (DL_FUNC) &_symmetry_T2_Cpp, 2},
     {"_symmetry_WCX_Cpp", (DL_FUNC) &_symmetry_WCX_Cpp, 1},
     {"_symmetry_randomize_sign", (DL_FUNC) &_symmetry_randomize_sign, 2},
-    {"_symmetry_sample_with_replacement", (DL_FUNC) &_symmetry_sample_with_replacement, 2},
-    {"_symmetry_reflect_sample", (DL_FUNC) &_symmetry_reflect_sample, 3},
     {"_symmetry_reflected_boot", (DL_FUNC) &_symmetry_reflected_boot, 2},
-    {"_symmetry_trimmed_mean", (DL_FUNC) &_symmetry_trimmed_mean, 2},
     {"_symmetry_boot_sample", (DL_FUNC) &_symmetry_boot_sample, 7},
     {"_symmetry_mn_boot_sample", (DL_FUNC) &_symmetry_mn_boot_sample, 7},
-    {"_symmetry_lm_resid", (DL_FUNC) &_symmetry_lm_resid, 2},
     {"_symmetry_boot_sample_lm", (DL_FUNC) &_symmetry_boot_sample_lm, 7},
     {"_symmetry_simulate_garch", (DL_FUNC) &_symmetry_simulate_garch, 6},
     {NULL, NULL, 0}
