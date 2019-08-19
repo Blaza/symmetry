@@ -45,12 +45,12 @@ MGG_Cpp <- function(X) {
     .Call('_symmetry_MGG_Cpp', PACKAGE = 'symmetry', X)
 }
 
-MI_Cpp <- function(X, k_in) {
-    .Call('_symmetry_MI_Cpp', PACKAGE = 'symmetry', X, k_in)
+MI_Cpp <- function(X, k) {
+    .Call('_symmetry_MI_Cpp', PACKAGE = 'symmetry', X, k)
 }
 
-MK_Cpp <- function(X, k_in) {
-    .Call('_symmetry_MK_Cpp', PACKAGE = 'symmetry', X, k_in)
+MK_Cpp <- function(X, k) {
+    .Call('_symmetry_MK_Cpp', PACKAGE = 'symmetry', X, k)
 }
 
 MOI_Cpp <- function(X, k) {
