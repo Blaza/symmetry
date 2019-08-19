@@ -8,7 +8,7 @@ symmetry_test.default <- function(x, stat, mu = NULL,
                                   simulate_p_value = FALSE, N=1000,
                                   bootstrap = FALSE, B = 100,
                                   boot_method = "sign", trim = 0, k = 0,
-                                  q = 8/9) {
+                                  q = 8/9, ...) {
   xname <- deparse(substitute(x))
 
   stat_fun <- match.fun(stat, descend = FALSE)
@@ -98,8 +98,9 @@ symmetry_test.default <- function(x, stat, mu = NULL,
 }
 
 #' @export
-symmetry_test.lm <- function(model, stat, B = 100,
-                             boot_method = "sign", k = 0) {
+symmetry_test.lm <- function(x, stat, B = 100,
+                             boot_method = "sign", k = 0, ...) {
+  model <- x
   stat_fun <- match.fun(stat, descend = FALSE)
   pass_k <- "k" %in% names(formals(stat))
   if (pass_k && k == 0)
@@ -129,8 +130,9 @@ symmetry_test.lm <- function(model, stat, B = 100,
 }
 
 #' @export
-symmetry_test.fGARCH <- function(model, stat, B = 100, burn = 0, bootstrap = TRUE,
-                                boot_method = "sign", k = 0, iid = !bootstrap) {
+symmetry_test.fGARCH <- function(x, stat, B = 100, burn = 0, bootstrap = TRUE,
+                                boot_method = "sign", k = 0, iid = !bootstrap, ...) {
+  model <- x
   stat_fun <- match.fun(stat, descend = FALSE)
 
   pass_k <- "k" %in% names(formals(stat))
@@ -169,7 +171,7 @@ symmetry_test.fGARCH <- function(model, stat, B = 100, burn = 0, bootstrap = TRU
       if (!iid) {
         boot_y <- simulate_garch(boot_res, ts, cfit, omega, alpha, beta)
 
-        boot_model <- garchFit(model@formula, boot_y,
+        boot_model <- fGarch::garchFit(model@formula, boot_y,
                                cond.dist = "QMLE", include.mean = FALSE,
                                trace = FALSE)
         new_res <- tail(residuals(boot_model, standardize = TRUE), not_burned)
