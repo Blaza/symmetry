@@ -1,8 +1,14 @@
 Package: symmetry
-Title: What the Package Does (one line, title case)
+Title: A package for testing the symmetry of data and model residuals
 Version: 0.1.0
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: c(person("Blagoje", "Ivanović", email = "blagoje_ivanovic@matf.bg.ac.rs", role = c("aut", "cre")),
+             person("Bojana", "Milošević", email = "bojana@matf.bg.ac.rs", role = c("aut")),
+             person("Marko", "Obradović", email = "marcone@matf.bg.ac.rs", role = c("aut")))
+Description: This package implements a large number of tests for symmetry
+    (and their bootstrap variants), which can be used to test the symmetry of IID
+    samples or of model residuals. Currently, the supported models are linear models
+    and GARCH models (fitted with the fGarch package). The tests are implemented
+    using Rcpp which ensures great performance.
 Depends: R (>= 3.1.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
