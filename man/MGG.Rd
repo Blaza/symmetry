@@ -4,12 +4,10 @@
 \alias{MGG}
 \title{Calculate MGG test statistic (see 'Value' for formula)}
 \usage{
-MGG(X, mu = 0)
+MGG(X)
 }
 \arguments{
 \item{X}{the sample for which to calculate the statistic}
-
-\item{mu}{the estimate of the location parameter}
 }
 \value{
 The value of the test statistic given by the formula:
@@ -21,5 +19,5 @@ Calculate MGG test statistic (see 'Value' for formula)
 \examples{
 set.seed(1)
 X <- rnorm(50)
-MGG(X, 2)
+MGG(X)
 }

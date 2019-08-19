@@ -4,7 +4,7 @@
 \alias{SGN}
 \title{Calculate Signed test statistic (see 'Value' for formula)}
 \usage{
-SGN(X, mu = 0)
+SGN(X)
 }
 \arguments{
 \item{X}{the sample for which to calculate the statistic}
@@ -13,7 +13,7 @@ SGN(X, mu = 0)
 }
 \value{
 The value of the test statistic given by the formula:
-        \deqn{ \frac1n \sum_{i=1}^nI\{X_i - \mu > 0\} - \frac12}
+        \deqn{ \frac1n \sum_{i=1}^nI\{X_i > 0\} - \frac12}
 }
 \description{
 Calculate Signed test statistic (see 'Value' for formula)

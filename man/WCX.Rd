@@ -4,7 +4,7 @@
 \alias{WCX}
 \title{Calculate Wilcoxon test statistic (see 'Value' for formula)}
 \usage{
-WCX(X, mu = 0)
+WCX(X)
 }
 \arguments{
 \item{X}{the sample for which to calculate the statistic}
@@ -14,7 +14,7 @@ WCX(X, mu = 0)
 \value{
 The value of the test statistic given by the formula:
         \deqn{ \frac{1}{{n\choose2}} \sum_{1\leq i<j\leq n}
-        I\{X_i+X_j - 2\mu> 0\} - \frac12 }
+        I\{X_i+X_j> 0\} - \frac12 }
 }
 \description{
 Calculate Wilcoxon test statistic (see 'Value' for formula)

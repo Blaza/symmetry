@@ -4,12 +4,10 @@
 \alias{CH}
 \title{Calculate _ test statistic (see 'Value' for formula)}
 \usage{
-CH(X, mu = 0)
+CH(X)
 }
 \arguments{
 \item{X}{the sample for which to calculate the statistic}
-
-\item{mu}{the estimate of the location parameter}
 }
 \value{
 The value of the test statistic given by the formula:
@@ -21,5 +19,5 @@ Calculate _ test statistic (see 'Value' for formula)
 \examples{
 set.seed(1)
 X <- rnorm(50)
-CH(X, 2)
+CH(X)
 }

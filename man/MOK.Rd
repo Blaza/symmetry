@@ -4,20 +4,18 @@
 \alias{MOK}
 \title{Calculate _ test statistic (see 'Value' for formula)}
 \usage{
-MOK(X, k, mu = 0)
+MOK(X, k)
 }
 \arguments{
 \item{X}{the sample for which to calculate the statistic}
 
 \item{k}{the value of parameter 'k' used in the formula}
-
-\item{mu}{the estimate of the location parameter}
 }
 \value{
 The value of the test statistic given by the formula:
         \deqn{ \sup_{t>0}\left|\frac{1}{{n\choose{2k}}}
-        \sum_{\mathcal{I}_{2k}} I\{|X_{(k),X_{i_1},\ldots,X_{i_{2k}}}-\mu|
-        < t\}- I\{|X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}}-\mu| < t \}\right| }
+        \sum_{\mathcal{I}_{2k}} I\{|X_{(k),X_{i_1},\ldots,X_{i_{2k}}}|
+        < t\}- I\{|X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}}| < t \}\right| }
 }
 \description{
 Calculate _ test statistic (see 'Value' for formula)
@@ -26,6 +24,4 @@ Calculate _ test statistic (see 'Value' for formula)
 set.seed(1)
 X <- rnorm(50)
 MOK(X, 2)
-X <- rnorm(50, 1)
-MOK(X, 2, 1)
 }

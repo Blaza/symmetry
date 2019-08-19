@@ -4,7 +4,7 @@
 \alias{KS}
 \title{Calculate Kolmogorov Smirnov test statistic (see 'Value' for formula)}
 \usage{
-KS(X, mu = 0)
+KS(X)
 }
 \arguments{
 \item{X}{the sample for which to calculate the statistic}
@@ -13,7 +13,7 @@ KS(X, mu = 0)
 }
 \value{
 The value of the test statistic given by the formula:
-        \deqn{ \sup_t\left|F_n(t+\mu)-(1-F_n(\mu-t))\right| }
+        \deqn{ \sup_t\left|F_n(t)-(1-F_n(-t))\right| }
 }
 \description{
 Calculate Kolmogorov Smirnov test statistic (see 'Value' for formula)

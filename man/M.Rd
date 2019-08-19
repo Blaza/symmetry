@@ -4,12 +4,10 @@
 \alias{M}
 \title{Calculate Mira test statistic (see 'Value' for formula)}
 \usage{
-M(X, mu = 0)
+M(X)
 }
 \arguments{
 \item{X}{the sample for which to calculate the statistic}
-
-\item{mu}{the estimate of the location parameter}
 }
 \value{
 The value of the test statistic given by the formula:
@@ -21,5 +19,5 @@ Calculate Mira test statistic (see 'Value' for formula)
 \examples{
 set.seed(1)
 X <- rnorm(50)
-M(X, 2)
+M(X)
 }

@@ -4,14 +4,10 @@
 \alias{BHK}
 \title{Calculate _ test statistic (see 'Value' for formula)}
 \usage{
-BHK(X, mu = 0)
+BHK(X)
 }
 \arguments{
 \item{X}{the sample for which to calculate the statistic}
-
-\item{mu}{the estimate of the location parameter}
-
-\item{k}{the value of parameter 'k' used in the formula}
 }
 \description{
 Calculate _ test statistic (see 'Value' for formula)
@@ -19,7 +15,5 @@ Calculate _ test statistic (see 'Value' for formula)
 \examples{
 set.seed(1)
 X <- rnorm(50)
-BHK(X, 2)
-X <- rnorm(50, 1)
-BHK(X, 2, 1)
+BHK(X)
 }

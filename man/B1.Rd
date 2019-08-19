@@ -4,12 +4,10 @@
 \alias{B1}
 \title{Calculate \eqn{\sqrt{b_1}} test statistic (see 'Value' for formula)}
 \usage{
-B1(X, mu = 0)
+B1(X)
 }
 \arguments{
 \item{X}{the sample for which to calculate the statistic}
-
-\item{mu}{the estimate of the location parameter}
 }
 \value{
 The value of the test statistic given by the formula:
@@ -21,5 +19,5 @@ Calculate \eqn{\sqrt{b_1}} test statistic (see 'Value' for formula)
 \examples{
 set.seed(1)
 X <- rnorm(50)
-B1(X, 2)
+B1(X)
 }
