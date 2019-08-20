@@ -9,7 +9,10 @@
 #' KS(X)
 #' @export
 KS <- function(X) {
-  # using [['D']] to get a number instead of a named vector
+  if (!is.numeric(x) && !is.logical(x)) {
+    warning("Argument is not numeric or logical: returning NA")
+    return(NA)
+  }
   KS_Cpp(X)
 }
 
@@ -24,6 +27,10 @@ KS <- function(X) {
 #' SGN(X)
 #' @export
 SGN <- function(X) {
+  if (!is.numeric(x) && !is.logical(x)) {
+    warning("Argument is not numeric or logical: returning NA")
+    return(NA)
+  }
   SGN_Cpp(X)
 }
 
@@ -39,5 +46,9 @@ SGN <- function(X) {
 #' WCX(X)
 #' @export
 WCX <- function(X) {
+  if (!is.numeric(x) && !is.logical(x)) {
+    warning("Argument is not numeric or logical: returning NA")
+    return(NA)
+  }
   WCX_Cpp(X)
 }

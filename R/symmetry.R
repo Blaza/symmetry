@@ -2,6 +2,7 @@
 #' @importFrom stats coef fitted model.matrix residuals rnorm rlogis
 #' @importFrom utils tail
 #' @import parallel
+#' @import Rcpp
 NULL
 
 #' symmetry: A package which implements tests for symmetry

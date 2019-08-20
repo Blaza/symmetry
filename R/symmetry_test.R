@@ -8,6 +8,11 @@ symmetry_test.default <- function(x, stat, mu = NULL,
                                   bootstrap = FALSE, B = 1000,
                                   boot_method = c("sign", "reflect"),
                                   trim = 0, k = 0, ...) {
+  if (!is.numeric(x) && !is.logical(x)) {
+    stop("Symmetry tests can be applied only to numeric vectors or objects of
+         classes lm and fGARCH.")
+  }
+
   xname <- deparse(substitute(x))
   boot_method <- match.arg(boot_method)
 
@@ -49,7 +54,8 @@ symmetry_test.default <- function(x, stat, mu = NULL,
       stop("The asymptotic distribution of the chosen test statistic is not available.")
     if (is.null(mu))
       mu <- 0
-    tval <- if(pass_k) stat_fun(x, k = k, mu = mu) else stat_fun(x, mu = mu)
+    xc <- x - mu
+    tval <- if(pass_k) stat_fun(xc, k = k) else stat_fun(xc)
     pdist <- asymptotic_distributions[[stat]](k)
     pval <- 2 * (1 - pdist(abs(tval)))
     METHOD <- c("Symmetry test",
