@@ -5,10 +5,8 @@ symmetry_test <- function(x, ...) {
 
 #' @export
 symmetry_test.default <- function(x, stat, mu = NULL,
-                                  simulate_p_value = FALSE, N=1000,
-                                  bootstrap = FALSE, B = 100,
-                                  boot_method = "sign", trim = 0, k = 0,
-                                  q = 8/9, ...) {
+                                  bootstrap = FALSE, B = 1000,
+                                  boot_method = "sign", trim = 0, k = 0, ...) {
   xname <- deparse(substitute(x))
 
   stat_fun <- match.fun(stat, descend = FALSE)
@@ -20,11 +18,7 @@ symmetry_test.default <- function(x, stat, mu = NULL,
   params <- NULL
 
   if (bootstrap && is.null(mu)) { # UNKNOWN MEAN BOOTSTRAP
-    boot <- if (boot_method != "mn") {
-      boot_sample(x, trim, B, boot_method, stat, k)
-    } else {
-      mn_boot_sample(x, trim, B, stat, k, q)
-    }
+    boot <- boot_sample(x, trim, B, boot_method, stat, k)
 
     MU <- c(mu = mean(x, trim = trim))
     xc <- x - MU
@@ -37,11 +31,7 @@ symmetry_test.default <- function(x, stat, mu = NULL,
     params <- c("B" = B)
 
   } else if (bootstrap && !is.null(mu)){ # KNOWN MEAN BOOTSTRAP
-    boot <- if (boot_method != "mn") {
-      boot_sample(x, mu, B, boot_method, stat, k, TRUE)
-    } else {
-      mn_boot_sample(x, mu, B, stat, k, q, TRUE)
-    }
+    boot <- boot_sample(x, mu, B, boot_method, stat, k, TRUE)
 
     xc <- x - mu
     tval <- if(pass_k) stat_fun(xc, k = k) else stat_fun(xc)
@@ -51,26 +41,6 @@ symmetry_test.default <- function(x, stat, mu = NULL,
     METHOD <- c("Symmetry test",
                 paste("Null hypothesis: Data is symmetric around", mu))
     params <- c("B" = B)
-
-  } else if(simulate_p_value){ # KNOWN MEAN, SIMULATED P VALUE
-    if (is.null(mu))
-      mu <- 0
-    n <- length(x)
-    normals <- matrix(rnorm(n*N, mu), ncol=n)
-    apply_fun <- if(pass_k) {
-      function(x) stat_fun(x, k, mu)
-    } else {
-      function(x) stat_fun(x, mu)
-    }
-    null_distrib <- apply(normals, 1, apply_fun)
-
-    tval <- if(pass_k) stat_fun(x, k = k, mu = mu) else stat_fun(x, mu = mu)
-
-    pval <- mean(abs(null_distrib) >= abs(tval))
-
-    METHOD <- c("Symmetry test",
-                paste("Null hypothesis: Data is symmetric around", mu))
-    params <- c("N" = N)
 
   } else { # ASYMPTOTIC RESULTS
     if (!stat %in% names(asymptotic_distributions))
@@ -98,7 +68,7 @@ symmetry_test.default <- function(x, stat, mu = NULL,
 }
 
 #' @export
-symmetry_test.lm <- function(x, stat, B = 100,
+symmetry_test.lm <- function(x, stat, B = 1000,
                              boot_method = "sign", k = 0, ...) {
   model <- x
   stat_fun <- match.fun(stat, descend = FALSE)
@@ -130,7 +100,7 @@ symmetry_test.lm <- function(x, stat, B = 100,
 }
 
 #' @export
-symmetry_test.fGARCH <- function(x, stat, B = 100, burn = 0, bootstrap = TRUE,
+symmetry_test.fGARCH <- function(x, stat, B = 1000, burn = 0, bootstrap = TRUE,
                                 boot_method = "sign", k = 0, iid = !bootstrap, ...) {
   model <- x
   stat_fun <- match.fun(stat, descend = FALSE)
