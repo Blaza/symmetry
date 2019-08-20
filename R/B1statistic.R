@@ -3,11 +3,11 @@
 #' @param X the sample for which to calculate the statistic
 #' @return The value of the test statistic given by the formula:
 #' < to be added >
-#' @e(X)amples
+#' @examples
 #' set.seed(1)
 #' X <- rnorm(50)
 #' B1(X)
-#' @e(X)port
+#' @export
 B1 <- function(X) {
   if (!is.numeric((X)) && !is.logical((X))) {
     warning("Argument is not numeric or logical: returning NA")

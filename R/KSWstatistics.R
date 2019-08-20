@@ -9,7 +9,7 @@
 #' KS(X)
 #' @export
 KS <- function(X) {
-  if (!is.numeric(x) && !is.logical(x)) {
+  if (!is.numeric((X)) && !is.logical((X))) {
     warning("Argument is not numeric or logical: returning NA")
     return(NA)
   }
@@ -27,7 +27,7 @@ KS <- function(X) {
 #' SGN(X)
 #' @export
 SGN <- function(X) {
-  if (!is.numeric(x) && !is.logical(x)) {
+  if (!is.numeric((X)) && !is.logical((X))) {
     warning("Argument is not numeric or logical: returning NA")
     return(NA)
   }
@@ -46,7 +46,7 @@ SGN <- function(X) {
 #' WCX(X)
 #' @export
 WCX <- function(X) {
-  if (!is.numeric(x) && !is.logical(x)) {
+  if (!is.numeric((X)) && !is.logical((X))) {
     warning("Argument is not numeric or logical: returning NA")
     return(NA)
   }

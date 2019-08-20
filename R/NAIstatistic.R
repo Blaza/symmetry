@@ -6,11 +6,11 @@
 #'         \deqn{ \frac{1}{n {n\choose{k}}} \sum_{\mathcal{I}_{k}}
 #'         \sum_{i_{k+1}=1}^n I\{|X_{(1),X_{i_1},\ldots,X_{i_{k}}}| <
 #'         |X_{i_{k+1}}|\}- I\{|X_{(k),X_{i_1},\ldots,X_{i_{k}}}| < |X_{i_{k+1}}|\} }
-#' @e(X)amples
+#' @examples
 #' set.seed(1)
 #' X <- rnorm(50)
 #' NAI(X, 2)
-#' @e(X)port
+#' @export
 NAI <- function(X, k) {
   if (!is.numeric((X)) && !is.logical((X))) {
     warning("Argument is not numeric or logical: returning NA")

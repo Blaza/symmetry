@@ -4,11 +4,11 @@
 #' @param k the tuning parameter for the Laplace transform
 #' @return The value of the test statistic given by the formula:
 #'         <to be added>
-#' @e(X)amples
+#' @examples
 #' set.seed(1)
 #' X <- rnorm(50)
 #' T1(X, 5)
-#' @e(X)port
+#' @export
 T1 <- function(X, k) {
   if (!is.numeric((X)) && !is.logical((X))) {
     warning("Argument is not numeric or logical: returning NA")
