@@ -1,5 +1,4 @@
 #' @useDynLib symmetry
-#' @importFrom Rcpp sourceCpp
 #' @importFrom stats coef fitted model.matrix residuals rnorm rlogis
 #' @importFrom utils tail
 #' @import parallel
