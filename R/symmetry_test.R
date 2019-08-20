@@ -6,8 +6,10 @@ symmetry_test <- function(x, ...) {
 #' @export
 symmetry_test.default <- function(x, stat, mu = NULL,
                                   bootstrap = FALSE, B = 1000,
-                                  boot_method = "sign", trim = 0, k = 0, ...) {
+                                  boot_method = c("sign", "reflect"),
+                                  trim = 0, k = 0, ...) {
   xname <- deparse(substitute(x))
+  boot_method <- match.arg(boot_method)
 
   stat_fun <- match.fun(stat, descend = FALSE)
   pass_k <- "k" %in% names(formals(stat))
@@ -69,7 +71,8 @@ symmetry_test.default <- function(x, stat, mu = NULL,
 
 #' @export
 symmetry_test.lm <- function(x, stat, B = 1000,
-                             boot_method = "sign", k = 0, ...) {
+                             boot_method = c("sign", "reflect"), k = 0, ...) {
+  boot_method <- match.arg(boot_method)
   model <- x
   stat_fun <- match.fun(stat, descend = FALSE)
   pass_k <- "k" %in% names(formals(stat))
@@ -101,7 +104,9 @@ symmetry_test.lm <- function(x, stat, B = 1000,
 
 #' @export
 symmetry_test.fGARCH <- function(x, stat, B = 1000, burn = 0, bootstrap = TRUE,
-                                boot_method = "sign", k = 0, iid = !bootstrap, ...) {
+                                boot_method = c("sign", "reflect"), k = 0,
+                                iid = !bootstrap, ...) {
+  boot_method <- match.arg(boot_method)
   model <- x
   stat_fun <- match.fun(stat, descend = FALSE)
 
