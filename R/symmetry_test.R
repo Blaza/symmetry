@@ -44,6 +44,15 @@
 #' @param ... not used
 #' @return An object of class "htest" containing the results of the testing.
 #' @references \insertAllCited{}
+#' @examples
+#' set.seed(1)
+#' x <- rnorm(50)
+#' symmetry_test(x, "MOI", bootstrap = TRUE, k = 3)
+#' x <- rsl(50, alpha = 1.5)
+#' symmetry_test(x, "MOI", bootstrap = TRUE, k = 3)
+#'
+#' lin_model <- lm(dist ~ speed, cars)
+#' symmetry_test(lin_model, "B1")
 #' @export
 symmetry_test <- function(x, ...) {
   UseMethod("symmetry_test", x)
@@ -143,7 +152,7 @@ symmetry_test.lm <- function(x, stat, B = 1000,
   names(tval) <- stat
   pval <- mean(abs(boot) >= abs(tval))
 
-  xname <- paste("Residuals from model", deparse(substitute(model)))
+  xname <- paste("Residuals from model", deparse(substitute(x)))
   METHOD <- c("Symmetry test of linear model residuals",
               "Null hypothesis: The residuals are symmetric around 0")
   params <- c("B" = B)
@@ -222,7 +231,7 @@ symmetry_test.fGARCH <- function(x, stat, B = 1000, burn = 0, bootstrap = TRUE,
     pdist <- asymptotic_distributions[[stat]](k)
     pval <- 2 * (1 - pdist(abs(unname(tval))))
   }
-  xname <- paste("Residuals from model", deparse(substitute(model)))
+  xname <- paste("Residuals from model", deparse(substitute(x)))
   METHOD <- c("Symmetry test of GARCH model residuals",
               "Null hypothesis: The residuals are symmetric around 0")
   if(pass_k) params <- c(k=k, params)
