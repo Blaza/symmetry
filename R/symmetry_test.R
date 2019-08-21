@@ -1,8 +1,54 @@
+#' Perform symmetry tests
+#'
+#' This is a generic function used to perform symmetry tests on numeric vectors
+#' or objects of class lm (linear models) and objects of class fGARCH (GARCH
+#' mdels fitted with the fGarch package).
+#'
+#' The tests are performed using bootstrap procedures or using asymptotic
+#' results, where applicable. Currently, two methods of generating a bootstrap
+#' sample from the null distribution are available. The "sign" method generates
+#' the bootstrap sample by multiplying the existing sample by -1 or 1 at random
+#' (with equal probabilities), essentially randomizing the sign of the data,
+#' giving a symmetric distribution. The "reflect" method reflects the sample
+#' around zero and samples length(x) elements with replacement. In practive, it
+#' has been shown that the "sign" method is almost always better, thus is the
+#' default.
+#'
+#' For numeric data, the tests can be performed around a known (parameter "mu")
+#' or unknown location parameter. For unknown location (when mu = NULL),
+#' bootstrap must be used and the estimate of the location parameter used is the
+#' trimmed mean, with trim parameter "trim". By default, the mean is taken (trim
+#' = 0).
+#'
+#' For linear models, the tests are based on a bootstrap procedure as in
+#' \insertCite{Allison2016}{symmetry} and are used to test the symmetry of the
+#' residuals around zero.
+#'
+#' For GARCH models (must be fitted with the fGarch package), the tests are also
+#' based on bootstrap and test for symmetry of the residuals around zero. An
+#' approximation of the bootstrap procedure is available where the residuals are
+#' treated as iid data, which is much faster and has been shown to give similar
+#' results to the default bootstrap procedure (described in
+#' \insertCite{Klar2012}{symmetry}).
+#'
+#' @param x an object of class numeric, lm or fGARCH
+#' @param stat a character vector indicating the test statistic to be used (Available statistics are under ...)
+#' @param mu the location parameter around which to
+#' @param bootstrap a logical indicationg whether to use bootstrap
+#' @param B the number of bootstrap replications
+#' @param boot_method the method of bootstrap sample generation (see Details)
+#' @param trim the trim value used for estimating the location parameter (as used in "mean")
+#' @param k the k parameter of the statistic, ignored if the test statistic doesn't depend on a parameter (see Statistics)
+#' @param burn the number of elements to remove from the beggining of the time series for testing
+#' @param iid a logical indicating whether to use the faster approximate bootstrap method (see Details)
+#' @param ... not used
+#' @return An object of class "htest" containing the results of the testing.
+#' @references \insertAllCited{}
 #' @export
 symmetry_test <- function(x, ...) {
   UseMethod("symmetry_test", x)
 }
-
+#' @rdname symmetry_test
 #' @export
 symmetry_test.default <- function(x, stat, mu = NULL,
                                   bootstrap = FALSE, B = 1000,
@@ -52,11 +98,14 @@ symmetry_test.default <- function(x, stat, mu = NULL,
   } else { # ASYMPTOTIC RESULTS
     if (!stat %in% names(asymptotic_distributions))
       stop("The asymptotic distribution of the chosen test statistic is not available.")
-    if (is.null(mu))
+    if (is.null(mu)) {
+      warning("Argument mu not provided. Using 0 by default.")
       mu <- 0
+    }
     xc <- x - mu
     tval <- if(pass_k) stat_fun(xc, k = k) else stat_fun(xc)
-    pdist <- asymptotic_distributions[[stat]](k)
+    asymp_fun <- asymptotic_distributions[[stat]]
+    pdist <- if(pass_k) asymp_fun(k) else asymp_fun
     pval <- 2 * (1 - pdist(abs(tval)))
     METHOD <- c("Symmetry test",
                 paste("Null hypothesis: Data is symmetric around", mu))
@@ -75,6 +124,7 @@ symmetry_test.default <- function(x, stat, mu = NULL,
   obj
 }
 
+#' @rdname symmetry_test
 #' @export
 symmetry_test.lm <- function(x, stat, B = 1000,
                              boot_method = c("sign", "reflect"), k = 0, ...) {
@@ -108,6 +158,7 @@ symmetry_test.lm <- function(x, stat, B = 1000,
   obj
 }
 
+#' @rdname symmetry_test
 #' @export
 symmetry_test.fGARCH <- function(x, stat, B = 1000, burn = 0, bootstrap = TRUE,
                                 boot_method = c("sign", "reflect"), k = 0,
