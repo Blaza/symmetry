@@ -26,7 +26,7 @@ symmetry_test(x, ...)
 \item{...}{not used}
 
 \item{stat}{a character vector indicating the test statistic to be used (see
-\link[=TestStatistics]{Avilable Test Statistics})}
+\link[=AvailableTestStatistics]{Available Test Statistics})}
 
 \item{mu}{the location parameter around which to}
 
@@ -40,7 +40,7 @@ symmetry_test(x, ...)
 used in "mean")}
 
 \item{k}{the k parameter of the statistic, ignored if the test statistic
-doesn't depend on a parameter (see see \link[=TestStatistics]{Test
+doesn't depend on a parameter (see \link[=AvailableTestStatistics]{Test
 Statistics})}
 
 \item{burn}{the number of elements to remove from the beggining of the time
@@ -110,7 +110,7 @@ x <- fGarch::garchSim(specskew19, n = 500)
 g <- fGarch::garchFit(~garch(1,1), x, cond.dist = "QMLE",
               include.mean = FALSE, trace = FALSE)
 symmetry_test(g, "CH", B=200, burn = 100)
-symmetry_test(g, "CH", B=200, burn = 100, iid = TRUE)
+symmetry_test(g, "CH", B=200, burn = 100, approximate = TRUE)
 
 }
 \references{

@@ -33,7 +33,7 @@
 #'
 #' @param x an object of class numeric, lm or fGARCH
 #' @param stat a character vector indicating the test statistic to be used (see
-#'   \link[=TestStatistics]{Avilable Test Statistics})
+#'   \link[=TestStatistics]{Available Test Statistics})
 #' @param mu the location parameter around which to
 #' @param bootstrap a logical indicationg whether to use bootstrap
 #' @param B the number of bootstrap replications
@@ -41,7 +41,7 @@
 #' @param trim the trim value used for estimating the location parameter (as
 #'   used in "mean")
 #' @param k the k parameter of the statistic, ignored if the test statistic
-#'   doesn't depend on a parameter (see see \link[=TestStatistics]{Test
+#'   doesn't depend on a parameter (see \link[=TestStatistics]{Test
 #'   Statistics})
 #' @param burn the number of elements to remove from the beggining of the time
 #'   series for testing
@@ -75,7 +75,7 @@
 #' g <- fGarch::garchFit(~garch(1,1), x, cond.dist = "QMLE",
 #'               include.mean = FALSE, trace = FALSE)
 #' symmetry_test(g, "CH", B=200, burn = 100)
-#' symmetry_test(g, "CH", B=200, burn = 100, iid = TRUE)
+#' symmetry_test(g, "CH", B=200, burn = 100, approximate = TRUE)
 #'
 #' @export
 symmetry_test <- function(x, ...) {
@@ -197,6 +197,7 @@ symmetry_test.fGARCH <- function(x, stat, B = 1000, burn = 0,
                                 boot_method = c("sign", "reflect"), k = 0,
                                 approximate = FALSE, ...) {
   boot_method <- match.arg(boot_method)
+  iid <- approximate
   model <- x
   stat_fun <- match.fun(stat, descend = FALSE)
 

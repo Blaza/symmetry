@@ -1,10 +1,10 @@
 Package: symmetry
-Title: A package for testing the symmetry of data and model residuals
+Title: A Package for Testing the Symmetry of Data and Model Residuals
 Version: 0.1.0
 Authors@R: c(person("Blagoje", "Ivanović", email = "blagoje_ivanovic@matf.bg.ac.rs", role = c("aut", "cre")),
              person("Bojana", "Milošević", email = "bojana@matf.bg.ac.rs", role = c("aut")),
              person("Marko", "Obradović", email = "marcone@matf.bg.ac.rs", role = c("aut")))
-Description: This package implements a large number of tests for symmetry
+Description: Implementations a large number of tests for symmetry
     (and their bootstrap variants), which can be used to test the symmetry of IID
     samples or of model residuals. Currently, the supported models are linear models
     and GARCH models (fitted with the fGarch package). The tests are implemented
@@ -13,10 +13,9 @@ Depends: R (>= 3.1.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Imports: Rcpp, RcppArmadillo, Rdpack
+Imports: Rcpp, Rdpack
 RdMacros: Rdpack
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.1.1
 SystemRequirements: C++11
 Suggests: knitr, rmarkdown, sn, fGarch, testthat
-VignetteBuilder: knitr

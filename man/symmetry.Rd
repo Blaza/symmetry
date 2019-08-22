@@ -4,7 +4,17 @@
 \name{symmetry}
 \alias{symmetry}
 \alias{symmetry-package}
-\title{symmetry: A package which implements tests for symmetry}
+\title{symmetry: A package which implements tests for symmetry of IID data, linear
+models and GARCH models}
 \description{
-symmetry: A package which implements tests for symmetry
+The package caontains a large number of tests for symmetry (and their
+bootstrap variants), which can be used to test the symmetry of IID samples or
+of model residuals. Currently, the supported models are linear models and
+GARCH models (fitted with the fGarch package). The tests are implemented
+using Rcpp which ensures great performance.
+}
+\details{
+To see the available tests, see \link{TestStatistics}
+
+For documentation on how to perform the tests, see \link{symmetry_test}
 }

@@ -1,12 +1,6 @@
-#' Calculate MGG test statistic (see 'Value' for formula)
-#'
-#' @param X the sample for which to calculate the statistic
-#' @return The value of the test statistic given by the formula:
-#'          <to be added>
-#' @examples
-#' set.seed(1)
-#' X <- rnorm(50)
-#' MGG(X)
+#' @template test_stat
+#' @templateVar name The Miao, Gel and Gastwirth test statistic
+#' @templateVar cite Miao2006
 #' @export
 MGG <- function(X) {
   if (!is.numeric((X)) && !is.logical((X))) {
