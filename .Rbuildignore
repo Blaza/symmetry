@@ -3,3 +3,4 @@
 ^\.httr-oauth$
 ^man\.pdf$
 ^docs$
+^man-roxygen$

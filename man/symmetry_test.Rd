@@ -26,7 +26,7 @@ symmetry_test(x, ...)
 \item{...}{not used}
 
 \item{stat}{a character vector indicating the test statistic to be used (see
-\link[=AvailableTestStatistics]{Available Test Statistics})}
+\link[=TestStatistics]{Available Test Statistics})}
 
 \item{mu}{the location parameter around which to}
 
@@ -40,7 +40,7 @@ symmetry_test(x, ...)
 used in "mean")}
 
 \item{k}{the k parameter of the statistic, ignored if the test statistic
-doesn't depend on a parameter (see \link[=AvailableTestStatistics]{Test
+doesn't depend on a parameter (see \link[=TestStatistics]{Test
 Statistics})}
 
 \item{burn}{the number of elements to remove from the beggining of the time

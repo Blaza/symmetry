@@ -105,141 +105,95 @@ string, so the name of the function is passed as the argument "stat" to the
 \itemize{
 \item \code{B1}: The \eqn{\sqrt{b_1}}  test statistic \insertCite{Cabilio1996}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+to be added
 
 \item \code{BHI}: The Cabilio–Masaro test statistic \insertCite{Cabilio1996}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+\deqn{ \frac{1}{n {n\choose{2}}} \sum_{\mathcal{I}_{2}} \sum_{i_{3}=1}^n \left( \frac12 I\{|X_{i_1}| < |X_{i_{3}}|\} + \frac12 I\{|X_{i_2}| < |X_{i_{3}}|\} - I\{|X_{(2),X_{i_1},X_{i_2}}| < |X_{i_{3}}|\}\right) }
 
 \item \code{BHK}: The Cabilio–Masaro test statistic \insertCite{Cabilio1996}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+\deqn{ \sup_{t>0}\left|\frac{1}{{n\choose{2}}} \sum_{\mathcal{I}_{2}}\left( \frac12 I\{|X_{i_1}| <t\} + \frac12 I\{|X_{i_2}| <t\} - I\{|X_{(2),X_{i_1},X_{i_2}}| < t\}\right)\right| }
 
 \item \code{CH}: The Cabilio–Masaro test statistic \insertCite{Cabilio1996}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+to be added
 
 \item \code{CM}: The Cabilio–Masaro test statistic \insertCite{Cabilio1996}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+to be added
 
 \item \code{K2U}: The Miao, Gel and Gastwirth test statistic \insertCite{Miao2006}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+\deqn{ \sup_{t>0}\frac{1}{ {n\choose 2}} \left| \sum_{1\leq i < j \leq n } I\{|X_i - X_j| < t\}- I\{|X_i + X_j| < t\}\right| }
 
 \item \code{K2}: The Miao, Gel and Gastwirth test statistic \insertCite{Miao2006}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+\deqn{ \sup_{t>0}\frac{1}{n^2} \left| \sum_{i,j=1}^n I\{|X_i - X_j| < t\}- I\{|X_i + X_j| < t\}\right| }
 
-\item \code{KS}: The Miao, Gel and Gastwirth test statistic \insertCite{Miao2006}{symmetry}
+\item \code{KS}: Kolmogorov--Smirnov test statistic \insertCite{Miao2006}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+\deqn{ \sup_t\left|F_n(t)-(1-F_n(-t))\right| }
 
-\item \code{SGN}: The Miao, Gel and Gastwirth test statistic \insertCite{Miao2006}{symmetry}
+\item \code{SGN}: The Sign test statistic \insertCite{Miao2006}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+\deqn{ \frac1n \sum_{i=1}^nI\{X_i > 0\} - \frac12}
 
-\item \code{WCX}: The Miao, Gel and Gastwirth test statistic \insertCite{Miao2006}{symmetry}
+\item \code{WCX}: The Wilcoxon test statistic \insertCite{Miao2006}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+\deqn{ \frac{1}{{n\choose2}} \sum_{1\leq i<j\leq n} I\{X_i+X_j> 0\} - \frac12 }
 
 \item \code{L2}: The Miao, Gel and Gastwirth test statistic \insertCite{Miao2006}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+\deqn{\begin{array}{rl} \frac{1}{n^4} \sum_{i,j,m,l=1}^n &\left(\frac{1}{k+|X_i - X_j|+|X_m - X_l|}-\frac{1}{k+|X_i - X_j|+|X_m + X_l|}\right. \\ &-\left.\frac{1}{k+|X_i + X_j|+|X_m - X_l|} +\frac{1}{k+|X_i + X_j|+|X_m + X_l|}\right)\end{array} }
 
 \item \code{MGG}: The Miao, Gel and Gastwirth test statistic \insertCite{Miao2006}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+to be added
 
 \item \code{MI}: The Mira test statistic \insertCite{Mira1999}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+\deqn{ \frac{1}{n {n\choose{2k+1}}} \sum_{\mathcal{I}_{2k}} \sum_{i_{2k+1}=1}^n I\{-(X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}}| < X_{i_{2k+1}}\}- I\{X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}} < X_{i_{2k+1}}\} }
 
 \item \code{MK}: The Mira test statistic \insertCite{Mira1999}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+\deqn{ \sup_{t>0}\left|\frac{1}{{n\choose{2k}}} \sum_{\mathcal{I}_{2k}} I\{-(X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}}) < t\}- I\{X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}} < t \}\right| }
 
 \item \code{MOI}: The Mira test statistic \insertCite{Mira1999}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+\deqn{ \frac{1}{n {n\choose{2k}}} \sum_{\mathcal{I}_{2k}} \sum_{i_{2k+1}=1}^n I\{|X_{(k),X_{i_1},\ldots,X_{i_{2k}}}| < |X_{i_{2k+1}}|\}- I\{|X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}}| < |X_{i_{2k+1}}|\} }
 
 \item \code{MOK}: The Mira test statistic \insertCite{Mira1999}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+\deqn{ \sup_{t>0}\left|\frac{1}{{n\choose{2k}}} \sum_{\mathcal{I}_{2k}} I\{|X_{(k),X_{i_1},\ldots,X_{i_{2k}}}| < t\}- I\{|X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}}| < t \}\right| }
 
 \item \code{M}: The Mira test statistic \insertCite{Mira1999}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+to be added
 
 \item \code{NAI}: Allison \eqn{T_2} statistic \insertCite{Klar2012}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+\deqn{ \frac{1}{n {n\choose{k}}} \sum_{\mathcal{I}_{k}} \sum_{i_{k+1}=1}^n I\{|X_{(1),X_{i_1},\ldots,X_{i_{k}}}| < |X_{i_{k+1}}|\}- I\{|X_{(k),X_{i_1},\ldots,X_{i_{k}}}| < |X_{i_{k+1}}|\} }
 
 \item \code{NAK}: Allison \eqn{T_2} statistic \insertCite{Klar2012}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+\deqn{ \sup_{t>0}\left|\frac{1}{{n\choose{k}}} \sum_{\mathcal{I}_{k}} I\{|X_{(1),X_{i_1},\ldots,X_{i_{k}}}| < t\}- I\{|X_{(k),X_{i_1},\ldots,X_{i_{k}}}| < t \}\right| }
 
 \item \code{S1}: Allison \eqn{T_2} statistic \insertCite{Klar2012}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+to be added
 
 \item \code{S2}: Allison \eqn{T_2} statistic \insertCite{Klar2012}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+to be added
 
 \item \code{T1}: Allison \eqn{T_2} statistic \insertCite{Klar2012}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+to be added
 
 \item \code{T2}: Allison \eqn{T_2} statistic \insertCite{Klar2012}{symmetry}
 
-\deqn{
- \sum_{i=1}^ni^2
-}
+to be added
 }}
 
 \references{

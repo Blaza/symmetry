@@ -1,6 +1,7 @@
 #' @template test_stat
 #' @templateVar name Allison \eqn{T_2} statistic
 #' @templateVar cite Klar2012
+#' @templateVar formula to be added
 #' @export
 T1 <- function(X, k) {
   if (!is.numeric((X)) && !is.logical((X))) {
