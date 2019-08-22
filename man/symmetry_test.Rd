@@ -17,15 +17,16 @@ symmetry_test(x, ...)
   "reflect"), k = 0, ...)
 
 \method{symmetry_test}{fGARCH}(x, stat, B = 1000, burn = 0,
-  bootstrap = TRUE, boot_method = c("sign", "reflect"), k = 0,
-  iid = !bootstrap, ...)
+  boot_method = c("sign", "reflect"), k = 0, approximate = FALSE,
+  ...)
 }
 \arguments{
 \item{x}{an object of class numeric, lm or fGARCH}
 
 \item{...}{not used}
 
-\item{stat}{a character vector indicating the test statistic to be used (Available statistics are under ...)}
+\item{stat}{a character vector indicating the test statistic to be used (see
+\link[=TestStatistics]{Avilable Test Statistics})}
 
 \item{mu}{the location parameter around which to}
 
@@ -35,13 +36,18 @@ symmetry_test(x, ...)
 
 \item{boot_method}{the method of bootstrap sample generation (see Details)}
 
-\item{trim}{the trim value used for estimating the location parameter (as used in "mean")}
+\item{trim}{the trim value used for estimating the location parameter (as
+used in "mean")}
 
-\item{k}{the k parameter of the statistic, ignored if the test statistic doesn't depend on a parameter (see Statistics)}
+\item{k}{the k parameter of the statistic, ignored if the test statistic
+doesn't depend on a parameter (see see \link[=TestStatistics]{Test
+Statistics})}
 
-\item{burn}{the number of elements to remove from the beggining of the time series for testing}
+\item{burn}{the number of elements to remove from the beggining of the time
+series for testing}
 
-\item{iid}{a logical indicating whether to use the faster approximate bootstrap method (see Details)}
+\item{approximate}{a logical indicating whether to use the faster approximate
+bootstrap method (see Details)}
 }
 \value{
 An object of class "htest" containing the results of the testing.
@@ -78,6 +84,34 @@ approximation of the bootstrap procedure is available where the residuals are
 treated as iid data, which is much faster and has been shown to give similar
 results to the default bootstrap procedure (described in
 \insertCite{Klar2012}{symmetry}).
+}
+\examples{
+set.seed(1)
+
+# IID samples
+x <- rnorm(50)
+symmetry_test(x, "MOI", bootstrap = TRUE, k = 3)
+x <- rsl(50, alpha = 1.5)
+symmetry_test(x, "MOI", bootstrap = TRUE, k = 3)
+
+# Linear models
+lin_model <- lm(dist ~ speed, cars)
+symmetry_test(lin_model, "B1")
+
+# Garch models
+library(fGarch)
+specskew19 = fGarch::garchSpec(model = list(omega = 0.1,
+                                    alpha = 0.3,
+                                    beta = 0.3,
+                                    skew = 1.9),
+                                    cond.dist = "snorm")
+
+x <- fGarch::garchSim(specskew19, n = 500)
+g <- fGarch::garchFit(~garch(1,1), x, cond.dist = "QMLE",
+              include.mean = FALSE, trace = FALSE)
+symmetry_test(g, "CH", B=200, burn = 100)
+symmetry_test(g, "CH", B=200, burn = 100, iid = TRUE)
+
 }
 \references{
 \insertAllCited{}

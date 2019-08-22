@@ -32,27 +32,51 @@
 #' \insertCite{Klar2012}{symmetry}).
 #'
 #' @param x an object of class numeric, lm or fGARCH
-#' @param stat a character vector indicating the test statistic to be used (Available statistics are under ...)
+#' @param stat a character vector indicating the test statistic to be used (see
+#'   \link[=TestStatistics]{Avilable Test Statistics})
 #' @param mu the location parameter around which to
 #' @param bootstrap a logical indicationg whether to use bootstrap
 #' @param B the number of bootstrap replications
 #' @param boot_method the method of bootstrap sample generation (see Details)
-#' @param trim the trim value used for estimating the location parameter (as used in "mean")
-#' @param k the k parameter of the statistic, ignored if the test statistic doesn't depend on a parameter (see Statistics)
-#' @param burn the number of elements to remove from the beggining of the time series for testing
-#' @param iid a logical indicating whether to use the faster approximate bootstrap method (see Details)
+#' @param trim the trim value used for estimating the location parameter (as
+#'   used in "mean")
+#' @param k the k parameter of the statistic, ignored if the test statistic
+#'   doesn't depend on a parameter (see see \link[=TestStatistics]{Test
+#'   Statistics})
+#' @param burn the number of elements to remove from the beggining of the time
+#'   series for testing
+#' @param approximate a logical indicating whether to use the faster approximate
+#'   bootstrap method (see Details)
 #' @param ... not used
 #' @return An object of class "htest" containing the results of the testing.
 #' @references \insertAllCited{}
 #' @examples
 #' set.seed(1)
+#'
+#' # IID samples
 #' x <- rnorm(50)
 #' symmetry_test(x, "MOI", bootstrap = TRUE, k = 3)
 #' x <- rsl(50, alpha = 1.5)
 #' symmetry_test(x, "MOI", bootstrap = TRUE, k = 3)
 #'
+#' # Linear models
 #' lin_model <- lm(dist ~ speed, cars)
 #' symmetry_test(lin_model, "B1")
+#'
+#' # Garch models
+#' library(fGarch)
+#' specskew19 = fGarch::garchSpec(model = list(omega = 0.1,
+#'                                     alpha = 0.3,
+#'                                     beta = 0.3,
+#'                                     skew = 1.9),
+#'                                     cond.dist = "snorm")
+#'
+#' x <- fGarch::garchSim(specskew19, n = 500)
+#' g <- fGarch::garchFit(~garch(1,1), x, cond.dist = "QMLE",
+#'               include.mean = FALSE, trace = FALSE)
+#' symmetry_test(g, "CH", B=200, burn = 100)
+#' symmetry_test(g, "CH", B=200, burn = 100, iid = TRUE)
+#'
 #' @export
 symmetry_test <- function(x, ...) {
   UseMethod("symmetry_test", x)
@@ -169,9 +193,9 @@ symmetry_test.lm <- function(x, stat, B = 1000,
 
 #' @rdname symmetry_test
 #' @export
-symmetry_test.fGARCH <- function(x, stat, B = 1000, burn = 0, bootstrap = TRUE,
+symmetry_test.fGARCH <- function(x, stat, B = 1000, burn = 0,
                                 boot_method = c("sign", "reflect"), k = 0,
-                                iid = !bootstrap, ...) {
+                                approximate = FALSE, ...) {
   boot_method <- match.arg(boot_method)
   model <- x
   stat_fun <- match.fun(stat, descend = FALSE)
@@ -180,19 +204,19 @@ symmetry_test.fGARCH <- function(x, stat, B = 1000, burn = 0, bootstrap = TRUE,
   if (pass_k && k == 0)
     stop("Argument 'k' not specified.")
 
-  res <- residuals(model, standardize = TRUE)
+  res <- fGarch::residuals(model, standardize = TRUE)
 
   null_sample_fun <- switch(boot_method,
                             "sign" = randomize_sign,
                             "reflect" = reflected_boot)
 
-  coefs <- coef(model)
+  coefs <- fGarch::coef(model)
   omega <- coefs["omega"]
   alpha <- coefs[grepl("alpha", names(coefs))]
   beta <- coefs[grepl("beta", names(coefs))]
 
   ts <- as.numeric(model@data)
-  cfit <- as.numeric(fitted(model))
+  cfit <- as.numeric(fGarch::fitted(model))
 
   not_burned <- length(ts) - burn
   if (not_burned <= 0)
@@ -205,32 +229,24 @@ symmetry_test.fGARCH <- function(x, stat, B = 1000, burn = 0, bootstrap = TRUE,
 
   params <- c()
 
-  if (bootstrap) {
-    boot <- replicate(B, {
-      boot_res <- null_sample_fun(res, 0)
+  boot <- replicate(B, {
+    boot_res <- null_sample_fun(res, 0)
 
-      if (!iid) {
-        boot_y <- simulate_garch(boot_res, ts, cfit, omega, alpha, beta)
+    if (!iid) {
+      boot_y <- simulate_garch(boot_res, ts, cfit, omega, alpha, beta)
 
-        boot_model <- fGarch::garchFit(model@formula, boot_y,
-                               cond.dist = "QMLE", include.mean = FALSE,
-                               trace = FALSE)
-        new_res <- tail(residuals(boot_model, standardize = TRUE), not_burned)
-      } else {
-        new_res <- tail(boot_res, not_burned)
-      }
-      if(pass_k) stat_fun(new_res, k = k) else stat_fun(new_res)
-    })
+      boot_model <- fGarch::garchFit(model@formula, boot_y,
+                             cond.dist = "QMLE", include.mean = FALSE,
+                             trace = FALSE)
+      new_res <- tail(fGarch::residuals(boot_model, standardize = TRUE), not_burned)
+    } else {
+      new_res <- tail(boot_res, not_burned)
+    }
+    if(pass_k) stat_fun(new_res, k = k) else stat_fun(new_res)
+  })
 
-    pval <- mean(abs(boot) >= abs(tval))
-    params <- c("B" = B, params)
-  } else { # ASYMPTOTIC DISTRUBUTION
-    if (!stat %in% names(asymptotic_distributions))
-      stop("The asymptotic distribution of the chosen test statistic is not available.")
-
-    pdist <- asymptotic_distributions[[stat]](k)
-    pval <- 2 * (1 - pdist(abs(unname(tval))))
-  }
+  pval <- mean(abs(boot) >= abs(tval))
+  params <- c("B" = B, params)
   xname <- paste("Residuals from model", deparse(substitute(x)))
   METHOD <- c("Symmetry test of GARCH model residuals",
               "Null hypothesis: The residuals are symmetric around 0")
