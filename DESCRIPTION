@@ -1,5 +1,5 @@
 Package: symmetry
-Title: A Package for Testing the Symmetry of Data and Model Residuals
+Title: Symmetry testing of Data and Model Residuals
 Version: 0.1.0
 Authors@R: c(person("Blagoje", "Ivanović", email = "blagoje_ivanovic@matf.bg.ac.rs", role = c("aut", "cre")),
              person("Bojana", "Milošević", email = "bojana@matf.bg.ac.rs", role = c("aut")),

@@ -109,8 +109,8 @@ specskew19 = fGarch::garchSpec(model = list(omega = 0.1,
 x <- fGarch::garchSim(specskew19, n = 500)
 g <- fGarch::garchFit(~garch(1,1), x, cond.dist = "QMLE",
               include.mean = FALSE, trace = FALSE)
-symmetry_test(g, "CH", B=200, burn = 100)
-symmetry_test(g, "CH", B=200, burn = 100, approximate = TRUE)
+\donttest{symmetry_test(g, "CH", B=400, burn = 100)} # slower
+symmetry_test(g, "CH", B=400, burn = 100, approximate = TRUE)
 
 }
 \references{
