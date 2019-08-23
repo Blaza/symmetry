@@ -10,7 +10,7 @@ NULL
 #' symmetry: A package which implements tests for symmetry of IID data, linear
 #' models and GARCH models
 #'
-#' The package caontains a large number of tests for symmetry (and their
+#' The package contains a large number of tests for symmetry (and their
 #' bootstrap variants), which can be used to test the symmetry of IID samples or
 #' of model residuals. Currently, the supported models are linear models and
 #' GARCH models (fitted with the fGarch package). The tests are implemented

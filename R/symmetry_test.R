@@ -10,7 +10,7 @@
 #' the bootstrap sample by multiplying the existing sample by -1 or 1 at random
 #' (with equal probabilities), essentially randomizing the sign of the data,
 #' giving a symmetric distribution. The "reflect" method reflects the sample
-#' around zero and samples length(x) elements with replacement. In practive, it
+#' around zero and samples length(x) elements with replacement. In practice, it
 #' has been shown that the "sign" method is almost always better, thus is the
 #' default.
 #'
@@ -37,13 +37,13 @@
 #' @param stat a character vector indicating the test statistic to be used (see
 #'   \link[=TestStatistics]{Available Test Statistics})
 #' @param mu the centre parameter around which to test symmetry
-#' @param bootstrap a logical indicationg whether to use bootstrap
+#' @param bootstrap a logical indicating whether to use bootstrap
 #' @param B the number of bootstrap replications
 #' @param boot_method the method of bootstrap sample generation (see Details)
 #' @param trim the trim value used for estimating the centre (as used in "mean")
 #' @param k the k parameter of the statistic, ignored if the test statistic
 #'   doesn't depend on a parameter (see \link[=TestStatistics]{Test Statistics})
-#' @param burn the number of elements to remove from the beggining of the time
+#' @param burn the number of elements to remove from the beginning of the time
 #'   series for testing
 #' @param approximate a logical indicating whether to use the faster approximate
 #'   bootstrap method (see Details)

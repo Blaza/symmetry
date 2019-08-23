@@ -30,7 +30,7 @@ symmetry_test(x, ...)
 
 \item{mu}{the centre parameter around which to test symmetry}
 
-\item{bootstrap}{a logical indicationg whether to use bootstrap}
+\item{bootstrap}{a logical indicating whether to use bootstrap}
 
 \item{B}{the number of bootstrap replications}
 
@@ -41,7 +41,7 @@ symmetry_test(x, ...)
 \item{k}{the k parameter of the statistic, ignored if the test statistic
 doesn't depend on a parameter (see \link[=TestStatistics]{Test Statistics})}
 
-\item{burn}{the number of elements to remove from the beggining of the time
+\item{burn}{the number of elements to remove from the beginning of the time
 series for testing}
 
 \item{approximate}{a logical indicating whether to use the faster approximate
@@ -62,7 +62,7 @@ sample from the null distribution are available. The "sign" method generates
 the bootstrap sample by multiplying the existing sample by -1 or 1 at random
 (with equal probabilities), essentially randomizing the sign of the data,
 giving a symmetric distribution. The "reflect" method reflects the sample
-around zero and samples length(x) elements with replacement. In practive, it
+around zero and samples length(x) elements with replacement. In practice, it
 has been shown that the "sign" method is almost always better, thus is the
 default.
 
