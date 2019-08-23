@@ -1,9 +1,10 @@
 Package: symmetry
 Title: Symmetry testing of Data and Model Residuals
 Version: 0.1.0
-Authors@R: c(person("Blagoje", "Ivanović", email = "blagoje_ivanovic@matf.bg.ac.rs", role = c("aut", "cre")),
-             person("Bojana", "Milošević", email = "bojana@matf.bg.ac.rs", role = c("aut")),
-             person("Marko", "Obradović", email = "marcone@matf.bg.ac.rs", role = c("aut")))
+Authors: Blagoje Ivanović <blagoje_ivanovic@matf.bg.ac.rs> [aut, cre]
+         Bojana Milošević <bojana@matf.bg.ac.rs> [aut]
+         Marko Obradović <marcone@matf.bg.ac.rs> [aut]
+Maintainer: Blagoje Ivanović <blagoje_ivanovic@matf.bg.ac.rs>
 Description: Implementations a large number of tests for symmetry
     (and their bootstrap variants), which can be used to test the symmetry of IID
     samples or of model residuals. Currently, the supported models are linear models
