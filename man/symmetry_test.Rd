@@ -90,8 +90,12 @@ set.seed(1)
 
 # IID samples
 x <- rnorm(50)
+symmetry_test(x, "MOI", k = 3, mu = 0)
+symmetry_test(x, "MOI", bootstrap = TRUE, k = 3, mu = 0)
 symmetry_test(x, "MOI", bootstrap = TRUE, k = 3)
 x <- rsl(50, alpha = 1.5)
+symmetry_test(x, "MOI", k = 3, mu = 0)
+symmetry_test(x, "MOI", bootstrap = TRUE, k = 3, mu = 0)
 symmetry_test(x, "MOI", bootstrap = TRUE, k = 3)
 
 # Linear models

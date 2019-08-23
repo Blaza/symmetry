@@ -55,8 +55,12 @@
 #'
 #' # IID samples
 #' x <- rnorm(50)
+#' symmetry_test(x, "MOI", k = 3, mu = 0)
+#' symmetry_test(x, "MOI", bootstrap = TRUE, k = 3, mu = 0)
 #' symmetry_test(x, "MOI", bootstrap = TRUE, k = 3)
 #' x <- rsl(50, alpha = 1.5)
+#' symmetry_test(x, "MOI", k = 3, mu = 0)
+#' symmetry_test(x, "MOI", bootstrap = TRUE, k = 3, mu = 0)
 #' symmetry_test(x, "MOI", bootstrap = TRUE, k = 3)
 #'
 #' # Linear models
@@ -130,7 +134,8 @@ symmetry_test.default <- function(x, stat, mu = NULL,
 
   } else { # ASYMPTOTIC RESULTS
     if (!stat %in% names(asymptotic_distributions))
-      stop("The asymptotic distribution of the chosen test statistic is not available.")
+      stop(paste("The asymptotic distributions are available only for these statistics:",
+                 paste(sort(names(asymptotic_distributions)), collapse = ", ")))
     if (is.null(mu)) {
       warning("Argument mu not provided. Using 0 by default.")
       mu <- 0
