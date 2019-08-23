@@ -1,9 +1,9 @@
 Package: symmetry
 Title: Symmetry testing of Data and Model Residuals
 Version: 0.1.0
-Authors: Blagoje Ivanović <blagoje_ivanovic@matf.bg.ac.rs> [aut, cre]
-         Bojana Milošević <bojana@matf.bg.ac.rs> [aut]
-         Marko Obradović <marcone@matf.bg.ac.rs> [aut]
+Author: Blagoje Ivanović <blagoje_ivanovic@matf.bg.ac.rs> [aut, cre]
+        Bojana Milošević <bojana@matf.bg.ac.rs> [aut]
+        Marko Obradović <marcone@matf.bg.ac.rs> [aut]
 Maintainer: Blagoje Ivanović <blagoje_ivanovic@matf.bg.ac.rs>
 Description: Implementations a large number of tests for symmetry
     (and their bootstrap variants), which can be used to test the symmetry of IID
