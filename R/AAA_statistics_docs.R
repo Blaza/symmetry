@@ -28,7 +28,6 @@
 #' * BHK : The Baringhaus and Henze test statistic (see \insertCite{BHK}{symmetry})
 #' * MOI and MOK : Milošević and Obradović test statistics (see \insertCite{MOIMOK}{symmetry})
 #' * NAI and NAK : Nikitin and Ahsanullah test statistics (see \insertCite{NAINAK}{symmetry})
-#' * MI and MK : Milošević test statistics (see \insertCite{MIMK}{symmetry})
 #' * K2 and K2U : The Božin, Milošević, Nikitin and Obradović Kolmogorov type statistics based on V- and U- statistics respectively (see \insertCite{K2K2U}{symmetry})
 #' * T1, T2, S1 and S2 : Allison and Pretorius test statistics (see \insertCite{Allison}{symmetry})
 #'

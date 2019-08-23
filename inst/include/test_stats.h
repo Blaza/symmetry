@@ -5,8 +5,6 @@ using namespace Rcpp;
 
 double MOI_Cpp(const NumericVector& X, double k);
 double MOK_Cpp(const NumericVector& X, double k);
-double MK_Cpp(const NumericVector& X, double k);
-double MI_Cpp(const NumericVector& X, double k);
 double K2_Cpp(const NumericVector& X);
 double K2U_Cpp(const NumericVector& X);
 double NAI_Cpp(const NumericVector& X, double k);
@@ -17,7 +15,6 @@ double CM_Cpp(const NumericVector& X);
 double M_Cpp(const NumericVector& X);
 double MGG_Cpp(const NumericVector& X);
 double B1_Cpp(const NumericVector& X);
-double L2_Cpp(const NumericVector& X, double a);
 double T1_Cpp(const NumericVector& X, double a);
 double T2_Cpp(const NumericVector& X, double a);
 double S1_Cpp(const NumericVector& X, double a);

@@ -33,24 +33,12 @@ KS_Cpp <- function(X) {
     .Call('_symmetry_KS_Cpp', PACKAGE = 'symmetry', X)
 }
 
-L2_Cpp <- function(X, a) {
-    .Call('_symmetry_L2_Cpp', PACKAGE = 'symmetry', X, a)
-}
-
 M_Cpp <- function(X) {
     .Call('_symmetry_M_Cpp', PACKAGE = 'symmetry', X)
 }
 
 MGG_Cpp <- function(X) {
     .Call('_symmetry_MGG_Cpp', PACKAGE = 'symmetry', X)
-}
-
-MI_Cpp <- function(X, k) {
-    .Call('_symmetry_MI_Cpp', PACKAGE = 'symmetry', X, k)
-}
-
-MK_Cpp <- function(X, k) {
-    .Call('_symmetry_MK_Cpp', PACKAGE = 'symmetry', X, k)
 }
 
 MOI_Cpp <- function(X, k) {

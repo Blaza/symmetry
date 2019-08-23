@@ -50,20 +50,11 @@ std::function<double (const NumericVector&)>
   if (stat == "MOK") {
     return bind(MOK_Cpp, std::placeholders::_1, k);
   }
-  if (stat == "MK") {
-    return bind(MK_Cpp, std::placeholders::_1, k);
-  }
-  if (stat == "MI") {
-    return bind(MI_Cpp, std::placeholders::_1, k);
-  }
   if (stat == "NAI") {
     return bind(NAI_Cpp, std::placeholders::_1, k);
   }
   if (stat == "NAK") {
     return bind(NAK_Cpp, std::placeholders::_1, k);
-  }
-  if (stat == "L2") {
-    return bind(L2_Cpp, std::placeholders::_1, k);
   }
   if (stat == "T1") {
     return bind(T1_Cpp, std::placeholders::_1, k);

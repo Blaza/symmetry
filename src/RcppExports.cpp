@@ -94,18 +94,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// L2_Cpp
-double L2_Cpp(const NumericVector& X, double a);
-RcppExport SEXP _symmetry_L2_Cpp(SEXP XSEXP, SEXP aSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< double >::type a(aSEXP);
-    rcpp_result_gen = Rcpp::wrap(L2_Cpp(X, a));
-    return rcpp_result_gen;
-END_RCPP
-}
 // M_Cpp
 double M_Cpp(const NumericVector& X);
 RcppExport SEXP _symmetry_M_Cpp(SEXP XSEXP) {
@@ -125,30 +113,6 @@ BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
     rcpp_result_gen = Rcpp::wrap(MGG_Cpp(X));
-    return rcpp_result_gen;
-END_RCPP
-}
-// MI_Cpp
-double MI_Cpp(const NumericVector& X, double k);
-RcppExport SEXP _symmetry_MI_Cpp(SEXP XSEXP, SEXP kSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< double >::type k(kSEXP);
-    rcpp_result_gen = Rcpp::wrap(MI_Cpp(X, k));
-    return rcpp_result_gen;
-END_RCPP
-}
-// MK_Cpp
-double MK_Cpp(const NumericVector& X, double k);
-RcppExport SEXP _symmetry_MK_Cpp(SEXP XSEXP, SEXP kSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< double >::type k(kSEXP);
-    rcpp_result_gen = Rcpp::wrap(MK_Cpp(X, k));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -371,11 +335,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_symmetry_K2_Cpp", (DL_FUNC) &_symmetry_K2_Cpp, 1},
     {"_symmetry_K2U_Cpp", (DL_FUNC) &_symmetry_K2U_Cpp, 1},
     {"_symmetry_KS_Cpp", (DL_FUNC) &_symmetry_KS_Cpp, 1},
-    {"_symmetry_L2_Cpp", (DL_FUNC) &_symmetry_L2_Cpp, 2},
     {"_symmetry_M_Cpp", (DL_FUNC) &_symmetry_M_Cpp, 1},
     {"_symmetry_MGG_Cpp", (DL_FUNC) &_symmetry_MGG_Cpp, 1},
-    {"_symmetry_MI_Cpp", (DL_FUNC) &_symmetry_MI_Cpp, 2},
-    {"_symmetry_MK_Cpp", (DL_FUNC) &_symmetry_MK_Cpp, 2},
     {"_symmetry_MOI_Cpp", (DL_FUNC) &_symmetry_MOI_Cpp, 2},
     {"_symmetry_MOK_Cpp", (DL_FUNC) &_symmetry_MOK_Cpp, 2},
     {"_symmetry_NAI_Cpp", (DL_FUNC) &_symmetry_NAI_Cpp, 2},
