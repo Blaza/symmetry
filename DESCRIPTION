@@ -5,7 +5,7 @@ Author: Blagoje Ivanović <blagoje_ivanovic@matf.bg.ac.rs> [aut, cre]
         Bojana Milošević <bojana@matf.bg.ac.rs> [aut]
         Marko Obradović <marcone@matf.bg.ac.rs> [aut]
 Maintainer: Blagoje Ivanović <blagoje_ivanovic@matf.bg.ac.rs>
-Description: Implementations a large number of tests for symmetry
+Description: Implementations of a large number of tests for symmetry
     and their bootstrap variants, which can be used for testing the symmetry of IID
     samples around a known or unknown mean. Functions are also there for testing
     the symmetry of model residuals around zero. Currently, the supported models
