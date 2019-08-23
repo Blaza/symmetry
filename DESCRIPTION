@@ -1,5 +1,5 @@
 Package: symmetry
-Title: Testing for symmetry of Data and Model Residuals
+Title: Testing for Symmetry of Data and Model Residuals
 Version: 0.1.0
 Author: Blagoje Ivanović <blagoje_ivanovic@matf.bg.ac.rs> [aut, cre]
         Bojana Milošević <bojana@matf.bg.ac.rs> [aut]
