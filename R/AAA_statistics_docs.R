@@ -14,7 +14,7 @@
 #' \link{symmetry_test} function
 #'
 #' @section Test statistics:
-#' The list of available stratitics in the format "code : name (reference)"
+#' The list of available statitics in the format "code : name (reference)"
 #'
 #' * M : The Mira test statistic (see \insertCite{M}{symmetry})
 #' * CM : The Cabilio–Masaro test statistic (see \insertCite{CM}{symmetry})
