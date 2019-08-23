@@ -15,10 +15,9 @@
 #' default.
 #'
 #' For numeric data, the tests can be performed around a known (parameter "mu")
-#' or unknown location parameter. For unknown location (when mu = NULL),
-#' bootstrap must be used and the estimate of the location parameter used is the
-#' trimmed mean, with trim parameter "trim". By default, the mean is taken (trim
-#' = 0).
+#' or unknown centre. For unknown centre (when mu = NULL), bootstrap must be
+#' used and the estimate of the centre used is the trimmed mean, with trim
+#' parameter "trim". By default, the mean is taken (trim = 0).
 #'
 #' For linear models, the tests are based on a bootstrap procedure as in
 #' \insertCite{Allison}{symmetry} and are used to test the symmetry of the
@@ -31,18 +30,19 @@
 #' results to the default bootstrap procedure (described in
 #' \insertCite{Klar2012}{symmetry}).
 #'
+#' For a comparison of the performance of various testsof symmetry around an
+#' unknown centre, see \insertCite{UNKcentre}{symmetry}).
+#'
 #' @param x an object of class numeric, lm or fGARCH
 #' @param stat a character vector indicating the test statistic to be used (see
 #'   \link[=TestStatistics]{Available Test Statistics})
-#' @param mu the location parameter around which to
+#' @param mu the centre parameter around which to test symmetry
 #' @param bootstrap a logical indicationg whether to use bootstrap
 #' @param B the number of bootstrap replications
 #' @param boot_method the method of bootstrap sample generation (see Details)
-#' @param trim the trim value used for estimating the location parameter (as
-#'   used in "mean")
+#' @param trim the trim value used for estimating the centre (as used in "mean")
 #' @param k the k parameter of the statistic, ignored if the test statistic
-#'   doesn't depend on a parameter (see \link[=TestStatistics]{Test
-#'   Statistics})
+#'   doesn't depend on a parameter (see \link[=TestStatistics]{Test Statistics})
 #' @param burn the number of elements to remove from the beggining of the time
 #'   series for testing
 #' @param approximate a logical indicating whether to use the faster approximate

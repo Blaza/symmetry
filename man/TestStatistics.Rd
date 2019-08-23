@@ -103,12 +103,12 @@ string, so the name of the function is passed as the argument "stat" to the
 }
 \section{Test statistics}{
 
-The list of available statitics in the format "code : name (reference)"
+The list of available statitics in the format "code(s) : name (reference)"
 \itemize{
 \item M : The Mira test statistic (see \insertCite{M}{symmetry})
 \item CM : The Cabilio–Masaro test statistic (see \insertCite{CM}{symmetry})
 \item MGG : The Miao, Gel and Gastwirth test statistic (see \insertCite{MGG}{symmetry})
-\item B1 : The \eqn{\sqrt{b_1}} test statistic (see )
+\item B1 : The \eqn{\sqrt{b_1}} test statistic (see \insertCite{KS}{symmetry})
 \item KS : The Kolmogorov--Smirnov test statistic (see \insertCite{KS}{symmetry})
 \item SGN : The Sign test statistic (see \insertCite{KS}{symmetry})
 \item KS : The Wilcoxon test statistic (see \insertCite{KS}{symmetry})
@@ -119,6 +119,7 @@ The list of available statitics in the format "code : name (reference)"
 \item NAI and NAK : Nikitin and Ahsanullah test statistics (see \insertCite{NAINAK}{symmetry})
 \item MI and MK : Milošević test statistics (see \insertCite{MIMK}{symmetry})
 \item K2 and K2U : The Božin, Milošević, Nikitin and Obradović Kolmogorov type statistics based on V- and U- statistics respectively (see \insertCite{K2K2U}{symmetry})
+\item T1, T2, S1 and S2 : Allison and Pretorius test statistics (see \insertCite{Allison}{symmetry})
 }
 }
 
