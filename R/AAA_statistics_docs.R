@@ -13,6 +13,24 @@
 #' string, so the name of the function is passed as the argument "stat" to the
 #' \link{symmetry_test} function
 #'
+#' @section Test statistics:
+#' The list of available stratitics in the format "code : name (reference)"
+#'
+#' * M : The Mira test statistic (see \insertCite{M}{symmetry})
+#' * CM : The Cabilio–Masaro test statistic (see \insertCite{CM}{symmetry})
+#' * MGG : The Miao, Gel and Gastwirth test statistic (see \insertCite{MGG}{symmetry})
+#' * B1 : The \eqn{\sqrt{b_1}} test statistic (see )
+#' * KS : The Kolmogorov--Smirnov test statistic (see \insertCite{KS}{symmetry})
+#' * SGN : The Sign test statistic (see \insertCite{KS}{symmetry})
+#' * KS : The Wilcoxon test statistic (see \insertCite{KS}{symmetry})
+#' * CH : A characterization based test statistic (see \insertCite{CH}{symmetry})
+#' * BHI : The Litvinova test statistic (see \insertCite{BHI}{symmetry})
+#' * BHK : The Baringhaus and Henze test statistic (see \insertCite{BHK}{symmetry})
+#' * MOI and MOK : Milošević and Obradović test statistics (see \insertCite{MOIMOK}{symmetry})
+#' * NAI and NAK : Nikitin and Ahsanullah test statistics (see \insertCite{NAINAK}{symmetry})
+#' * MI and MK : Milošević test statistics (see \insertCite{MIMK}{symmetry})
+#' * K2 and K2U : The Božin, Milošević, Nikitin and Obradović Kolmogorov type statistics based on V- and U- statistics respectively (see \insertCite{K2K2U}{symmetry})
+#'
 #' @param X the numeric vector for which to calculate the test statistic
 #' @param k the 'k' parameter in the formula (if applicable)
 #' @return The value of the test statistic.

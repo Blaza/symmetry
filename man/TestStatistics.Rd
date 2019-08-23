@@ -101,100 +101,26 @@ Each statistic is implemented as a function with the same name as the code
 string, so the name of the function is passed as the argument "stat" to the
 \link{symmetry_test} function
 }
-\section{Functions}{
+\section{Test statistics}{
+
+The list of available stratitics in the format "code : name (reference)"
 \itemize{
-\item \code{B1}: The \eqn{\sqrt{b_1}}  test statistic \insertCite{Cabilio1996}{symmetry}
-
-to be added
-
-\item \code{BHI}: The Cabilio–Masaro test statistic \insertCite{Cabilio1996}{symmetry}
-
-\deqn{ \frac{1}{n {n\choose{2}}} \sum_{\mathcal{I}_{2}} \sum_{i_{3}=1}^n \left( \frac12 I\{|X_{i_1}| < |X_{i_{3}}|\} + \frac12 I\{|X_{i_2}| < |X_{i_{3}}|\} - I\{|X_{(2),X_{i_1},X_{i_2}}| < |X_{i_{3}}|\}\right) }
-
-\item \code{BHK}: The Cabilio–Masaro test statistic \insertCite{Cabilio1996}{symmetry}
-
-\deqn{ \sup_{t>0}\left|\frac{1}{{n\choose{2}}} \sum_{\mathcal{I}_{2}}\left( \frac12 I\{|X_{i_1}| <t\} + \frac12 I\{|X_{i_2}| <t\} - I\{|X_{(2),X_{i_1},X_{i_2}}| < t\}\right)\right| }
-
-\item \code{CH}: The Cabilio–Masaro test statistic \insertCite{Cabilio1996}{symmetry}
-
-to be added
-
-\item \code{CM}: The Cabilio–Masaro test statistic \insertCite{Cabilio1996}{symmetry}
-
-to be added
-
-\item \code{K2U}: The Miao, Gel and Gastwirth test statistic \insertCite{Miao2006}{symmetry}
-
-\deqn{ \sup_{t>0}\frac{1}{ {n\choose 2}} \left| \sum_{1\leq i < j \leq n } I\{|X_i - X_j| < t\}- I\{|X_i + X_j| < t\}\right| }
-
-\item \code{K2}: The Miao, Gel and Gastwirth test statistic \insertCite{Miao2006}{symmetry}
-
-\deqn{ \sup_{t>0}\frac{1}{n^2} \left| \sum_{i,j=1}^n I\{|X_i - X_j| < t\}- I\{|X_i + X_j| < t\}\right| }
-
-\item \code{KS}: Kolmogorov--Smirnov test statistic \insertCite{Miao2006}{symmetry}
-
-\deqn{ \sup_t\left|F_n(t)-(1-F_n(-t))\right| }
-
-\item \code{SGN}: The Sign test statistic \insertCite{Miao2006}{symmetry}
-
-\deqn{ \frac1n \sum_{i=1}^nI\{X_i > 0\} - \frac12}
-
-\item \code{WCX}: The Wilcoxon test statistic \insertCite{Miao2006}{symmetry}
-
-\deqn{ \frac{1}{{n\choose2}} \sum_{1\leq i<j\leq n} I\{X_i+X_j> 0\} - \frac12 }
-
-\item \code{L2}: The Miao, Gel and Gastwirth test statistic \insertCite{Miao2006}{symmetry}
-
-\deqn{\begin{array}{rl} \frac{1}{n^4} \sum_{i,j,m,l=1}^n &\left(\frac{1}{k+|X_i - X_j|+|X_m - X_l|}-\frac{1}{k+|X_i - X_j|+|X_m + X_l|}\right. \\ &-\left.\frac{1}{k+|X_i + X_j|+|X_m - X_l|} +\frac{1}{k+|X_i + X_j|+|X_m + X_l|}\right)\end{array} }
-
-\item \code{MGG}: The Miao, Gel and Gastwirth test statistic \insertCite{Miao2006}{symmetry}
-
-to be added
-
-\item \code{MI}: The Mira test statistic \insertCite{Mira1999}{symmetry}
-
-\deqn{ \frac{1}{n {n\choose{2k+1}}} \sum_{\mathcal{I}_{2k}} \sum_{i_{2k+1}=1}^n I\{-(X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}}| < X_{i_{2k+1}}\}- I\{X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}} < X_{i_{2k+1}}\} }
-
-\item \code{MK}: The Mira test statistic \insertCite{Mira1999}{symmetry}
-
-\deqn{ \sup_{t>0}\left|\frac{1}{{n\choose{2k}}} \sum_{\mathcal{I}_{2k}} I\{-(X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}}) < t\}- I\{X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}} < t \}\right| }
-
-\item \code{MOI}: The Mira test statistic \insertCite{Mira1999}{symmetry}
-
-\deqn{ \frac{1}{n {n\choose{2k}}} \sum_{\mathcal{I}_{2k}} \sum_{i_{2k+1}=1}^n I\{|X_{(k),X_{i_1},\ldots,X_{i_{2k}}}| < |X_{i_{2k+1}}|\}- I\{|X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}}| < |X_{i_{2k+1}}|\} }
-
-\item \code{MOK}: The Mira test statistic \insertCite{Mira1999}{symmetry}
-
-\deqn{ \sup_{t>0}\left|\frac{1}{{n\choose{2k}}} \sum_{\mathcal{I}_{2k}} I\{|X_{(k),X_{i_1},\ldots,X_{i_{2k}}}| < t\}- I\{|X_{(k+1),X_{i_1},\ldots,X_{i_{2k}}}| < t \}\right| }
-
-\item \code{M}: The Mira test statistic \insertCite{Mira1999}{symmetry}
-
-to be added
-
-\item \code{NAI}: Allison \eqn{T_2} statistic \insertCite{Klar2012}{symmetry}
-
-\deqn{ \frac{1}{n {n\choose{k}}} \sum_{\mathcal{I}_{k}} \sum_{i_{k+1}=1}^n I\{|X_{(1),X_{i_1},\ldots,X_{i_{k}}}| < |X_{i_{k+1}}|\}- I\{|X_{(k),X_{i_1},\ldots,X_{i_{k}}}| < |X_{i_{k+1}}|\} }
-
-\item \code{NAK}: Allison \eqn{T_2} statistic \insertCite{Klar2012}{symmetry}
-
-\deqn{ \sup_{t>0}\left|\frac{1}{{n\choose{k}}} \sum_{\mathcal{I}_{k}} I\{|X_{(1),X_{i_1},\ldots,X_{i_{k}}}| < t\}- I\{|X_{(k),X_{i_1},\ldots,X_{i_{k}}}| < t \}\right| }
-
-\item \code{S1}: Allison \eqn{T_2} statistic \insertCite{Klar2012}{symmetry}
-
-to be added
-
-\item \code{S2}: Allison \eqn{T_2} statistic \insertCite{Klar2012}{symmetry}
-
-to be added
-
-\item \code{T1}: Allison \eqn{T_2} statistic \insertCite{Klar2012}{symmetry}
-
-to be added
-
-\item \code{T2}: Allison \eqn{T_2} statistic \insertCite{Klar2012}{symmetry}
-
-to be added
-}}
+\item M : The Mira test statistic (see \insertCite{M}{symmetry})
+\item CM : The Cabilio–Masaro test statistic (see \insertCite{CM}{symmetry})
+\item MGG : The Miao, Gel and Gastwirth test statistic (see \insertCite{MGG}{symmetry})
+\item B1 : The \eqn{\sqrt{b_1}} test statistic (see )
+\item KS : The Kolmogorov--Smirnov test statistic (see \insertCite{KS}{symmetry})
+\item SGN : The Sign test statistic (see \insertCite{KS}{symmetry})
+\item KS : The Wilcoxon test statistic (see \insertCite{KS}{symmetry})
+\item CH : A characterization based test statistic (see \insertCite{CH}{symmetry})
+\item BHI : The Litvinova test statistic (see \insertCite{BHI}{symmetry})
+\item BHK : The Baringhaus and Henze test statistic (see \insertCite{BHK}{symmetry})
+\item MOI and MOK : Milošević and Obradović test statistics (see \insertCite{MOIMOK}{symmetry})
+\item NAI and NAK : Nikitin and Ahsanullah test statistics (see \insertCite{NAINAK}{symmetry})
+\item MI and MK : Milošević test statistics (see \insertCite{MIMK}{symmetry})
+\item K2 and K2U : The Božin, Milošević, Nikitin and Obradović Kolmogorov type statistics based on V- and U- statistics respectively (see \insertCite{K2K2U}{symmetry})
+}
+}
 
 \references{
 \insertAllCited{}

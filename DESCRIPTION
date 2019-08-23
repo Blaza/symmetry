@@ -6,10 +6,11 @@ Author: Blagoje Ivanović <blagoje_ivanovic@matf.bg.ac.rs> [aut, cre]
         Marko Obradović <marcone@matf.bg.ac.rs> [aut]
 Maintainer: Blagoje Ivanović <blagoje_ivanovic@matf.bg.ac.rs>
 Description: Implementations a large number of tests for symmetry
-    (and their bootstrap variants), which can be used to test the symmetry of IID
-    samples or of model residuals. Currently, the supported models are linear models
-    and GARCH models (fitted with the fGarch package). The tests are implemented
-    using Rcpp which ensures great performance.
+    and their bootstrap variants, which can be used for testing the symmetry of IID
+    samples around a known or unknown mean. Functions are also there for testing
+    the symmetry of model residuals around zero. Currently, the supported models
+    are linear models and GARCH models (fitted with the fGarch package). The tests
+    are implemented using Rcpp which ensures great performance.
 Depends: R (>= 3.1.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -20,3 +21,4 @@ LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.1.1
 SystemRequirements: C++11
 Suggests: knitr, rmarkdown, sn, fGarch, testthat
+Roxygen: list(markdown = TRUE)

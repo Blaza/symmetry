@@ -75,7 +75,7 @@ trimmed mean, with trim parameter "trim". By default, the mean is taken (trim
 = 0).
 
 For linear models, the tests are based on a bootstrap procedure as in
-\insertCite{Allison2016}{symmetry} and are used to test the symmetry of the
+\insertCite{Allison}{symmetry} and are used to test the symmetry of the
 residuals around zero.
 
 For GARCH models (must be fitted with the fGarch package), the tests are also
