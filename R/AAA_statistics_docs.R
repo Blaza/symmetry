@@ -23,13 +23,13 @@
 #' * KS : The Kolmogorov--Smirnov test statistic (see \insertCite{UNKcentre}{symmetry})
 #' * SGN : The Sign test statistic (see \insertCite{UNKcentre}{symmetry})
 #' * KS : The Wilcoxon test statistic (see \insertCite{UNKcentre}{symmetry})
-#' * CH : A characterization based test statistic (see \insertCite{CH}{symmetry})
+#' * CH : The characterization based test statistic (see \insertCite{CH}{symmetry})
 #' * BHI : The Litvinova test statistic (see \insertCite{BHI}{symmetry})
 #' * BHK : The Baringhaus and Henze test statistic (see \insertCite{BHK}{symmetry})
-#' * MOI and MOK : Milošević and Obradović test statistics (see \insertCite{MOIMOK}{symmetry})
-#' * NAI and NAK : Nikitin and Ahsanullah test statistics (see \insertCite{NAINAK}{symmetry})
+#' * MOI and MOK : The Milošević and Obradović test statistics (see \insertCite{MOIMOK}{symmetry})
+#' * NAI and NAK : The Nikitin and Ahsanullah test statistics (see \insertCite{NAINAK}{symmetry})
 #' * K2 and K2U : The Božin, Milošević, Nikitin and Obradović Kolmogorov type statistics based on V- and U- statistics respectively (see \insertCite{K2K2U}{symmetry})
-#' * T1, T2, S1 and S2 : Allison and Pretorius test statistics (see \insertCite{Allison}{symmetry})
+#' * T1, T2, S1 and S2 : The Allison and Pretorius test statistics (see \insertCite{Allison}{symmetry})
 #'
 #' @param X the numeric vector for which to calculate the test statistic
 #' @param k the 'k' parameter in the formula (if applicable)

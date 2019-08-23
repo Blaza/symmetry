@@ -103,13 +103,13 @@ The list of available statitics in the format "code(s) : name (reference)"
 \item KS : The Kolmogorov--Smirnov test statistic (see \insertCite{UNKcentre}{symmetry})
 \item SGN : The Sign test statistic (see \insertCite{UNKcentre}{symmetry})
 \item KS : The Wilcoxon test statistic (see \insertCite{UNKcentre}{symmetry})
-\item CH : A characterization based test statistic (see \insertCite{CH}{symmetry})
+\item CH : The characterization based test statistic (see \insertCite{CH}{symmetry})
 \item BHI : The Litvinova test statistic (see \insertCite{BHI}{symmetry})
 \item BHK : The Baringhaus and Henze test statistic (see \insertCite{BHK}{symmetry})
-\item MOI and MOK : Milošević and Obradović test statistics (see \insertCite{MOIMOK}{symmetry})
-\item NAI and NAK : Nikitin and Ahsanullah test statistics (see \insertCite{NAINAK}{symmetry})
+\item MOI and MOK : The Milošević and Obradović test statistics (see \insertCite{MOIMOK}{symmetry})
+\item NAI and NAK : The Nikitin and Ahsanullah test statistics (see \insertCite{NAINAK}{symmetry})
 \item K2 and K2U : The Božin, Milošević, Nikitin and Obradović Kolmogorov type statistics based on V- and U- statistics respectively (see \insertCite{K2K2U}{symmetry})
-\item T1, T2, S1 and S2 : Allison and Pretorius test statistics (see \insertCite{Allison}{symmetry})
+\item T1, T2, S1 and S2 : The Allison and Pretorius test statistics (see \insertCite{Allison}{symmetry})
 }
 }
 
