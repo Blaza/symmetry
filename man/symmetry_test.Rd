@@ -82,7 +82,7 @@ treated as iid data, which is much faster and has been shown to give similar
 results to the default bootstrap procedure (described in
 \insertCite{Klar2012}{symmetry}).
 
-For a comparison of the performance of various testsof symmetry around an
+For a comparison of the performance of various tests of symmetry around an
 unknown centre, see \insertCite{UNKcentre}{symmetry}).
 }
 \examples{
