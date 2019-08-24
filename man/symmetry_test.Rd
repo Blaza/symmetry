@@ -77,7 +77,7 @@ For linear models, the tests are based on a bootstrap procedure as in
 \insertCite{Allison}{symmetry} and are used to test the symmetry of the
 residuals around zero.
 
-For GARCH models (must be fitted with the fGarch package), the tests are also
+For GARCH models (must be fitted with the 'fGarch' package), the tests are also
 based on bootstrap and test for symmetry of the residuals around zero. An
 approximation of the bootstrap procedure is available where the residuals are
 treated as iid data, which is much faster and has been shown to give similar
