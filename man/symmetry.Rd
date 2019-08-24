@@ -10,7 +10,7 @@ models and GARCH models}
 The package contains a large number of tests for symmetry (and their
 bootstrap variants), which can be used to test the symmetry of IID samples or
 of model residuals. Currently, the supported models are linear models and
-GARCH models (fitted with the fGarch package). The tests are implemented
+GARCH models (fitted with the 'fGarch' package). The tests are implemented
 using Rcpp which ensures great performance.
 }
 \details{
