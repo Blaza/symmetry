@@ -4,3 +4,4 @@
 ^man\.pdf$
 ^docs$
 ^man-roxygen$
+^cran-comments.md$
