@@ -9,7 +9,7 @@
 \usage{
 symmetry_test(x, ...)
 
-\method{symmetry_test}{default}(x, stat, mu = NULL, bootstrap = FALSE,
+\method{symmetry_test}{default}(x, stat, mu = NULL, bootstrap = TRUE,
   B = 1000, boot_method = c("sign", "reflect"), trim = 0, k = 0,
   ...)
 
@@ -67,7 +67,9 @@ has been shown that the "sign" method is almost always better, thus is the
 default.
 
 For numeric data, the tests can be performed around a known (parameter "mu")
-or unknown centre. For unknown centre (when mu = NULL), bootstrap must be
+or unknown centre. When the centre is known, the bootstrap method gives the
+same results as a Monte Carlo simulation of the p value, for tests which are
+distribution free. For unknown centre (when mu = NULL), bootstrap must be
 used and the estimate of the centre used is the trimmed mean, with trim
 parameter "trim". By default, the mean is taken (trim = 0).
 
@@ -90,11 +92,11 @@ set.seed(1)
 
 # IID samples
 x <- rnorm(50)
-symmetry_test(x, "MOI", k = 3, mu = 0)
+symmetry_test(x, "MOI", bootstrap = FALSE, k = 3, mu = 0)
 symmetry_test(x, "MOI", bootstrap = TRUE, k = 3, mu = 0)
 symmetry_test(x, "MOI", bootstrap = TRUE, k = 3)
 x <- rsl(50, alpha = 1.5)
-symmetry_test(x, "MOI", k = 3, mu = 0)
+symmetry_test(x, "MOI", bootstrap = FALSE, k = 3, mu = 0)
 symmetry_test(x, "MOI", bootstrap = TRUE, k = 3, mu = 0)
 symmetry_test(x, "MOI", bootstrap = TRUE, k = 3)
 
