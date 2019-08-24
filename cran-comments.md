@@ -1,6 +1,6 @@
 ## Test environments
 * local Linux Mint 19.2 install, R 3.6.1
-* R-hub (4 default rhub::check_for_cran() platforms)
+* R-hub (the 4 default rhub::check_for_cran() platforms)
 * win-builder (release)
 
 ## R CMD check results
