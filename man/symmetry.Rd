@@ -4,14 +4,16 @@
 \name{symmetry}
 \alias{symmetry}
 \alias{symmetry-package}
-\title{symmetry: A package which implements tests for symmetry of IID data, linear
-models and GARCH models}
+\title{symmetry: A package which implements tests for symmetry of random samples,
+linear models and generalized autoregressive conditional heteroskedasticity
+(GARCH) models}
 \description{
 The package contains a large number of tests for symmetry (and their
-bootstrap variants), which can be used to test the symmetry of IID samples or
-of model residuals. Currently, the supported models are linear models and
-GARCH models (fitted with the 'fGarch' package). The tests are implemented
-using Rcpp which ensures great performance.
+bootstrap variants), which can be used to test the symmetry of random samples
+or of model residuals. Currently, the supported models are linear models and
+generalized autoregressive conditional heteroskedasticity (GARCH) models
+(fitted with the 'fGarch' package). The tests are implemented using the
+'Rcpp' package which ensures great performance.
 }
 \details{
 To see the available tests, see \link{TestStatistics}
