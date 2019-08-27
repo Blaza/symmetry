@@ -1,7 +1,7 @@
 ##  Resubmission
 
-This is a resubmission in response to ERRORs on brought to my attention by Prof
-Brian Ripley:
+This is a resubmission in response to ERRORs on CRAN Package Check Results, 
+brought to my attention by Prof Brian Ripley:
 
 > 1) use of bind seen on fedora-clang and macOS (at least for me).  My 
 > guess is that you meant std::bind (several times).
@@ -16,8 +16,9 @@ which all returned OK:
 * macOS 10.11 El Capitan, R-release
 * Oracle Solaris 10, x86, 32 bit, R-patched
 
-The results of other platforms tested are as in the first submission below, i.e.
-a NOTE related to the use of Rcpp, along with a NOTE on some platforms:
+The results on other platforms tested are as in the first submission (copied
+below), i.e. a NOTE related to the use of Rcpp, along with a new NOTE that shows
+on some platforms:
 
 Possibly mis-spelled words in DESCRIPTION:
   heteroskedasticity
