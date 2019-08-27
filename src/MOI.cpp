@@ -24,6 +24,6 @@ double MOI_Cpp(const NumericVector & X, double k) {
       Rf_choose(j - 1, k);
   }
 
-  return sqrt(n) * (T2 - T3) / (n * Rf_choose(n, 2 * k));
+  return sqrt((double)n) * (T2 - T3) / (n * Rf_choose(n, 2 * k));
 }
 

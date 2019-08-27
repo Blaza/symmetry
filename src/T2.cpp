@@ -27,7 +27,7 @@ double T2_Cpp(const NumericVector& X, double a) {
     }
   }
 
-  double TS_value = n * sqrt(M_PI/a)* TS_sum;
+  double TS_value = sqrt(M_PI/a)* TS_sum * n;
 
   return TS_value;
 }

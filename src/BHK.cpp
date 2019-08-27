@@ -31,6 +31,6 @@ double BHK_Cpp(const NumericVector & X) {
   NumericVector D_vec = abs(T2_vec - T3_vec);
 
   double D_max = max(D_vec);
-  return sqrt(n) * D_max / 2 / Rf_choose(n, 2);
+  return sqrt((double)n) * D_max / 2 / Rf_choose(n, 2);
 }
 

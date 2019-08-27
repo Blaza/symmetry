@@ -33,6 +33,6 @@ double MOK_Cpp(const NumericVector & X, double k) {
   NumericVector D_vec = abs(T2_vec - T3_vec);
 
   double D_max = max(D_vec);
-  return sqrt(n) * D_max / Rf_choose(n, 2 * k);
+  return sqrt((double)n) * D_max / Rf_choose(n, 2 * k);
 }
 

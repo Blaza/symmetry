@@ -4,7 +4,6 @@
 #include <unordered_set>
 #include <helpers.h>
 using namespace Rcpp;
-using std::int64_t;
 
 
 // [[Rcpp::export]]

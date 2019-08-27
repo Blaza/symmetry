@@ -21,6 +21,6 @@ double BHI_Cpp(const NumericVector & X) {
       Rf_choose(j - 1, 1);
   }
 
-  return sqrt(n) * (T2 - T3) / 2 / (n * Rf_choose(n, 2));
+  return sqrt((double)n) * (T2 - T3) / 2 / (n * Rf_choose(n, 2));
 }
 
