@@ -45,28 +45,28 @@ std::function<double (const NumericVector&)>
     return BHK_Cpp;
   }
   if (stat == "MOI") {
-    return bind(MOI_Cpp, std::placeholders::_1, k);
+    return std::bind(MOI_Cpp, std::placeholders::_1, k);
   }
   if (stat == "MOK") {
-    return bind(MOK_Cpp, std::placeholders::_1, k);
+    return std::bind(MOK_Cpp, std::placeholders::_1, k);
   }
   if (stat == "NAI") {
-    return bind(NAI_Cpp, std::placeholders::_1, k);
+    return std::bind(NAI_Cpp, std::placeholders::_1, k);
   }
   if (stat == "NAK") {
-    return bind(NAK_Cpp, std::placeholders::_1, k);
+    return std::bind(NAK_Cpp, std::placeholders::_1, k);
   }
   if (stat == "T1") {
-    return bind(T1_Cpp, std::placeholders::_1, k);
+    return std::bind(T1_Cpp, std::placeholders::_1, k);
   }
   if (stat == "T2") {
-    return bind(T2_Cpp, std::placeholders::_1, k);
+    return std::bind(T2_Cpp, std::placeholders::_1, k);
   }
   if (stat == "S1") {
-    return bind(S1_Cpp, std::placeholders::_1, k);
+    return std::bind(S1_Cpp, std::placeholders::_1, k);
   }
   if (stat == "S2") {
-    return bind(S2_Cpp, std::placeholders::_1, k);
+    return std::bind(S2_Cpp, std::placeholders::_1, k);
   }
   return NULL;
 }
