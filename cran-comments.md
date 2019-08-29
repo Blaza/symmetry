@@ -16,7 +16,7 @@ which all returned OK:
 * macOS 10.11 El Capitan, R-release
 * Oracle Solaris 10, x86, 32 bit, R-patched
 
-The results on other platforms tested are as in the first submission (copied
+The results on other platforms I tested are as in the first submission (included
 below), i.e. a NOTE related to the use of Rcpp, along with a new NOTE that shows
 on some platforms:
 
