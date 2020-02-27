@@ -81,7 +81,7 @@
 #' g <- fGarch::garchFit(~garch(1,1), x, cond.dist = "QMLE",
 #'               include.mean = FALSE, trace = FALSE)
 #' \donttest{symmetry_test(g, "CH", B=400, burn = 100)} # slower
-#' symmetry_test(g, "CH", B=400, burn = 100, approximate = TRUE)
+#' symmetry_test(g, "FM", B=400, burn = 100, approximate = TRUE)
 #'
 #' @export
 symmetry_test <- function(x, ...) {
