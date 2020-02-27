@@ -1,12 +1,12 @@
 #' @template test_stat
-#' @templateVar name The Cabilio–Masaro test statistic
-#' @templateVar cite Cabilio1996
+#' @templateVar name The Mira test statistic
+#' @templateVar cite Mira1999
 #' @templateVar formula to be added
 #' @export
-CH <- function(X) {
+MI <- function(X) {
   if (!is.numeric((X)) && !is.logical((X))) {
     warning("Argument is not numeric or logical: returning NA")
     return(NA)
   }
-  CH_Cpp(X)
+  MI_Cpp(X)
 }

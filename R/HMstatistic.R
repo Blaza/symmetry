@@ -3,10 +3,10 @@
 #' @templateVar cite Klar2012
 #' @templateVar formula to be added
 #' @export
-T2 <- function(X, k) {
+HM <- function(X, k) {
   if (!is.numeric((X)) && !is.logical((X))) {
     warning("Argument is not numeric or logical: returning NA")
     return(NA)
   }
-  T2_Cpp(X, k);
+  HM_Cpp(X, k);
 }

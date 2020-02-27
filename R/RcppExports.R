@@ -5,6 +5,18 @@ B1_Cpp <- function(X) {
     .Call('_symmetry_B1_Cpp', PACKAGE = 'symmetry', X)
 }
 
+BH2_Cpp <- function(X) {
+    .Call('_symmetry_BH2_Cpp', PACKAGE = 'symmetry', X)
+}
+
+BHC1_Cpp <- function(X, a) {
+    .Call('_symmetry_BHC1_Cpp', PACKAGE = 'symmetry', X, a)
+}
+
+BHC2_Cpp <- function(X, a) {
+    .Call('_symmetry_BHC2_Cpp', PACKAGE = 'symmetry', X, a)
+}
+
 BHI_Cpp <- function(X) {
     .Call('_symmetry_BHI_Cpp', PACKAGE = 'symmetry', X)
 }
@@ -13,12 +25,16 @@ BHK_Cpp <- function(X) {
     .Call('_symmetry_BHK_Cpp', PACKAGE = 'symmetry', X)
 }
 
-CH_Cpp <- function(X) {
-    .Call('_symmetry_CH_Cpp', PACKAGE = 'symmetry', X)
-}
-
 CM_Cpp <- function(X) {
     .Call('_symmetry_CM_Cpp', PACKAGE = 'symmetry', X)
+}
+
+FM_Cpp <- function(X) {
+    .Call('_symmetry_FM_Cpp', PACKAGE = 'symmetry', X)
+}
+
+HM_Cpp <- function(X, a) {
+    .Call('_symmetry_HM_Cpp', PACKAGE = 'symmetry', X, a)
 }
 
 K2_Cpp <- function(X) {
@@ -33,12 +49,12 @@ KS_Cpp <- function(X) {
     .Call('_symmetry_KS_Cpp', PACKAGE = 'symmetry', X)
 }
 
-M_Cpp <- function(X) {
-    .Call('_symmetry_M_Cpp', PACKAGE = 'symmetry', X)
-}
-
 MGG_Cpp <- function(X) {
     .Call('_symmetry_MGG_Cpp', PACKAGE = 'symmetry', X)
+}
+
+MI_Cpp <- function(X) {
+    .Call('_symmetry_MI_Cpp', PACKAGE = 'symmetry', X)
 }
 
 MOI_Cpp <- function(X, k) {
@@ -49,6 +65,14 @@ MOK_Cpp <- function(X, k) {
     .Call('_symmetry_MOK_Cpp', PACKAGE = 'symmetry', X, k)
 }
 
+NAC1_Cpp <- function(X, a) {
+    .Call('_symmetry_NAC1_Cpp', PACKAGE = 'symmetry', X, a)
+}
+
+NAC2_Cpp <- function(X, a) {
+    .Call('_symmetry_NAC2_Cpp', PACKAGE = 'symmetry', X, a)
+}
+
 NAI_Cpp <- function(X, k) {
     .Call('_symmetry_NAI_Cpp', PACKAGE = 'symmetry', X, k)
 }
@@ -57,24 +81,12 @@ NAK_Cpp <- function(X, k) {
     .Call('_symmetry_NAK_Cpp', PACKAGE = 'symmetry', X, k)
 }
 
-S1_Cpp <- function(X, a) {
-    .Call('_symmetry_S1_Cpp', PACKAGE = 'symmetry', X, a)
-}
-
-S2_Cpp <- function(X, a) {
-    .Call('_symmetry_S2_Cpp', PACKAGE = 'symmetry', X, a)
+RW_Cpp <- function(X) {
+    .Call('_symmetry_RW_Cpp', PACKAGE = 'symmetry', X)
 }
 
 SGN_Cpp <- function(X) {
     .Call('_symmetry_SGN_Cpp', PACKAGE = 'symmetry', X)
-}
-
-T1_Cpp <- function(X, a) {
-    .Call('_symmetry_T1_Cpp', PACKAGE = 'symmetry', X, a)
-}
-
-T2_Cpp <- function(X, a) {
-    .Call('_symmetry_T2_Cpp', PACKAGE = 'symmetry', X, a)
 }
 
 WCX_Cpp <- function(X) {

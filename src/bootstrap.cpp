@@ -8,6 +8,12 @@ using namespace Rcpp;
 std::function<double (const NumericVector&)>
   get_ts_fun(std::string stat, double k = 0) {
 
+  if (stat == "RW") {
+    return RW_Cpp;
+  }
+  if (stat == "BH2") {
+    return BH2_Cpp;
+  }
   if (stat == "K2") {
     return K2_Cpp;
   }
@@ -26,8 +32,8 @@ std::function<double (const NumericVector&)>
   if (stat == "CM") {
     return CM_Cpp;
   }
-  if (stat == "M") {
-    return M_Cpp;
+  if (stat == "MI") {
+    return MI_Cpp;
   }
   if (stat == "MGG") {
     return MGG_Cpp;
@@ -35,8 +41,8 @@ std::function<double (const NumericVector&)>
   if (stat == "B1") {
     return B1_Cpp;
   }
-  if (stat == "CH") {
-    return CH_Cpp;
+  if (stat == "FM") {
+    return FM_Cpp;
   }
   if (stat == "BHI") {
     return BHI_Cpp;
@@ -56,17 +62,20 @@ std::function<double (const NumericVector&)>
   if (stat == "NAK") {
     return std::bind(NAK_Cpp, std::placeholders::_1, k);
   }
-  if (stat == "T1") {
-    return std::bind(T1_Cpp, std::placeholders::_1, k);
+  if (stat == "NAC1") {
+    return std::bind(NAC1_Cpp, std::placeholders::_1, k);
   }
-  if (stat == "T2") {
-    return std::bind(T2_Cpp, std::placeholders::_1, k);
+  if (stat == "NAC2") {
+    return std::bind(NAC2_Cpp, std::placeholders::_1, k);
   }
-  if (stat == "S1") {
-    return std::bind(S1_Cpp, std::placeholders::_1, k);
+  if (stat == "BHC1") {
+    return std::bind(BHC1_Cpp, std::placeholders::_1, k);
   }
-  if (stat == "S2") {
-    return std::bind(S2_Cpp, std::placeholders::_1, k);
+  if (stat == "BHC2") {
+    return std::bind(BHC2_Cpp, std::placeholders::_1, k);
+  }
+  if (stat == "HM") {
+    return std::bind(HM_Cpp, std::placeholders::_1, k);
   }
   return NULL;
 }

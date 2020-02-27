@@ -2,7 +2,7 @@
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-double M_Cpp(const NumericVector& X) {
+double MI_Cpp(const NumericVector& X) {
   NumericVector Xs = clone(X).sort();
   double N = X.size();
   double med_Xs = median(Xs);

@@ -4,7 +4,7 @@
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-double CH_Cpp(const NumericVector& X) {
+double FM_Cpp(const NumericVector& X) {
   int n = X.size();
   double TS_sum = 0;
   int i,j;

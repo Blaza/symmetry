@@ -16,21 +16,22 @@
 #' @section Test statistics:
 #' The list of available statitics in the format "code(s) : name (reference)"
 #'
-#' * M : The Mira test statistic (see \insertCite{M}{symmetry})
+#' * MI : The Mira test statistic (see \insertCite{M}{symmetry})
 #' * CM : The Cabilio–Masaro test statistic (see \insertCite{CM}{symmetry})
 #' * MGG : The Miao, Gel and Gastwirth test statistic (see \insertCite{MGG}{symmetry})
 #' * B1 : The \eqn{\sqrt{b_1}} test statistic (see \insertCite{UNKcentre}{symmetry})
 #' * KS : The Kolmogorov--Smirnov test statistic (see \insertCite{UNKcentre}{symmetry})
 #' * SGN : The Sign test statistic (see \insertCite{UNKcentre}{symmetry})
 #' * KS : The Wilcoxon test statistic (see \insertCite{UNKcentre}{symmetry})
-#' * CH : The characterization based test statistic (see \insertCite{CH}{symmetry})
+#' * FM : The characterization based test statistic (see \insertCite{CH}{symmetry})
+#' * RW : The Rothman-Woodroofe test statistic (see \insertCite{RW}{symmetry})
 #' * BHI : The Litvinova test statistic (see \insertCite{BHI}{symmetry})
-#' * BHK : The Baringhaus and Henze test statistic (see \insertCite{BHK}{symmetry})
+#' * BHK : The Baringhaus and Henze supremum-type test statistic (see \insertCite{BHK}{symmetry})
+#' * BH2 : The Baringhaus-Henze test statistic (see \insertCite{BHK}{symmetry})
 #' * MOI and MOK : The Milošević and Obradović test statistics (see \insertCite{MOIMOK}{symmetry})
 #' * NAI and NAK : The Nikitin and Ahsanullah test statistics (see \insertCite{NAINAK}{symmetry})
 #' * K2 and K2U : The Božin, Milošević, Nikitin and Obradović Kolmogorov type statistics based on V- and U- statistics respectively (see \insertCite{K2K2U}{symmetry})
-#' * T1, T2, S1 and S2 : The Allison and Pretorius test statistics (see \insertCite{Allison}{symmetry})
-#'
+#' * NAC1, NAC2, BHC1 and BHC2 : The Allison and Pretorius test statistics (see \insertCite{Allison}{symmetry})
 #' @param X the numeric vector for which to calculate the test statistic
 #' @param k the 'k' parameter in the formula (if applicable)
 #' @return The value of the test statistic.

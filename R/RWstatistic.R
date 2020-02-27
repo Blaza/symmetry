@@ -1,12 +1,12 @@
 #' @template test_stat
-#' @templateVar name The Mira test statistic
-#' @templateVar cite Mira1999
+#' @templateVar name Allison \eqn{T_2} statistic
+#' @templateVar cite Klar2012
 #' @templateVar formula to be added
 #' @export
-M <- function(X) {
+RW <- function(X) {
   if (!is.numeric((X)) && !is.logical((X))) {
     warning("Argument is not numeric or logical: returning NA")
     return(NA)
   }
-  M_Cpp(X)
+  RW_Cpp(X);
 }

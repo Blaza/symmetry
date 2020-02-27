@@ -6,7 +6,7 @@ using namespace Rcpp;
 
 
 // [[Rcpp::export]]
-double T2_Cpp(const NumericVector& X, double a) {
+double NAC2_Cpp(const NumericVector& X, double a) {
   int n = X.size();
   NumericVector aXs = abs(clone(X).sort());
   double TS_sum = 0;
