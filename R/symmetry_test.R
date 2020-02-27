@@ -80,8 +80,8 @@
 #' x <- fGarch::garchSim(specskew19, n = 500)
 #' g <- fGarch::garchFit(~garch(1,1), x, cond.dist = "QMLE",
 #'               include.mean = FALSE, trace = FALSE)
-#' \donttest{symmetry_test(g, "CH", B=400, burn = 100)} # slower
-#' symmetry_test(g, "FM", B=400, burn = 100, approximate = TRUE)
+#' \donttest{symmetry_test(g, "FM", B=400, burn = 100)} # slower
+#' \donttest{symmetry_test(g, "FM", B=400, burn = 100, approximate = TRUE)}
 #'
 #' @export
 symmetry_test <- function(x, ...) {

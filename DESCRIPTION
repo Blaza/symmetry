@@ -4,7 +4,7 @@ Version: 0.2.1
 Author: Blagoje Ivanović [aut, cre]
         Bojana Milošević [aut]
         Marko Obradović [aut]
-Date: 2019-08-24
+Date: 2020-02-27
 Maintainer: Blagoje Ivanović <blagoje_ivanovic@matf.bg.ac.rs>
 Description: Implementations of a large number of tests for symmetry and their 
     bootstrap variants, which can be used for testing the symmetry of random
